@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var arr = [1,2,3,4,5,6,6,7,7]
+        // for(i = 0; i < arr.length; i++){
+        //     console.log(arr[i]);
+        // }
+        // var arr = new Array("a","b","c");
+        // for(key in arr){
+        //     console.log(arr[key]);
+        // } 
+        // //key是指数组的下标
+
+        // 1、求平均成绩。
+        function arrSum(arr) {
+            var sum = 0;
+            for (i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            return sum / arr.length ;
+        }
+        console.log(arrSum([1,2,3,4]));
+        // 2、把1 - 100 放在数组data中；
+
+         function arr(){
+             var arr = [];
+             for(i = 0;i < 100;i++){
+                 arr[i]= i + 1; 
+             }
+             return arr; 
+         }
+         console.log(arr(arr));
+        // 3：随机点名程序Math.random()
+
+        // var arr = ["a","b","c","d","f"]
+        // var i = parseInt(Math.random()*arr.length);
+        // console.log(arr[i]);
+        // 4. 编写函数map(arr) 把数组中的每一位数字都增加30%
+
+        // function map(arr){
+        //     for(i = 0;i < arr.length; i++){
+        //         arr[i] *= 1.3;
+        //     }
+        //     return arr;
+        // }
+        // console.log(map(arr));
+
+        // 6、把1 - 100 中能被3 与 5 整除的的数放在数组中
+
+        var arr = [];
+        var count = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                arr[count] = i;
+                count++;
+            }
+
+        }
+        console.log(arr);
+
+
+        for (var i = 1; i <= 100; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                arr.push[i];
+            }
+        }
+        console.log(arr);
+        // 5. 编写函数has(arr) 判断数组中是否存在60这个元素，返回布尔类型
+        function has(arr,k){
+            for(var i = 0;i < arr.length;i++){
+                if(arr[i] == k){
+                    return true;
+                }
+            }
+            return false;
+        }
+        console.log(has([1,2,3,4,5],7))
+        // 第二种 开关门做法
+        function has(arr, k) {
+            flag = false;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == k) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        console.log(has([1, 2, 3, 4, 5], 3))
+    </script>
+</body>
+
+</html>
+
+<!-- 
+数组:
+        使用单独的变量名来存储一系列的值;
+        简单来说,数组的作用就是一个容器,将多个数据保存起来
+    1.声明数组的方法:
+        1:字面量
+            var arr = []
+        2: 构造函数的方法
+            var arr = new Aarry();
+                如果参数为一个数值: 代表的数组的长度
+                如果为多个值,则是数组内容;
+    2.数组的取值:
+        1.利用数组的下角标: arr[0]
+        2.数组的下角标都是连续的
+    3.数组的遍历:
+        根据数组的下标,从开始往后扫描,直到最后;
+    
+        遍历方法:
+        for 循环
+
+        for in 循环
+            for in 常用来遍历对象
+    4.数组常用的API (数组方法)
+        1.push:在数组最后或者多个元素(数组变大),返回添加数组的长度
+        var arr =[1,2];
+        arr.push(3) = [1,2,3]
+        2.pop:从数组最后取出一个元素(数组变小),返回的是数组的最后一个值(取出的数组)
+        arr.pop(3) =[1,2];
+            var arr = ["a","b","c"];
+            var a = arr.pop();
+            console.log(arr,a);
+        3.unshift 和push 相反,从数组的第一个位置开始添加数值
+        arr.unshift(3) =[3,1,2]
+        4.shift 和pop相反,从数组的第一个位置开始取,返回取出的值(数组长度变小)
+        5.reverse 反转方法
+         把数组中的顺序转变一下
+         var arr =[1,2,3]
+         arr.reverse()=[3,2,1]
+         6.sort 排序方法
+            1.无参数; arr.sort(); 
+            不传参数(比较的是ascii码)从第一位开始比较
+            2.有参数 arr.sort(function(){})
+            如果想对数字大小进行正序或倒序进行排列,需要往sort函数中传入一个回调函数(sort排序的根据);根据每次返回的值决定left和right的值
+
+            var arr =[1,2,30,25,5,3,90,4,80]
+            // arr.sort();
+            arr.sort(function(val1,val2){
+                return val1-val2;
+            })
+            console.log(arr);
+
+            arr.sort(function(a,b){
+                return a-b;//正序
+                return b-a//倒序
+            })
+            返回<0,不交换a和b的位置;
+            返回>0,交换a和b的位置
+
+        备注:以上6个方法在原数组进行操作,会改变所操作的数组.
+
+    数组方法2:
+
+        1.concat 数组连接(拼接)
+        var arr1 =[1,2,3]
+        var arr2 =[4,5] 
+        arr1.concat(arr2)
+        arr =[1,2,3,4,5]]
+            1.将多个数组连接在一起,返回新的数组
+            2.不改变原数组
+        2.join 将数组分割成字符串
+        arr.join('分隔符');分割符常用 - | & , 空 _
+            var arr =["a",1]
+            arr.join('');
+
+            将数组分割字符串，按照所填的字符 不会对原数组造成影响
+        3.arr.toString() 将数组转化为字符串
+            将数组转成字符串
+        4.arr.slice(start,end)截取数组的一段
+
+            1.从start开始到end(不包含end),返回数组的一段,不操作原数组
+            2,start和end都不写,返回整个数组arr,常用来快速复制数组
+            3.按照下标 数组的截取  不包括end    不会对原数组造成影响
+
+        5.arr.splice(start,deleteCount,arr)
+            1.从数组中移除一个或多个元素,如果有必要,在移除元素的位置插入新数组
+            2.返回移除的元素,操作的是原数组.
+            3.如果deleteCount不写,从start开始到数组结束
+            注:从start开始  删除几个   arr新插入的数组元素。     改变原数组
+
+ -->

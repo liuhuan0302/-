@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <a href="#" id = "links">aaaaaaa</a> -->
+    <script>
+        function fn(){
+            console.log(this);
+        }
+        window.fn();
+        fn是window的一个对象,所以是window在调用函数
+
+        函数内部的this指向
+        1.谁调用函数,this指向谁
+        2.事件驱动,给谁绑定事件,this指向谁,
+
+
+        document.onclick = function(){
+            console.log(this);
+        }
+
+        links.onclick = function(){
+            console.log(this);
+        }
+        
+
+        //函数的自执行
+        ;(function fn(){
+            console.log(10);
+        })();
+
+    </script>
+</body>
+</html>

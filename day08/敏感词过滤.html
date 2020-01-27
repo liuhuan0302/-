@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #txt{
+            display:block;
+            width:500px;
+            height:50px;
+            margin:100px auto;
+        }
+        #btn{
+            display:block;
+            width:100px;
+            height:30px;
+            margin:0 auto 50px;
+        }
+        #box{
+            width:500px;
+            font-size:20px;
+            color:red;
+            margin:0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">发送</button>
+    <div id="box"></div>
+    <script>
+        /* 事件逻辑:
+            绑定一个单击事件(btn)
+            获取字符长度,并对其进行遍历
+            设立一个敏感词词组
+            对字符和词组中的敏感词进行对比
+            如果有对其进行替换
+        */
+//第一种方法
+        //设立敏感词词组
+        var special = ['fuck','md','kao','laji'];
+        //设立单击事件
+        btn.onclick = function(){
+            //对文本框中输入的字符串进行一个抓取
+            var txtValue = txt.value;
+            //对敏感词进行循环遍历(循环嵌套最外层一般是少的数组)
+            for(var i = 0;i < special.length; i++){
+                for(var j = 0; j < txtValue.length; j++){
+                    //利用replace 方法,对文本框中输入的字符串进行遍历,当出现敏感词就进行替换
+                    txtValue = txtValue.replace(special[i],"*"); 
+                }
+            }
+            box.innerHTML = txtValue;
+        }
+
+//第二种方法:正则表达式
+        //设立敏感词词组
+        var special = ['fuck','md','kao','laji'];
+        //绑定一个单击事件
+        btn.onclick = function(){
+            //对输入文本进行获取
+            var txtValue = txt.value;
+            //对敏感词进行遍历
+            for(var i = 0, k = special.length; i < k ;i++){
+                //正则表达式 g匹配全局
+                var reg = new RegExp(special[i],"g");
+                txtValue = txtValue.replace(reg,'*');
+            }
+            box.innerHTML = txtValue;
+        }
+    </script>
+</body>
+</html>

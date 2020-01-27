@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    section{
+        height:400px;
+        width:800px;
+        background:#000;
+        margin: 50px auto 0;
+        position:relative;
+
+    }
+    div{
+        height:30px;
+        width:800px;
+        margin:0 auto;
+    }
+    div input{
+        height:30px;
+        width:700px;
+        border:0;
+        background:#ccc;
+        float:left;
+    }
+    span{
+        display:block;
+        height:30px;
+        width:100px;
+        background:orangered;
+        font-size:25px;
+        line-height:30px;
+        color:#fff;
+        text-align:center;
+        float:left;
+    }
+    section p{
+        height:30px;
+        width:800px;
+    
+        font-size:30px;
+        position:absolute;
+        left:800px;
+    }
+    </style>
+</head>
+<body>
+    <section></section>
+    <div>
+        <input type="text">
+        <span>发送</span>
+    </div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        /*
+        业务逻辑:
+        1.首先给span绑定点击事件,点击获取input的内容
+        2.建一个新元素p
+        3.将内容放到新元素中
+        4.将新元素放到section中
+        5.让新元素向左移动
+        */
+
+        //获取上面的元素
+        var 
+            btn = document.querySelector('span'),
+            info = document.querySelector('input'),
+            infoShow = document.querySelector('section');
+        //1.绑定单击事件
+        btn.onclick = function(){
+            //获取input的内容
+            var infoTxt = info.value;
+            //判断是否有内容输入
+            if(!infoTxt){
+                alert("请输入内容");
+            }else{
+                //2.创建新元素
+                var createP = document.createElement('p');
+                //3.将内容放到新元素中
+                createP.innerHTML = infoTxt;
+                //添加随机颜色
+                createP.style.color = randomColor();
+                //随机弹幕的高度
+                createP.style.top = randomNumber(0,240)+'px';
+
+                //弹幕移动
+                var speed = 10;
+                var timer = setInterval(function(){
+                    //弹幕距离左边的距离(offsetLeft 时时获取距离左边的距离)
+                    createP.style.left = createP.offsetLeft - speed + 'px'; 
+                    //清除定时器
+                    if(createP.offsetLeft < -800){
+                        clearInterval(timer);
+                    } 
+                },30)
+                //4.将创建的新元素放到section中
+                infoShow.appendChild(createP);
+                //放完之后清除info
+                info.value ='';
+            }
+        }
+    </script>
+</body>
+</html>

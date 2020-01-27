@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // alert("aaaa");
+        // console.log("打印信息");
+        // document.write("浏览器打印");
+        // comfirm("请输入名字")
+        console.log(typeof Object);  //function
+        console.log(typeof Number);  //function
+        console.log(typeof String);  //function
+        console.log(typeof Boolean);  //function
+        console.log(typeof null);  //Object
+        console.log(typeof undefined);  //undefined
+        console.log(typeof Symbol);  //function
+
+
+        console.log(Number({a:1}))
+    </script>
+</body>
+</html>
+<!-- 
+    1.js是一种弱类型的脚本语言
+    
+    2.js的组成:
+        ECMAscript  核心规范
+        DOM       文本对象模型 dom节点
+        BOM       浏览器对象模型
+
+    3.js放置的位置：
+        1：js代码  在标签内部直接编写
+        2: js代码放在script标签里面         script标签尽量放在body里面。
+        3: 用script标签引入一个外部的js文件
+    4.三大输出语句 
+      alert();  弹出框  window.alert();
+      提示!  阻止后面的程序运行
+      console.log(""); 在浏览器的控制台打印信息
+      document.write(""); 在浏览器打印信息
+
+      扩展:
+        console.warn();警告报错
+        console.error();报错输出
+        prompt()
+        confirm()
+
+    5.变量
+        定义:在程序运行过程中,有可能发生改变的量
+        变量要先定义,在赋值
+        var a = 10;
+
+    注:变量的命名规则：
+                1：不能使用关键字和保留字。
+                2、js中的标识符只能由 字母、数字、下划线、$  组成（不建议用中文）
+                3、标识符 不能用  数字 开头
+
+                命名规范 （扩展）：
+                    驼峰式命名法：
+                        小驼峰    qianFengJiaoYu  （lastIndexOf()）     backgroundColor   fontSize。。。
+                        大驼峰    QianFengJiaoYu
+                    
+                    匈牙利命名法：
+                        iNum     命名一个整数类型的变量
+                        lNum     命名一个小数类型的变量
+                        cChar    命名一个字符类型的变量
+                        sStr     命名一个字符串类型的变量  （str）
+
+     6.js书写规范：
+                1：每行代码的最后要添加分号
+                2：代码一定要在英文半角状态下输入
+                3: js里面是区分大小写！！！！！
+    7. 对输出注意事项：
+
+                1:输出或者使用变量的时候，变量是不能添加"";
+
+                2:如果对纯数字输出，不需要添加引号，如果给纯数字添加引号则输出的是字符
+
+                3：如果输出的是字符的情况下，必须添加引号。
+
+                4:如果打印的是 变量和字符串的组合的情况下：必须使用 + 做拼接。
+
+                5:如果一个纯数字和一个数字字符串相+    则是拼接。
+
+
+
+
+
+ 
+
+ -->

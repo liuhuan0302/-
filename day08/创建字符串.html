@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     textarea{
+            width:500px;
+            height:300px;
+            resize:none;
+            font-size:22px;
+        }
+        #num{
+            color:red;
+            font-weight:900;
+            font-size:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text" id="userName">
+    <span id="txt"></span>
+    <textarea name="" id="txt" cols="30" rows="10"></textarea>
+    <span>剩余字符<em id ="num"></em></span>
+
+
+    <script>
+        // 1、监测留言板中的字符数量。（oninput事件，时刻监听文本框是否发生变化。元素.oninput）
+        //业务逻辑:
+
+        txt.oninput = function(){
+            //设一个变量,检测输入字符的数量
+            var vullength = txt.value.length;
+            //将剩余字符数量回传个num
+            num.innerHTML = 200 - vullength;
+            if(vullength >= 200){
+                //如果字符超出,则禁止输入
+                txt.disabled = 'disabled';
+            }
+        }
+        
+        // 2、判断用户名长是否正确  6-10
+        userName.oninput = function(){
+            if(this.value.length >=6 && this.value.length <=10 ){
+                txt.innerHTML ="用户名正确";
+            }else{
+                txt.innerHTML ="用户名不正确";
+            }
+        }
+
+
+        
+    </script>
+</body>
+</html>
+<!-- 
+
+    创建字符串的方法:
+        字面量:
+            var str ="";
+            var str = String();
+        构造函数的方法:
+            var str = new String();
+    
+    字符串的长度:
+        str.length;
+ -->

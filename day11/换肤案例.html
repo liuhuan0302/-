@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style2.css">
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    body,html{
+        height:100%;
+    }
+    btn{
+        height:50px;
+        width:50px;
+        background:#ccc;
+        font-size:25px;
+        line-height:50px;
+        color:#ffff;
+        text-align:center;
+        
+    }
+    </style>
+</head>
+<body>
+    <button class='btn'>换肤</button>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        var oBtn = document.querySelector('.btn');
+        var oLink = document.querySelector('link');
+        oBtn.onclick = function(){
+            var num = randomNumber(1,5);
+            var url = './css/style' + num + '.css';
+            oLink.setAttribute('href',url);
+        }
+    </script>
+</body>
+</html>

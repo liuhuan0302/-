@@ -1,0 +1,37 @@
+@import './var.scss';
+@import './minxin.scss';
+section{
+    width:$width;
+    height:200px;
+    font-size:$fontsize;
+    @include transition;//调用方法
+}
+
+
+$num:10;
+@if($num < 11){
+    .box{
+        width:100px;
+    }
+}
+
+@for $i from 1 to 11{
+    .box#{$i}{
+        transform: rotate(#{$i * 36}deg);
+    }
+}
+
+@each $i in 1,2,3,4,5{
+    .wrap#{$i}{
+        transform:rotate(#{$i * 20}deg);
+    }
+}
+
+.box{
+    width:200px;
+}
+@media screen and (max-width:1000px) and (min-width:500px){
+    .box{
+        width:100px;
+    }
+}

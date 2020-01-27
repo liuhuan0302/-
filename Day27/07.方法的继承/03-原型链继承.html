@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            function Fn1(){
+                this.name = 'one';
+            }    
+            Fn1.prototype.work = function(){
+                console.log('工作');
+            }
+            Fn1.prototype.run = function(){
+                console.log('跑步');
+            }
+    
+    
+            function Fn2(){
+                this.name = 'two';
+            }
+    
+            //原型链继承：
+            /*
+            1.实例化对象,取到的是fn1的属性和__proto__方法
+            2.Fn1的属性添加到Fn2的prototype 下面 
+            3.__ptroto__ 会把Fn2的__proto__ 重构
+            4.会改变Fn2的构造器指向(构造器在prototype 下面,而这种方法只会重构Fn2的prototype 属性)
+            5.不会影响fn1里面的方法
+            */
+            Fn2.prototype = new Fn1();
+            //注意区分下面这种情况类似于第一种浅拷贝
+            // Fn2.prototype = new Fn1().__proto__;//相当于把fn1.prototype.__proto__ 是把原型对象中__proto__ 的指向给到了Fn2.prototype,类似于原型继承
+            /*
+            1.污染父类
+            2.更改了Fn2的constructor 指向
+            原理:指向的地址一样
+            */
+            
+    
+            Fn2.prototype.sleep = function(){
+                console.log('睡觉');
+            }
+    
+            var fn = new Fn2();//new 的过程在如果自身没有这个方法,则会向构造函数找
+            // console.dir(new Fn1());
+            console.dir(Fn2);//
+            // console.dir(fn);
+            // console.dir(Fn1);
+    
+            /*
+                原型链继承存在问题：
+                    继承过来不必要的属性！
+            */
+    </script>        
+</body>
+</html>

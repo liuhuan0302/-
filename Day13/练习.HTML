@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    div{
+        height:100px;
+        width:100px;
+        margin:30px auto;
+        font-size:60px;
+        font-weight:900;
+        line-height:100px;
+        text-align:center;
+        color:red;
+
+    }
+    </style>
+</head>
+<body>
+    <div>A</div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    // document.onkeydown = function(e){
+    //     //获取事件对象
+    //     e = e || window.event;
+    //     //获取按下的字母相对应的ascill值
+    //     var keyCode = e.keyCode || e.which;
+    //     console.log(keyCode);
+    //     //打印按下的字母
+    //     console.log(String.fromCharCode(keyCode));
+    // }
+
+    //打字游戏
+    var oDiv = document.querySelector('div');
+    document.onkeydown = function(e){
+        e = e || window.event;
+        //获取第一个字母的ascii值
+        var letterCode = oDiv.innerHTML.charAt(0).charCodeAt(0);
+        var keyCode = e.keyCode || e.which;
+        if(letterCode == keyCode){
+            var num = randomNumber(65,90);
+            //String.fromCharCode 将ascii 码 转成对应的 字母
+            oDiv.innerHTML = String.fromCharCode(num);
+        }
+    }
+    </script>
+</body>
+</html>

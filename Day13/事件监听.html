@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //事件监听
+        // 元素.事件 = function(){}                    dom0级事件
+        document.onclick = function () {
+            console.log(1);
+        }
+        document.onclick = function () {
+            console.log(2);
+        }
+        /*事件监听： dom2级事件(可以给同一个元素绑定多个事件)
+
+        ele.addEventListener(事件类型，回调函数，布尔值)    //存在兼容问题
+            参数解析:
+                事件类型：click   contentmenu  mouseover  mouseout........
+                回调函数:事件处理程序
+                布尔值：  一般不去设置，控制事件流  如果为true 为事件捕获   否则为事件冒泡
+
+        ele.attachEvent(事件，回调函数)           //IE
+            参数解析
+                事件：   onclick    onmouseover
+                 回调函数：  事件处理程序
+        */
+        //事件监听
+        // document.addEventListener('click',function(){
+        //     console.log(1);
+        // })
+        // document.addEventListener('click',function(){
+        //     console.log(2);
+        // })
+
+
+
+
+
+
+        function addEventListener(ele, eventType, fn) {
+            return ele.addEventListener ? ele.addEventListener(eventType, fn) : ele.attachEvent('on' + eventType, fn);
+        }
+        addEventListener(document, 'click', function () {
+            console.log(1);
+        })
+
+        //
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>11</div>
+    <div>21</div>
+    <div>31</div>
+    <div>41</div>
+    <div>51</div>
+    <div>61</div>
+    <div>71</div>
+    <div>81</div>
+    <script>
+    // //数组的结构
+    let arr = [1,2,3,4,5,6];
+    let [a,b,c,d,e] = arr;
+    console.log(a,b,c,d,e);
+
+    let oDiv = document.querySelectorAll('div');
+    let {one,two,three} = oDiv;
+    console.log(oDiv);
+    // //对象的结构
+    let obj = {
+        name:'小明',
+        age:20,   //数字可以不加引号
+        sex:'nan'
+    }
+    let {name,age,sex} = obj;
+    console.log(name);
+// 对 对象内部的对象进行解构
+    let obj = {
+        name:'xioming',
+        obj2 : {
+            age:20,
+            sex:'nan'
+        }
+    }
+    let {obj2:{age,sex}} = obj;
+    console.log(sex);
+
+    let obj = {
+        name:'nnn',
+        id:001
+    }
+    //重新命名,在进行打印
+    let {name:_name,id:_id} = obj;
+    console.log(_name,_id);
+
+
+    // let [a] = undefined;
+    // console.log(a);
+    </script>
+</body>
+</html>
+<!-- 
+    但数组的长度不确定时,用arguments
+
+    解构:
+        注:等号右侧如果不能进行遍历,都不能解构
+        let [a] = 10; 数值
+        let [a] = null;
+        let [a] = true;
+        let [a] = false;
+        let [a] = undefined;
+        let [a] = NaN;
+
+        let [a] = []; //返回值undefined
+        let {a} = {}; //返回值undefined
+ -->

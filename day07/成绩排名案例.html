@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       var students =[
+           {   
+               id:01,
+               name:"陈",
+               yu:67,
+               sx:89,
+               yy:90
+           },
+           {   
+               id:02,
+               name:"王",
+               yu:90,
+               sx:100,
+               yy:60
+           },
+           {   
+               id:03,
+               name:"李",
+               yu:60,
+               sx:90,
+               yy:89
+           },
+           {   
+               id:04,
+               name:"张",
+               yu:77,
+               sx:87,
+               yy:90
+           },
+           {   
+               id:05,
+               name:"刘",
+               yu:98,
+               sx:99,
+               yy:90
+           },
+           {   
+               id:06,
+               name:"孙",
+               yu:40,
+               sx:83,
+               yy:77
+           },
+           {   
+               id:07,
+               name:"杨",
+               yu:69,
+               sx:79,
+               yy:92
+           },
+           {   
+               id:08,
+               name:"黄",
+               yu:74,
+               sx:85,
+               yy:91           
+            }
+       ] 
+       //对数组进行遍历,将总成绩算出来,并加到对象中
+       for(var i = 0; i < students.length; i++){
+           students[i].zong = students[i].yu + students[i].sx + students[i].yy;
+       }
+       //按总成绩,对数组进行排序
+       for(var i = 0;i < students.length; i++){
+           students.sort(function(a,b){
+               if(a.zong == b.zong){
+                    return a.yu-b.yu;
+               }
+                    return a.zong-b.zong;
+           })
+       }
+        console.log(students);
+    </script>
+</body>
+</html>

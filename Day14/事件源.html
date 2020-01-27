@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .outer{
+            height:400px;
+            width:500px;
+            background:red;
+        }
+        .center{
+            height:300px;
+            width:400px;
+            background:blue;
+        }
+        .inner{
+            height:200px;
+            width:300px;
+            background:pink;
+        }
+        </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="center">
+            <div class="inner"></div>
+        </div>
+    </div>
+    <script>
+        //获取元素(注:类名一定要加点)
+    var outer = document.querySelector('.outer');
+    //绑定事件
+    outer.onclick = function(e){
+        //获取事件对象
+        e = e || window.event;
+        //获取事件源(元素)
+        var target = e.target || e.srcElement;
+        console.log(target.className);
+        //对比类名(注:类名的获取和标签名的获取)
+        switch(target.className){
+            case 'outer':console.log('外');
+            break;
+            case 'center':console.log('中');
+            break;
+            case 'inner':console.log('里');
+            break;
+
+        }
+    }
+    </script>
+</body>
+</html>  
+<!-- 
+    事件源:(是一个节点,元素)
+            事件真正触发的元素
+    获取事件源:
+        e.target || e.srcElement
+
+注:重要!!!
+    获取元素的类名
+        元素.className
+    获取元素的标签名:
+        元素.tagName
+        (获取的标签名第一个字母大写)
+
+ -->

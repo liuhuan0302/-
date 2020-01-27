@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //打印出对象内部的属性和方法
+    console.dir(Array);
+
+    //需求:用对象保存一辆车
+    var car1 = new Object();
+    car1.name = '奥迪';
+    car1.volume = '4.0T';
+    car1.type = 'suv';
+    console.log(car1);
+    //需求:保存100辆车  封装一个方法
+    //工厂模式
+    function car(name,volume,type){
+        var obj = new Object();  //工厂
+        obj.name = name;         //加工
+        obj.volume = volume;
+        obj.type = type;
+        return obj ; //普通函数要有返回值
+    }
+    //调用方法
+    var car1 = car('奥迪','4.0T','suv');
+    var car2 = car('奥拓','1.0T','suv');
+    var car3 = car('奔驰','3.0T','suv');
+    console.log(car1,car2,car3);
+
+
+    //构造函数写法
+    function Car(name,volume,type){ 
+        this.name = name;         //加工
+        this.volume = volume;
+        this.type = type;
+    }
+    //调用方法
+    var car1 = new Car('奥迪','4.0T','suv');
+    var car2 = new Car('奥拓','1.0T','suv');
+    var car3 = new Car('奔驰','3.0T','suv');
+    console.log(car1,car2,car3);
+
+    //构造函数写法
+     function Car(name,volume,type){ 
+        this.name = name;         //加工
+        this.volume = volume;
+        this.type = type;
+        this.fn = function(){
+            console.log(this);// this 指向这个对象 fn{} == Car
+        }
+    }
+    //调用方法
+    var car1 = new Car('奥迪','4.0T','suv');
+    var car2 = new Car('奥拓','1.0T','suv');
+    var car3 = new Car('奔驰','3.0T','suv');
+    console.log(car1,car2,car3);
+
+    car1.fn(); //== car1.name  奥迪
+    car2.fn();
+    car3.fn();
+
+
+
+</script>
+</body>
+</html>
+<!-- 
+    通过new 调用的就是构造函数,
+    new 出来的是 对象
+
+    构造函数与函数的关系:
+        对象是构造函数构建出来的, 对象用来存储数据;
+        构造函数 ----(new)---- 对象 ----- (存储) ----  数据
+
+    区分构造函数与普通函数的区别: 构造函数 首字母大写
+ -->

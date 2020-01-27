@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height:5000px;
+
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <script>
+    /*
+    函数的防抖:
+        在事件触发的过程中不会执行
+        当在键入时,不在执行,键入完才执行
+    */
+    var input = document.querySelector('input');
+    //减少事件的触发
+    //当键入之后才触发事件,而不是随时触发
+    var timer = null;
+    input.oninput = function(){
+        //当键入内容时,一直在清除定时器
+        clearInterval(timer);
+        //当不在输入内容时,开始执行定时器
+        timer = setTimeout( () => {
+            console.log(1);
+        },300)
+        
+    }
+
+    window.onscroll = function(){
+        //当滚动时一直在清除定时器
+        clearInterval(timer);
+        //当不在滚动时,执行定时器
+        timer = setTimeout( () => {
+            console.log(1);
+        },300)
+    }
+
+    /*
+    函数的节流:
+        相对减少事件触发的频率
+    */
+
+    window.onscroll = function(){
+        console.log(1);
+    }
+
+
+    var flag = true;
+    window.onscroll = function(){
+        //!flag = true 即当flag = false时跳出
+       if(!flag){
+           return;//终止函数的执行
+       }
+
+       flag = false;
+    //    console.log('外部flag'+flag)
+       //当没有执行定时器,flag 一直是false ,不断跳出,只有当执行定时器是,flag 才会被改变为true;
+       timer = setTimeout( () => {
+           console.log(1);
+           flag = true;
+        //    console.log('内部flag'+flag)
+       },300)
+
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    //让异步代码同步执行
+    function fn1(){
+            return new Promise( (res,rej) => {
+                setTimeout( ()=>{
+                    console.log(1111111111);
+                    res();
+                },4000 )
+            } )
+        }
+        function fn2(){
+            return new Promise( (res,rej) => {
+                setTimeout( ()=>{
+                    console.log(2222222);
+                    res();
+                },3000 )
+            } )
+        }
+        function fn3(){
+            return new Promise( (res,rej) => {
+                setTimeout( ()=>{
+                    console.log(333333333333);
+                    res();
+                },2000 )
+            } )
+        }
+        function fn4(){
+            return new Promise( (res,rej) => {
+                setTimeout( ()=>{
+                    console.log(444444444);
+                    res();
+                },1000 )
+            } )
+        }
+        // fn1()
+        // .then( ()=>{
+        //     return fn2()
+        // })
+        // .then( ()=>{
+        //     return fn3();
+        // })
+        // .then( ()=>{
+        //     return fn4();
+        // })
+
+        async function fn(){
+            await fn1();
+            await fn2();
+            await fn3();
+            await fn4();
+
+        }
+        fn();
+        //async 函数   返回的是一个promise      await 等待 上一个返回promise之后  执行。
+
+
+    //请求两个接口,第二个接口需要用到第二个接口返回的数据,此时可以使用await
+       async function d(){
+        axios({
+            method :'',
+            url : '',
+            data :{}
+        })
+        .then( (d)=>{
+            return
+        })
+        //由于ajax 是异步的,同时执行,第二个接口不用拿到第一接口的数据,但await 是等待,可以等第一个接口拿到数据之后,在执行第二个接口
+        await axios()
+       }
+    </script>
+</body>
+</html>

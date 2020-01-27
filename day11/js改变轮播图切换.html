@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    section{
+        width:500px;
+        height:40px;
+        margin: 30px auto;
+    }
+    div{
+        width:30px;
+        height:30px;
+        background:orange;
+        border-radius:50%;
+        margin: 0 10px;
+        float:left;
+    }
+    .active{
+        background:blue;
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="active"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+    <script>
+        //动态的改变类名
+        /*
+        JS绑定事件,要判断是给一个元素还是一个集合
+        
+        */ 
+       //先获取html中的元素
+        var aDiv = document.querySelectorAll('div');
+        for(var i = 0, k = aDiv.length; i < k; i++){
+            //绑定事件:谁滑过谁绑定
+            aDiv[i].onmouseover = function(){
+                //在滑过时先把所有的样式清除掉(所以此时不能用this)
+                for(var j = 0 ; j < aDiv.length; j++){
+                    aDiv[j].className = '';
+                }
+                //this是指谁绑定给谁
+                this.className = "active";
+           }
+       }
+    </script>
+</body>
+</html>

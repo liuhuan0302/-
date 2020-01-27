@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var reg = /^\d+\.\d{1,2}$/
+        // var reg = /^[1-9]\d{5}$/
+        //判断压缩包格式
+        var reg = /^.+\.((zip)|(gz)|(rar))$/;
+        //判断手机号
+        var reg =/^1[356789]\d{9}$/ 
+        //日期格式
+        var reg = /^\d{4}[-\/\.]\d{2}[-\/\.]\d{2}$/
+        var reg = /^\d{4}([-\/\.]\d{2}){2}$/
+        //身份证号
+        var reg = /^(\d{17}(\d|x))|(\d{15})$/
+
+        //中文验证
+        
+
+
+        console.log(reg.test("11111111111"))
+    </script>
+</body>
+</html>   

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<section id="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+</section>
+<body>
+    <script>
+        /*
+            childNodes 包括元素节点,也包括文本节点
+            children 只能获取元素节点
+            元素节点 为1   文本节点为3
+            检测节点的类型:nodeType
+        */
+        // 获取当前元素的子元素
+        var aDiv = document.getElementById('box').querySelectorAll('div');
+        console.log(aDiv);
+        // childNodes 包括元素节点,也包括文本节点
+        var aDiv = document.getElementById('box').childNodes;
+         console.log(aDiv);
+         //children 只能获取元素节点
+         var aDiv = document.getElementById('box').children;
+         console.log(aDiv);
+
+        //节点过滤
+        //获取所有元素节点及文本节点
+        //  var aDiv = document.getElementById('box').childNodes;
+        //  //对这些节点进行循环
+        //  for(var i = 0; i < aDiv.length;i++){
+        //      //打印节点以及节点类型
+        //     //  console.log(aDiv[i],aDiv[i].nodeType);
+        //      if(aDiv[i].nodeType = 3 ){
+        //          aDiv[i].remove();
+        //      }
+        //  }
+        //  console.log(aDiv);
+    </script>
+</body>
+</html>

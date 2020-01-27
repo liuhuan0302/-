@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+//过去的事件
+
+//         var agoTime = new Date("2018-9-4");
+//         var agoTime = new Date("2018/9/4");
+//         var agoTime = new Date("2018,9,4");
+//         console.log(agoTime);
+// //获取事件戳    获取的是1970年1月1日到现在的毫秒
+//         // date.getTime();
+      
+// //获取一个五天之后的时间
+        var nowTime = new Date(); 
+        var futureTime = new Date(nowTime.getTime()+5*24*60*60*1000);
+        console.log(futureTime);
+// // 获取现在的日期
+//         var nowDay = new Date();
+//         console.log(nowDay);
+// //获取当前年份
+//         var date = new Date();
+//         var year = date.getFullYear();
+//         console.log(year);
+// //获取2018年
+//         date.setFullYear(2018);
+//         var year = date.getFullYear();
+//         console.log(year);
+// //获取当前月份
+        var date = new Date();
+        var Month = date.getMonth();
+        console.log(Month+1);
+// //获取当前是星期几
+//         console.log(date.getDay());
+// //获取当前是几点
+//         console.log(date.getHours());
+// //获取当前的秒
+        console.log(date.getMinutes());
+// //获取上个月天数
+//         // console.log(date.setDate(0));
+//获得今天是几号
+        console.log(date.getDate());
+        
+//怎么获取这个月的天数
+        var date = new Date();
+        //先把这个月设置成下个月
+        date.setMonth(date.getMonth()+1);
+        //再把日期设置为0
+        date.setDate(0);
+        //在获取getDate;
+        var days = date.getDate();
+        console.log(days);
+
+        console.log(date.getTime());
+        
+    </script>
+</body>
+</html>
+<!-- 
+
+    时间对象API:
+        1.年份(1970-)
+            date.getFullYear() 获取
+            date.setFullYear() 设置
+        2.月份(0-11) 0代表1月
+            date.getMonth() 获取 0 - 11
+            date.setMonth() 设置
+        3.星期几(0-6) 0代表星期日
+            date.getDay()  获取
+            不可设置
+        4.日(1-31)
+            date.getDate() 获取
+            date.setDate() 设置  如果把日期设置为0 的情况下,保存的是上个月的天数
+
+        5.时(0-23)
+            date.getHours() 获取
+            date.setHours() 设置
+        6.分钟(0-59)
+            date.getMinutes() 获取
+            date.setMinutes() 设置
+        7.秒(0-59)
+            date.getSeconds() 获取
+            date.setSeconds() 设置
+        8.毫秒(1000毫秒=1秒)
+            date.getMilliseconds()  获取
+            date.getMilliseconds()  设置
+
+
+ -->

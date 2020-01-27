@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+        回顾:函数作用域
+            1.变量: 全局变量  局部变量
+            2.作用域链:
+                根据函数内部能以链式查找的形式访问函数外部的全局变量
+
+        思考 : 全局变量如何访问局部变量???
+
+        闭包可以实现
+
+
+
+        1.闭包:
+            a: js里面能让全局访问局部变量的函数
+            b: 定义在函数内部的函数,称为闭包函数
+            c: 改变变量的访问的正常机制(延长变量的生命周期)(垃圾回收机制)
+
+        2.闭包的用途:
+            a : 可以读取函数内部的变量
+    
+                function fn(){
+                    var inner = 100;
+                    return function(){
+                        return  inner;
+                    }
+                }
+                var a = fn();//fn在调用的时候,返回的匿名函数
+                console.log(a());//匿名函数在调用的时候返回的是inner
+
+            b : 让这些变量始终保持在内存中
+
+
+        3.闭包的使用场景:
+            1.循环保留变量i 的值
+            2.函数自运行
+            3.获取函数内部的变量
+
+        4.垃圾回收机制:
+            等待函数执行完毕,内存中的空间,被释放.如果下一次调用的时候,函数内部的变量重新赋值.
+            函数中的局部函数一档被引用,浏览器将不再回收创建的内存
+            
+            函数执行时,会开辟一块内存,存储函数内部的变量,当函数运行完毕之后,变量被垃圾回收机制回收.
+
+            function fn(){
+                var num = 100;
+                return num;
+            }
+            console.log(fn());//100
+            console.log(fn());//100
+            console.log(fn());//100
+            console.log(fn());//100
+
+             function fn(){
+                var a = 100;
+                return ++a;
+            }
+            console.log(fn());//101
+            console.log(fn());//101
+
+
+
+            //函数中的局部函数一旦被引用，浏览器将不回收创建的内存 a并没有被垃圾回收,而是一直保存在浏览器中
+                function fn(){
+                    var a = 100;
+                    return function(){
+                        return ++a;
+                    }
+                }
+                var num = fn();
+                console.log(num());//101
+                console.log(num());//102
+                console.log(num());//103
+
+
+
+                function fn(){
+                    var a = 100;
+                    return ++a;
+                }
+                console.log(fn());//101
+                console.log(fn());//101
+
+        5.闭包的影响:
+            1.由于闭包会使得函数中的变量都被保存在内存当中,内存会消耗很大,所以不能滥用闭包,否则会造成网页性能的问题,在IE中可能会导致内存泄露
+            2.闭包会在函数外部,改变函数内部的变量值.你会把原来的私有变量变成公有变量,这样是不行的.搜易不要随便的改变父级函数内部变量的值
+            不要刻意的使用闭包,尽量少使用闭包
+            闭包就会开辟内存,可能造成内存泄露
+
+
+        面试题 : 什么是闭包 ?简述闭包函数?
+
+            a:作用域！
+            b:作用域链
+            c:怎样让再全局访问局部变量？？
+            d:闭包:定义在函数内部的函数
+            e:闭包函数：破坏正常的垃圾回收机制
+            f:垃圾回收机制
+            g:延长变量的声明周期！
+            h:闭包的影响！！！！！
+    */
+    
+    // function fn(){
+    //     var inner = 100;
+    //     return function(){
+    //         return  inner;
+    //     }
+    // }
+    // var a = fn();//fn在调用的时候,返回的匿名函数
+    // console.log(a());//匿名函数在调用的时候返回的是inner
+
+
+    // //函数中的局部函数一旦被引用，浏览器将不回收创建的内存 a并没有被垃圾回收,而是一直保存在浏览器中
+    // function fn(){
+    //     var a = 100;
+    //     return function(){
+    //         return ++a;
+    //     }
+    // }
+    // var num = fn();
+    // console.log(num());//101
+    // console.log(num());//102
+    // console.log(num());//102
+
+
+    function fn(){
+        var a = 100;
+        return ++a;
+    }
+    console.log(fn());//101
+    console.log(fn());//101
+
+    function fn(){
+        var num = 100;
+        return num;
+    }
+    console.log(fn());//100
+    console.log(fn());//100
+    console.log(fn());//100
+    console.log(fn());//100
+    </script>
+</body>
+</html>

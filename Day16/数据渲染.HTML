@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .goodsbox {
+            width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+
+        }
+
+        .goods {
+            width: 218px;
+            height: 370px;
+            border: 1px solid red;
+            margin: 10px;
+            float: left;
+
+        }
+
+        .goods a {
+            display: block;
+            height: 250px;
+            width: 210px;
+            margin: 4px auto;
+        }
+
+        .goods a img {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+
+        .goods h2 {
+            text-align: center;
+            font-size: 20px;
+            line-height: 25px;
+            color: red;
+        }
+
+        .goods p {
+            padding: 0 10px;
+            font-size: 12px;
+            line-height: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="goodsbox" id="box">
+        <div class="goods">
+            <a href="#">
+                <img src="" alt="">
+            </a>
+            <h2></h2>
+            <p></p>
+        </div>
+    </section>
+
+    <script>
+        //模拟数据渲染
+        var goods = [
+            {
+                id: 01,
+                price: '1000',
+                imgSrc: 'http://img13.360buyimg.com/n7/jfs/t1/26123/4/9617/119461/5c8082e6Eb533f3fc/f53c4b1b39676fa9.jpg',
+                title: '【特步正品官方】满199立减10，满299立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 02,
+                price: '300',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/58638/8/6570/143338/5d4658d3Eeb186fc7/c979efb1c3cdc95a.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身半袖体恤男士休闲上衣打底衫POLO衫男 深灰 XL！'
+            },
+            {
+                id: 03,
+                price: '5000',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/41293/26/9137/126467/5d29665fEad149728/f5cb00de507f609f.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身9立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 04,
+                price: '999',
+                imgSrc: 'http://img11.360buyimg.com/n7/jfs/t1/69679/40/5140/126743/5d32f0f5E7f69253a/37c4dcd5bb5ea2a2.jpg',
+                title: '【特步正品官方】热卖尖货！'
+            },
+            {
+                id: 05,
+                price: '900',
+                imgSrc: 'http://img12.360buyimg.com/n7/jfs/t1/47585/32/9355/235437/5d6b33c9E5b57617b/044f3c9508e439cb.jpg',
+                title: '9月1日-9月5日，进店领30元夹克体验券，加购秋季新品赢200-20元礼券立即前往'
+            },
+            {
+                id: 06,
+                price: '1000',
+                imgSrc: 'http://img13.360buyimg.com/n7/jfs/t1/26123/4/9617/119461/5c8082e6Eb533f3fc/f53c4b1b39676fa9.jpg',
+                title: '【特步正品官方】满199立减10，满299立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 07,
+                price: '200',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/58638/8/6570/143338/5d4658d3Eeb186fc7/c979efb1c3cdc95a.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身半袖体恤男士休闲上衣打底衫POLO衫男 深灰 XL！'
+            },
+            {
+                id: 08,
+                price: '5000',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/41293/26/9137/126467/5d29665fEad149728/f5cb00de507f609f.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身9立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 09,
+                price: '999',
+                imgSrc: 'http://img11.360buyimg.com/n7/jfs/t1/69679/40/5140/126743/5d32f0f5E7f69253a/37c4dcd5bb5ea2a2.jpg',
+                title: '【特步正品官方】热卖尖货！'
+            },
+            {
+                id: 10,
+                price: '900',
+                imgSrc: 'http://img12.360buyimg.com/n7/jfs/t1/47585/32/9355/235437/5d6b33c9E5b57617b/044f3c9508e439cb.jpg',
+                title: '9月1日-9月5日，进店领30元夹克体验券，加购秋季新品赢200-20元礼券立即前往'
+            },
+            {
+                id: 11,
+                price: '1000',
+                imgSrc: 'http://img13.360buyimg.com/n7/jfs/t1/26123/4/9617/119461/5c8082e6Eb533f3fc/f53c4b1b39676fa9.jpg',
+                title: '【特步正品官方】满199立减10，满299立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 12,
+                price: '300',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/58638/8/6570/143338/5d4658d3Eeb186fc7/c979efb1c3cdc95a.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身半袖体恤男士休闲上衣打底衫POLO衫男 深灰 XL！'
+            },
+            {
+                id: 13,
+                price: '5000',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/41293/26/9137/126467/5d29665fEad149728/f5cb00de507f609f.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身9立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 14,
+                price: '999',
+                imgSrc: 'http://img11.360buyimg.com/n7/jfs/t1/69679/40/5140/126743/5d32f0f5E7f69253a/37c4dcd5bb5ea2a2.jpg',
+                title: '【特步正品官方】热卖尖货！'
+            },
+            {
+                id: 15,
+                price: '900',
+                imgSrc: 'http://img12.360buyimg.com/n7/jfs/t1/47585/32/9355/235437/5d6b33c9E5b57617b/044f3c9508e439cb.jpg',
+                title: '9月1日-9月5日，进店领30元夹克体验券，加购秋季新品赢200-20元礼券立即前往'
+            },
+            {
+                id: 16,
+                price: '1000',
+                imgSrc: 'http://img13.360buyimg.com/n7/jfs/t1/26123/4/9617/119461/5c8082e6Eb533f3fc/f53c4b1b39676fa9.jpg',
+                title: '【特步正品官方】满199立减10，满299立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 17,
+                price: '200',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/58638/8/6570/143338/5d4658d3Eeb186fc7/c979efb1c3cdc95a.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身半袖体恤男士休闲上衣打底衫POLO衫男 深灰 XL！'
+            },
+            {
+                id: 18,
+                price: '5000',
+                imgSrc: 'http://img10.360buyimg.com/n7/jfs/t1/41293/26/9137/126467/5d29665fEad149728/f5cb00de507f609f.jpg',
+                title: '范华尼 短袖t恤男2019夏季新款潮流修身9立减20，满399立减30，火爆开启，点击查看热卖尖货！'
+            },
+            {
+                id: 19,
+                price: '999',
+                imgSrc: 'http://img11.360buyimg.com/n7/jfs/t1/69679/40/5140/126743/5d32f0f5E7f69253a/37c4dcd5bb5ea2a2.jpg',
+                title: '【特步正品官方】热卖尖货！'
+            },
+            {
+                id: 20,
+                price: '900',
+                imgSrc: 'http://img12.360buyimg.com/n7/jfs/t1/47585/32/9355/235437/5d6b33c9E5b57617b/044f3c9508e439cb.jpg',
+                title: '9月1日-9月5日，进店领30元夹克体验券，加购秋季新品赢200-20元礼券立即前往'
+            }
+
+        ]
+
+        // 循环遍历整个数组,把数组中属性值取出来,存到一个空字符串中
+        var str = " ";
+        for (var i = 0; i < goods.length; i++) {
+            //利用ES6中``进行字符串拼接
+            str += `
+        <div class="goods">
+            <a href="#">
+                <img src="${goods[i].imgSrc}" alt="">
+            </a>
+            <h2>${goods[i].price}</h2>
+            <p>${goods[i].title}</p>
+        </div>`;
+        }
+
+        box.innerHTML = str;
+    </script>
+</body>
+
+</html>

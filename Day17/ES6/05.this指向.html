@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.如果没有函数。或者用function关键字定义 fn()调用   this指向window。
+        function fn(){
+            console.log(this);
+        }
+        fn();
+        console.log(this);
+
+        //2.如果开启严格模式    this指向的是undefined;
+        'use strict';
+        function fn(){
+            console.log(this);
+        }
+        fn();
+
+        //3.事件调用函数，this指向绑定事件的对象。
+        document.onclick = function(){
+            console.log(this);
+        }
+        setInterval(function(){
+            console.log(this)
+        },300)
+
+        //4.如果对象内部的函数中的this 在函数调用的时候，指向的是当前对象
+        var obj = {
+            a :100,
+            fn:function(){
+                console.log(this);//object
+            }
+        }
+        obj.fn();
+
+// 5.如果 对象内部存在对象，内部对象里面函数内的this指向：内部对象   obj.obj2.fn(); 指向obj2
+        var obj = {
+            a : 200,
+            obj2 : {
+                b : 100,
+                fn: function(){
+
+                    //this指向obj2
+                    console.log(this);
+                }
+            }
+        }
+            obj.obj2.fn();
+//对象内部的方法，交给全局变量执行，this指向window
+        var obj = {
+            a: 1000,
+            fn: function(){
+                console.log(this);
+            }
+
+        }
+        var outerFn = obj.fn;
+        outerFn();
+
+//this指向window,所以打印的是1111
+    var _name ='1111';
+    var obj = {
+                _name: 1000,
+                fn: function(){
+                    console.log(this._name);
+                }
+
+            }
+            var outerFn = obj.fn;//拿到的是fn在地址
+            console.log(outerFn);//打印的是fn函数体
+            outerFn();//运行的是fn,所以他的this指向是window
+        
+    </script>
+</body>
+</html>  
+ <!--
+
+     this指向：
+        1：如果没有函数。或者用function关键字定义 fn()调用   this指向window。
+        2：如果开启严格模式    this指向的是undefined;
+        3: 事件调用函数，this指向绑定事件的对象。
+        4: 定时器中   this   指向window
+        5: 对象：
+            a : 如果对象内部的函数中的this 在函数调用的时候，指向的是当前对象。
+            b : 如果 对象内部存在对象，内部对象里面函数内的this指向：内部对象   obj.obj2.fn(); 指向obj2
+            c : 对象内部的方法，交给全局变量执行，this指向window
+
+   -->

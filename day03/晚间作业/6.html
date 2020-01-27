@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 6、输出100-200之间所有的素数（质数）;
+        // 第一种:
+        for (var i = 100; i <= 200; i++) {
+            var j = 0;
+            for (var k = 2; k <= i; k++) {
+                if (i % k == 0) {
+                    j++;
+                }
+            }
+            if (j == 1) {
+                document.write(i + "<br>");
+            }
+        }
+        //第二种
+        for (var i = 100; i <= 200; i++) {
+            var flag = true;
+            for (var k = 2; k < i; k++) {
+                if (i % k == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                document.write(i + "<br>");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            width:600px;
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+    //一个对象控制另一个对象的访问.
+    /*
+    
+    代理就是一个人或一个机构代表另一个人或者一个机构采取行动。某些情况下，客户不想或者不能够直接引用一个对象，代理对象可以在客户和目标对象直接起到中介的作用。客户端分辨不出代理主题对象与真实主题对象。代理模式可以并不知道真正的被代理对象，而仅仅持有一个被代理对象的接口，这时候代理对象不能够创建被代理对象，被代理对象必须有系统的其他角色代为创建并传入。
+    */
+    function Boy(name){
+        this.name = name;
+        this.letter = function(){
+            console.log('您好：我是' + this.name + ';暗恋你多久了.......');
+        }
+    }  
+    //代理人(由代理人控制Boy的执行)(由一个对象控制另一个对象的访问)
+    function Proxy(){
+        this.help = function(){
+            new Boy('小明').letter();
+        }
+    }
+    var xiaoli = new Proxy();
+    xiaoli.help();
+
+
+    function Star(name){
+        this.name = name;
+        this.sing = function(){
+            console.log(this.name + '作为明星去唱歌');
+        }
+    }
+
+    function Proxy(){
+        this.tell = function(){
+            new Star('bingbing').sing();
+        }
+    }
+    var lichen = new Proxy();
+    lichen.tell();
+
+    //图片的切换： 当图片 加载完毕 图片替换 loading图
+        /*
+            1.首先在页面添加 loading图片
+            2.当要显示的图片加载完成之后，把loading图片的地址 换成  要显示图片的地址。
+        */
+       function CreateL(){
+            //创建图片
+            this.img = document.createElement('img');
+            //给图片src 路径
+            this.img.src = "1.gif";
+            //把loading放在body里面
+            document.body.appendChild(this.img);
+            //假设:美女图片加载完毕,更改显示图片的路径
+            this.changeSrc = function(url){
+                this.img.src = url;
+            }
+       }
+
+       //代理(不能直接调用大图,而是当美女图片加载完毕之后再进行调用 )
+       function ProxyImg(){
+           //   定义一个属性,接收CreateL 的实例化对象
+           //当美女图片还没加载完毕时,显示load图
+           this.obj = new CreateL();
+           //在浏览器里面缓存一张图片(等待缓存一张图片)
+           this.newImg = new Image();
+           let _this = this;
+           //等待 this.newImg 加载完毕之后，调用CreateL 里面的changeSrc方法。
+           //什么情况下加载完毕
+           this.newImg.onload = function(){
+               //加载完毕调用this.obj
+               _this.obj.changeSrc(this.src);
+           }
+            //设置一个方法。给缓存 的 图片 添加src地址的方法
+            this.addSrc = function(imgUrl){
+                this.newImg.src = imgUrl;
+            
+           }
+       }
+       var obj = new ProxyImg();
+       //添加显示图片的地址
+       obj.addSrc('1.jpg');
+    </script>
+</body>
+</html>

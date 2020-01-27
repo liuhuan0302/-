@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="
+en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            width: 1200px;
+            margin: 0 auto;
+
+        }
+
+        div {
+            width: 240px;
+            border: 3px solid pink;
+
+        }
+
+        div img {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="box">
+        <!-- <div>
+            <img src="./img1/1.jpg" alt="">
+        </div> -->
+    </section>
+    <script>
+        /*
+
+            逻辑:
+                1.先动态创建div(循环遍历+字符串模板)
+                2.获取div
+                    div 是个集合
+                    获取之前,要先创建完(window.onload)
+                        3.获取之后添加属性(循环遍历)
+                            判断条件(是不是前五个)
+                            前五个添加float:left;并将五张图片的高度添加到一个数组里面
+                            else
+                            后面的元素添加定位属性(添加在高度最小的图片下)
+                            4.判断定位元素的left 和 top 值
+                                需要对上五张图片高度进行对比(循环遍历)
+                                获取最小值(最小高度)(即定位图片的top)
+                                同时记录这张图片的下标值(index)(及第几张图片)并获取这张图片的offsetLeft 值 = 定位图片的left 值
+
+                            
+
+        
+        */
+        var oBox = document.querySelector('section');
+        var heightArr = [];  //声明一个空数组,用来存储元素的高度
+
+        //动态创建图片元素(i值是跟图片相对应的)
+        for (var i = 1; i <= 50; i++) {
+            oBox.innerHTML += `
+                <div>
+                    <img src="./img1/${i}.jpg" alt="">
+                </div>
+            `
+            //等所有资源加载完之后,在执行下面的程序
+            window.onload = function () {
+                //获取div 属性
+                aDiv = document.querySelectorAll('div');
+                //确定多少列 5
+                var colsNum = parseInt(oBox.offsetWidth / aDiv[0].offsetWidth);
+                //循环遍历,添加属性
+                for (var i = 0; i < aDiv.length; i++) {
+                    //第一排添加float
+                    if (i < colsNum) {
+                        aDiv[i].style.float = 'left';
+                        //将第一排元素的高度放到数组里面
+                        heightArr.push(aDiv[i].offsetHeight);
+                        // console.log(heightArr);
+                    } else {
+                        //第二排添加定位属性
+                        aDiv[i].style.position = 'absolute';
+                        //定位的left 和 top 值
+                        //获取数组中的最小值
+                        var getMin = heightArr[0]; //假设第一个是数组的最小值
+                        var index = 0;
+                        for (var k = 0; k < colsNum; k++) {
+                            if (getMin > heightArr[k]) {
+                                getMin = heightArr[k];
+                                //记录最小值的下标
+                                index = k;
+                            }
+                        }
+                        console.log(index);
+                        //获取定位元素的top 和 left
+                        //定位元素的top值为数组中最小值
+                        aDiv[i].style.top = getMin + 'px';
+                        //定位元素的left值 为数组最小值的下标 * 元素的宽
+                        // aDiv[i].style.left = (index * aDiv[0].offsetWidth + aDiv[0].offsetLeft) +'px';
+                        //定位元素的left值 为数组中最下值的 元素 的offsetLeft
+                        aDiv[i].style.left = aDiv[index].offsetLeft + 'px';
+                        //每次定位完要重新修改数组的值
+                        //数组中的最小值 = 最小值 + 定位元素的高  = (新数组的值)
+                        //在对新数组进行比较
+                        heightArr[index] = getMin + aDiv[i].offsetHeight;
+
+                    }
+                    console.log(heightArr);
+                }
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

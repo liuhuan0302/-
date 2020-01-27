@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    ul,li,ol{
+        list-style: none;
+    }
+    section{
+        height:350px;
+        width:1000px;
+        background:orange;
+        margin:30px auto;
+        position:relative;
+        overflow:hidden;
+    }
+    section span{
+        display:block;
+        height:50px;
+        width:50px;
+        border-radius: 50%;
+        background:rgba(200,0,0,0.8);
+        position:absolute;
+        top:150px;
+        font-size:30px;
+        line-height:50px;
+        text-align:center;
+        font-weight:bold;
+        color:#fff;
+        z-index:1;
+        cursor: pointer;
+
+    }
+    section span:nth-of-type(1){
+        left:20px;
+    }
+    section span:nth-of-type(2){
+        right:20px;
+    }
+    .imgBox{
+        height:350px;
+        position:absolute;
+        overflow:hidden;
+        
+    }
+    .imgBox img{
+        height:350px;
+        width:1000px;
+        float:left;
+        
+    }
+    .circleBox{
+        width:1000px;
+        height:20px;
+       
+        /* background:orange; */
+        bottom:20px;
+        position:absolute;
+        display: flex;
+        justify-content: center;
+    }
+    .circleBox li{
+        height:20px;
+        width:20px;
+        border-radius: 50%;
+        background:#fff;
+        margin: 0 5px;
+
+    }
+    .circleBox .active{
+        background:blue;
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="imgBox">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+        </div>
+        <span><</span>
+        <span>></span>
+        <ol class="circleBox">
+            <!-- <li></li>
+            <li></li> -->
+        </ol>
+        <script src="./move.js"></script>
+        <script src="../../myAPi/myApi.js/myAPI.js"></script>
+        <script>
+        //获取元素
+        let 
+            oImgBox = document.querySelector('.imgBox'),
+            aImg = oImgBox.getElementsByTagName('img'),
+            distance = aImg[0].offsetWidth,
+            aBtn = document.getElementsByTagName('span'),
+            oCircleBox = document.querySelector('.circleBox'),
+            oS = document.querySelector('section'), 
+            timer = null;
+            count = 0;
+
+        //在克隆第一张图片
+        var firstImg = aImg[0].cloneNode();
+        //将克隆后的图片添加到oImgBox中
+        oImgBox.appendChild(firstImg);
+        //动态设置 oImgBox的宽度
+            oImgBox.style.width = aImg.length * distance + 'px';
+
+        //动态创建圆点
+        for(let i = 0; i < aImg.length-1;i++){
+            var createLi = document.createElement('li');
+            //添加到oCircleBox
+            oCircleBox.appendChild(createLi);
+        }
+        //获取新创建的li
+        var aCir = oCircleBox.getElementsByTagName('li');
+        //第一个圆点添加蓝色背景
+            aCir[0].className = 'active';
+        //图片移动
+        function toImg(){
+            move(oImgBox,{'left':-distance * count})
+        }
+        //下一张
+        function next(){
+            //判断count
+            if(count >= aImg.length-1){
+                //当运动到倒数第一张图片时点击下一张,跳到第一张
+                oImgBox.style.left = 0;
+                count = 1;
+            }else{
+                count++;
+            }
+            toImg();
+            //点击图片,圆点跟着变化
+            clearActive();
+            //判断是不是最后一张,如果是最后一张,则count=0
+            aCir[count >= aImg.length -1 ? 0 : count].className ='active';
+        }
+        //上一张
+        function pre(){
+            //判断count
+            if(count <= 0){
+                //当点击到第一张图片时
+                oImgBox.style.left = -distance*(aImg.length-1) +'px';
+                count = aImg.length - 2;
+            }else{
+                count--;
+            }
+            toImg();
+            //点击图片,圆点跟着变化
+            clearActive();
+            //判断count 是否是第一张
+            //由于直接就跳到倒数第二张,所有count不需要改变
+            aCir[count].className = 'active';
+           
+        }
+
+        //添加定时器
+        function autoplay(){
+            timer = setInterval(()=>{
+                next();
+            },3000)
+        }
+        autoplay();
+        //清除定时器
+        function clearTime(){
+            clearInterval(timer);
+        }
+        //事件绑定
+        addEventListener(aBtn[1],'click',next);
+        addEventListener(aBtn[0],'click',pre);
+
+        addEventListener(oS,'mouseover',clearTime);
+        addEventListener(oS,'mouseout',autoplay);
+        
+
+        //封装清除类名
+        function clearActive(){
+            for(let i = 0; i < aCir.length; i++){
+                aCir[i].className = '';
+            }
+        }
+        //事件绑定(鼠标滑过圆点,背景切换)
+        for(let i = 0 ; i < aCir.length; i++){
+            addEventListener(aCir[i],'mouseover',()=>{
+                clearActive();
+                //添加样式
+                aCir[i].className ='active';
+                //当鼠标滑过圆点,图片也跟着变化
+                count = i;
+                toImg();
+            })
+        }
+        </script>
+    </section>
+</body>
+</html>

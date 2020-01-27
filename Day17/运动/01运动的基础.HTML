@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .box{
+        width:100px;
+        height:100px;
+        background:orange;
+        position:absolute;
+    }
+    .line{
+        width:1px;
+        height:500px;
+        background:blue;
+        position:absolute;
+        top:0;
+        left:500px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <span class='line'></span>
+    <script>
+        var oBox = document.querySelector('.box');
+        var speed = 10;
+        var timer = null;
+        timer = setInterval(() => {
+            //不断获取元素距左侧的位置
+            oBox.style.left = oBox.offsetLeft + speed +'px';
+            //判断条件,关闭定时器
+            if(oBox.offsetLeft >= 500){
+                clearInterval(timer);
+            }
+            console.log(oBox.offsetLeft);
+        },30)
+    </script>
+</body>
+</html>
+
+<!-- 
+    1.首页让元素动起来,通过定时器
+    2.元素动起来,需要一个speed,通过速度不断调整
+    3.让元素停下来的条件
+    4.停止的条件要大于初始值
+
+
+    运动的原理:通过定时器不更改css 属性
+ -->

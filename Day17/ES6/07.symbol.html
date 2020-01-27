@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var a = Symbol();
+        var b = Symbol();
+        console.log(a == b);//false
+
+        var obj = {
+            name:'xiaoming',
+            age:20,
+            [Symbol()]:22222,
+            [Symbol()]:"aaaaa",
+            [Symbol()]:'ddddd'
+
+        }
+        //获取Symbol 属性
+        var arr = Object.getOwnPropertySymbols(obj);
+        console.log(arr);
+        console.log(obj[arr[1]]);   
+    </script>
+</body>
+</html>
+<!-- 
+    ES6新增:
+    symbol 类型
+    独一无二的
+    常作为一个对象的key
+    如果Symbol 作为对象的属性,不能用for in 进行遍历
+
+ -->

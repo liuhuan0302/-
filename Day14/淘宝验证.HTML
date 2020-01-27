@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            height: 36px;
+            width: 1000px;
+            background: #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        span {
+            height: 36px;
+            width: 36px;
+            background: blue;
+            border-radius: 18px;
+            position: absolute;
+            top: 0px;
+        }
+
+        div {
+            height: 36px;
+            width: 0;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div></div>
+        <span></span>
+    </section>
+    <script src='../../myAPi/myApi.js/myAPI.js'></script>
+    <script>
+        var
+            oSpan = $('span')[0],
+            oDiv = $('div')[0];
+        var speed = 10;
+        oSpan.onmousedown = function (e) {
+            e = e || window.event;
+            preventDefault(e);
+            var x = e.offsetX;
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                preventDefault(e);
+                //获取元素距左侧的位置
+                var sectionLeft = oSpan.parentNode.offsetLeft;
+                //获取鼠标的位置
+                var l = e.clientX - x - sectionLeft;
+                console.log(l);
+                //对运动边界的处理
+                l = l <= 0 ? 0 : (l >= 964 ? 964 : l);
+                oSpan.style.left = l + 'px';
+                oDiv.style.width = l + 'px';
+                //如果拖拽到最右侧,改变div颜色
+                if (l == 964) {
+                    oDiv.style.background = 'green';
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    //判断div是否拖拽到最右侧
+                    if (oDiv.offsetWidth < 964) {
+                        //div和span 回归到原点
+                        var timer = setInterval(function(){
+                            //定时器控制div的宽
+                            oDiv.style.width = oDiv.offsetWidth - speed + 'px';
+                            //控制span向left移动
+                            oSpan.style.left = oSpan.offsetLeft - speed + 'px';
+                            //通过div的宽,关闭定时器
+                            if (oDiv.offsetWidth < speed) {
+                                //注:关闭定时器不要加引号,加引号会成为字符串,识别不了
+                                clearInterval(timer);
+                                oDiv.style.width = 0;
+                                oSpan.style.left = 0;
+                            }
+                        }, 30)
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

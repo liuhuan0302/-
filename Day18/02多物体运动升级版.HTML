@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    div{
+        height:100px;
+        width:100px;
+        background:orange;
+        margin-bottom:20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <script>
+    /*
+        多物体运动:
+            运动元素不确定
+            运动目标不确定
+            运动的属性不确定
+            ele:运动元素
+            attr:运动属性
+            iTarget:运动目标
+    
+    */
+   /*
+        多物体运动的逻辑:
+                增加:添加运动元素自己的定时器  ele.timer
+            1.清除定时器(防止点击次数越多速度运动)
+            2.开启定时器
+            3.获取运动元素的属性值
+                增加:判断是否获取元素的透明度属性
+                iCur = attr == 'opacity' ?  iCur*100 : parseInt(iCur);
+            4.设置缓冲速度(目标值 - 初始值) / 8
+            5.对缓冲速度进行限定
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            6.对运动终止条件进行判断(目标值 = 初始值)(清除定时器)
+            7.将运动的代码放到else里面()
+                增加:判断是否是获取透明度属性
+                 if(attr == 'opacity'){
+                        //如果是透明属性,则不断改变属性值
+                        ele.style.opacity = (iCur + speed) / 100;
+                        ele.style.filter = 'alpha(opacity ='+ (iCur + speed) +')';
+                    }else{
+                        ele.style[attr] = iCur + speed + 'px';
+                    }
+
+        遗留问题:
+            1.抢定时器:给每个运动物体添加定时器
+            2.如果动态更改透明度
+
+   */
+
+        var aDiv = document.querySelectorAll('div');
+        //初始化定时器
+        var timer = null;
+        //封装方法
+        function moreMove(ele,attr,iTarget){
+            //清除定时器(防止点击越多速度越快)
+            //ele.timer 对象的私有属性
+            clearInterval(ele.timer);
+            //开启定时器
+            ele.timer = setInterval(function(){
+                //获取运动元素的css属性值(获取是字符串)
+                var iCur = getStyle(ele,attr);
+                //判断是否获取透明属性
+                iCur = attr == 'opacity' ?  iCur*100 : parseInt(iCur);
+                //设置缓冲速度(目标值 - 初始值) /系数
+                var speed = (iTarget - iCur) / 8;
+                //对速度进行限定
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                //对运动终止条件进行限定(目标值 = 初始值)
+                if(iCur == iTarget){
+                    clearInterval(ele.timer);
+                }else{
+                    //运动的代码
+                    //判断是否是透明属性
+                    if(attr == 'opacity'){
+                        //如果是透明属性,则不断改变属性值
+                        ele.style.opacity = (iCur + speed) / 100;
+                        ele.style.filter = 'alpha(opacity ='+ (iCur + speed) +')';
+                    }else{
+                        ele.style[attr] = iCur + speed + 'px';
+                    }
+                }
+                console.log(speed);
+            },30)
+        }
+
+        //封装获取非行间样式
+        function getStyle(ele,attr){
+            return ele.currentStyle ? ele.currentStyle[attr] : getComputedStyle(ele,null)[attr];
+        }
+
+        //绑定事件
+        aDiv[0].onmouseover = function(){
+            //传入参数
+            moreMove(this,'width',600);
+        }
+        aDiv[1].onmouseover = function(){
+            //传入参数
+            moreMove(this,'height',300);
+        }
+        aDiv[2].onmouseover = function(){
+            //传入参数
+            moreMove(this,'opacity',40);
+        }
+    </script>
+</body>
+</html>

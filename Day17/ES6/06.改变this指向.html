@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // //1对this进行保存
+        // var _this = this;
+        // document.onclick = function(){
+        //     console.log(_this);
+        // }
+
+        // //2.bind()
+        // function fn(){
+        //     console.log(this);
+        // }
+        // fn.bind(document)();
+        // //bind()的第二种用法
+        // var obj = {
+        //     a:1000,
+        //     fn: function(){
+        //         console.log(this);
+        //     }.bind(document)
+        // }
+        // obj.fn();
+        // //3.call()
+        // function fn(){
+        //     console.log(this);
+        // }
+        // fn.call(document);
+        // //4.apply()
+        // function fn(){
+        //     console.log(this);
+        // }
+        // fn.apply(document);
+        // //5.往fn1传参,用fn2进行计算
+        function fn1(a,b){
+            return a + b;
+            
+        }
+        function fn2(a,b){
+            return a * b;
+        }
+        var res = fn2.call(fn1,10,20);
+        console.log(res);
+       
+
+
+        // function fn1(a,b){
+        //     return a + b;
+        // }
+        // function fn2(a,b){
+        //     return a * b;
+        // }
+        // var res = fn2.apply(fn1,[10,20]);
+        // console.log(res);
+
+        
+      function fn1(){
+          console.log(1);
+      }
+      function fn2(){
+          console.log(2);
+      }
+      fn1.call(fn2);
+
+    </script>
+</body>
+</html>
+<!-- 
+
+    改变this的指向的方法:
+        1:对this进行保存
+        2:bind();  返回一个函数,需要调用!!!
+        3:call();
+        4:apply();
+
+    bind\call\apply 的区别
+        call() 后面接收多个参数
+        apply() 后面接收两个参数.第二个参数为数组
+ -->

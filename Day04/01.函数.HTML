@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function print(){
+            console.log("你好!");
+        }
+        var print2 = function(){
+            console.log("Hello world")
+        }
+        print();
+        // 事件绑定 事件处理程序
+        document.onclick = function() {
+            print2();
+        }
+        
+    </script>
+</body>
+</html>
+<!-- 
+    函数的特点:
+        1.重复性利用;
+        2.隐藏内部细节
+        3.选择性应用
+    函数:具有特定功能的代码块
+
+    函数的定义方法:
+
+        1.关键字:
+            function 函数名称 (){
+
+            }
+
+        2.字面量写法:
+            var 函数名 = function() {
+
+            }
+
+        3.构造函数的写法:(构造函数)
+
+            var 函数名 = new Function("参数","执行的代码");
+            var fn = new Function("","console.log(111)");
+
+        注意:
+            1.函数是不能自己执行的,需要调用
+            2.可以重复利用;
+
+
+    函数的调用方法:
+        1.事件驱动(单击/双击/滑过/离开/按键......)
+            常用的事件:
+                鼠标事件
+                    单击事件 onclick
+                    双击事件 ondblclick
+                    鼠标划入 onmouseover
+                    鼠标划出 onmouseout
+                    鼠标滚轮(滚动 单击) onmousewheel
+                    鼠标的移动 onmousemove
+                按键
+                    按下某个键不松开 onkeydown
+                    抬起某个键 onkeyup
+                    按下并抬起来 onkeypress
+                输入框:
+                    获取焦点 onfocus
+                    失去焦点 onblur
+                    改变输入框的内容 onchange
+        2.自调用   函数名()
+
+    参数:
+        参数分为两种:形式参数 实参
+        形参: 函数在定义的时候,在函数名称后面的()里面的变量,称做形参
+        实参:函数在调用的时候,()里面传递的值为实际参数
+
+        函数中参数的意义:
+            1.师函数功能更加灵活;
+            2:增强了函数重复性应用
+        
+        形参:
+            1.在函数定义的时候,放在()里面;
+            2.在定义多个形参时,逗号隔开
+            3.形参完全符合变量的原理,如果只定义,接收不到赋值,返回的是undefined;
+
+        实参:
+            1.在函数调用时,()内传递的参数
+            2.实参和形参一一对应
+    return 函数的返回值:
+        1.函数一般都存在一个返回值;
+        2.return只能出现在函数里面
+        3.return能终止程序往下进行
+        4.一个函数只能有一个返回值
+        5.如果函数没有写return,默认返回undefined.
+        
+
+
+1、写一个功能，传入一个数字，计算数字的平方。Math.pow
+
+2、定义一个加法功能，传入一个数字，计算从1到该数字整数的和。
+
+
+3、定义一个功能，传入两个数字m,n(m<n)，随机生成m-n之间的随机整数  Math.random
+
+    
+ -->

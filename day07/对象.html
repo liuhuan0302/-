@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var userName ="gao";
+    var xiaoming = {
+        age:20,
+        sex:'男',
+        height:"180",
+        width:"200",
+        // 匿名函数
+        play:function(){
+            console.log("打篮球")
+        }
+    } 
+    //注:给对象添加属性的两种方法:
+   //属性是一个变量,给对象添加属性时需要放在[]里面
+    xiaoming[userName]="我是小明";
+    //给对象添加属性
+    xiaoming.like = '打篮球';
+    console.log(xiaoming); 
+
+
+    // xiaoming.play();  
+    for(key in xiaoming){
+        //key 是对象中的属性
+        console.log(key);
+        //打印对象中的属性值
+        console.log(xiaoming[key]);
+    }
+   
+
+
+    // var people = new Object();
+    // people.name = "xiaoming";
+    // people.age = "20";
+    // people.sex = "男";
+    // people.play =function(){
+    //     console.log("打篮球");
+    // }
+    // console.log(people);
+    // people.play();
+ </script>
+</body>
+</html>

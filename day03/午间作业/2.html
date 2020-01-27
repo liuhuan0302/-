@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    
+// 2. 打印出1000-2000年中所有的闰年，并以每行四个数的形式输（//闰年条件：非整百年，被4整除， 或者被400整除）
+        var j = 1;
+        for(var year = 1000;year<=2000;year++){
+            if(year % 100 != 0 && year % 4 == 0 || year % 400 == 0){
+                document.write(year+"&nbsp");
+                j++;
+                if(j>4){
+                    var j = 1;
+                    document.write("<br>");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

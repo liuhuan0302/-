@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //当数组长度不确实时,用arguments
+    function fn(){
+        console.log(arguments.length)
+    }
+    fn(1,2,3,4,5);
+    //对数组参数的解构
+    function fn(...num){
+        console.log(num)
+    }
+    fn(1,2,3,4,5);
+        //求和
+    function fn(...num){
+        var sum = 0;
+        for(let i = 0;i < num.length; i++){
+            sum += num[i];
+        }
+        return sum;
+    }
+    console.log(fn(1,2,3,4,5));
+
+        //对数组进行解构,取出数值
+    function fn(...num){
+        console.log(num);
+    }
+    let arr = [1,2,3,4,5];
+    fn(...arr);
+
+
+    //对对象进行合并(...)
+    let obj1 = {
+        name:'xiaoming',
+        age : 20
+    }
+    let obj2 = {
+        sex:'nan',
+    }
+     let newObj = {...obj1,...obj2};
+     console.log(newObj,obj1,obj2);
+    //对象进行合并(assign)
+    let obj1 = {
+        name:'xiaoming',
+        age : 20
+    }
+    let obj2 = {
+        sex:'nan',
+    }
+     let newObj = Object.assign(obj1,obj2);
+     console.log(newObj,obj1,obj2);
+     //对比Object.assign 和 ... 进行对象合并时的区别:
+     //Object.assign 会改变要合并的对象,而...不会
+     //3.对其他数据进行保存
+     function fn(a,b,...c){
+         console.log(c);
+     }
+     fn(1,2,3,4,5,6);
+    </script>
+</body>
+</html>
+<!-- 
+    定时器默认情况下this指向window
+
+    构造函数: 数组 对象 自字符串
+    正则 
+    /*
+                ...作用：
+                    1：对函数的参数解构 
+                            function fn(...num){
+                                var sum = 0;
+                                for(let i = 0 ; i < num.length ; i++){
+                                    sum += num[i];
+                                }
+                                return sum;
+                            }
+                            console.log(fn(1,2,3,4,5));
+
+
+
+                            function fn(...num){
+                                console.log(num);
+                            }
+
+                            let arr = [1,2,3,4,5,6];
+                            fn(...arr);
+
+
+
+                    2:对象进行合并：
+                            var obj1 = {
+                                name : 'wwwwww',
+                                age : 20
+                            }
+                            var obj2 = {
+                                sex : 'nan'
+                            }
+                            
+                            // var newObj = {...obj1,...obj2};
+                            // console.log(newObj,obj1,obj2)
+
+
+                            注：  比较 Object.assign()   和 ...  合并对象的区别
+
+                    3:对其他数据的保存
+
+                            function fn(a,b,...c){
+                                console.log(c);
+                            }
+                            fn(1,2,3,4,5,6);
+                    
+            */
+
+ -->

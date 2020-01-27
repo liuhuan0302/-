@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        td {
+            height: 30px;
+            width: 80px;
+            border: 1px solid red;
+        }
+
+        tr button {
+            height: 30px;
+            width: 80px;
+            background: blue;
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- label为提示信息 -->
+    <label for="">输入行数</label>
+    <input type="text" id='txt1'>
+    <label for="">输入列数</label>
+    <input type="text" id='txt2'>
+    <button id='btn'>打印</button>
+<script src="../../myAPi/myApi.js/myAPI.js"></script>
+
+    <script>
+
+        /*
+            业务逻辑:
+                1.先创建表格
+                2.在对表格进行样式设置
+        
+        */
+        var
+            oTxt1 = document.querySelector('#txt1'),
+            oTxt2 = document.querySelector('#txt2'),
+            oBtn = document.querySelector('#btn');
+
+
+        //绑定点击事件
+        oBtn.onclick = function () {
+            //获取文本框输入的信息
+            var
+                rows = oTxt1.value,
+                cols = oTxt2.value;
+            // console.log(rows,cols);
+            //创建table
+            var createTable = document.createElement('table');
+            for (var i = 0; i < rows; i++) {
+                //创建tr
+                var createTr = document.createElement('tr');
+                for (var k = 0; k < cols; k++) {
+                    //创建td
+                    var createTd = document.createElement('td');
+                    //添加1到100的随机数
+                    createTd.innerHTML = randomNumber(1,100);
+                    createTd.style.background = randomColor();
+                    //将td添加到tr中
+                    createTr.appendChild(createTd);
+                }
+                //在每一行td后面添加删除表格
+                var createBtn = document.createElement('button');
+                //将文字添加到btn中
+                createBtn.innerHTML = "删除表格";
+                //给btn绑定点击事件,点击删除整行表格
+                createBtn.onclick = function () {
+                    //点击删除本行 this指向单击事件
+                    this.parentNode.remove();
+                }
+                //把btn添加到tr中;
+                createTr.appendChild(createBtn);
+                //将tr添加到table中
+                createTable.appendChild(createTr);
+            }
+            //将table添加到body里面
+            document.body.appendChild(createTable);
+        }
+    
+    </script>
+</body>
+
+</html>

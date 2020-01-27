@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box wrap con"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <script>
+        //DOM获取的方法
+        function $(selector) {
+            //对selector 进行判断  #box .txt 标签
+            //获取对一个字符(# .)(否则代表是标签)
+            var firstLetter = selector.charAt(0);
+            //对第一个字符进行判断
+            switch (firstLetter) {
+                case "#": return idSelector(selector.slice(1));//如果第一个字符为#,调用id方法
+                    break;
+                case ".": return classSelector(selector.slice(1));//如果第一个字符为,调用class方法
+                    break;
+                default: return tagSelector(selector);//如果为标签,则调用tag方法
+            }
+            //函数方法(注意此时传递的参数idS是和selector有区别的  例:"box" 和 ".box")
+            function idSelector(idS) {
+                return document.getElementById(idS);
+            }
+            function tagSelector(tagS) {
+                return document.getElementsByTagName(tagS);
+            }
+            function classSelector(classS) {
+                // 判断浏览器是否支持getElementsByClassName,支持则执行,否则选择其他地方
+                if (document.getElementsByClassName) {
+                    return document.getElementsByClassName(classS);//存在兼容问题(IE8以下不支持)
+                }else{
+                     var domArr = [];//声明一个空数组,用来放置找到的DOM节点
+                     var all = document.getElementsByTagName('*');//*表示获取所有节点
+                     console.log(all);//类似与:7: div.box.wrap.con
+                     var reg = new RegExp('(^|\\s)'+classS+'($|\\s)');//正则验证类名(注:此处不要加全局变量)
+                     for(var i = 0 , k = all.length; i < k ; i++){
+                         var classStr = all[i].getAttribute('class');//每一次循环都获取当前元素的class类名//
+                        //  console.log(classStr);//获取的是字符串 'box con wrap'
+                        //  var classStr = all[i].className;
+                        //  console.log(classStr)//获取的是字符串 'box con wrap'
+                         if(reg.test(classStr)){
+                             //如果存在classStr,则将其push到新数组中
+                             domArr.push(all[i]);
+
+                         }
+                     }
+                     return domArr;
+                }
+            }
+        }
+        console.log($('.box'));
+    </script>
+</body>
+
+</html>

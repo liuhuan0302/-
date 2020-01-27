@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn(...num){
+        //     var sum = 0;
+        //     for(let i = 0 ; i < num.length; i ++){
+        //         sum += num[i];
+        //     }
+        //     return sum;
+        // }  
+        // console.log(fn(1,2,3,4));  
+
+        // function fn1(arr){
+        //     console.log(arr);
+        // }
+        // let arr = [1,2,3,4];
+        // fn1(arr);
+        // var obj1 = {
+        //     name: 'wwwwww',
+        //     age: 20
+        // }
+        // var obj2 = {
+        //     sex: 'nan'
+        // }
+
+        // // var newobj = {...obj1,...obj2};
+        // // console.log(newobj,obj1,obj2);
+        // var newobj1 = Object.assign(obj1,obj2);
+        // console.log(newobj1,obj1,obj2);
+
+        var a = 10;
+        function fn(){
+            console.log(a);
+            window.a = 20;
+        }
+        fn();
+        a = 10;
+        function fn() {
+            window.a = 20;
+            console.log(a);
+            var a = 30;
+            console.log(a);
+        }
+        fn();
+        console.log(a);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        header{
+            overflow:hidden;
+            width:770px;
+            margin:50px auto;
+        }
+        div{
+            height:100px;
+            width:100px;
+            background:blue;
+            border-radius:50px;
+            margin:5px;
+            font-size:30px;
+            color:#fff;
+            line-height:100px;
+            text-align:center;
+            float:left;
+        }
+        section{
+            width:770px;
+            overflow: hidden;
+            margin:0 auto;
+        }
+
+        span{
+            float:left;
+            height:100px;
+            width:100px;
+            background:gray;
+            border-radius:50px;
+            margin:5px;
+        }
+        section div{
+            background:gold;
+        }
+    </style>
+</head>
+<body>
+    <header id="box1">
+        <div>日</div>
+        <div>一</div>
+        <div>二</div>
+        <div>三</div>
+        <div>四</div>
+        <div>五</div>
+        <div>六</div>
+    </header>
+    <section id= "box2">
+
+    </section>
+    <script>
+        /*
+            1.判断这个月1号是周几
+            2.这个月有多少天
+        */
+       //创建一个时间对象
+        var date = new Date('2019-11-1');
+        //设置这个月第一天
+        date.setDate(1);
+        //获取这个月第一天为星期几
+        var week = date.getDay();
+        // console.log(week);
+        for(var i = 0; i < week; i++){
+            box2.innerHTML += '<span ></span>';
+        }
+
+    //判断这个月有多少天
+        //先设置成下个月
+        date.setMonth(date.getMonth()+1);
+        //把日期设置成0,计算上个月的天数
+        date.setDate(0);
+        //获取这个月天数
+        var days = date.getDate();
+        // console.log(days);
+        //对天数进行循环,将日期应用到样式里
+        for(var i = 1; i <= days;i++){
+            box2.innerHTML +='<div>'+ i +'</div>';
+        }
+
+    </script>
+</body>
+</html>

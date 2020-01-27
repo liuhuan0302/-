@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 800px;
+            overflow: hidden;
+            background: #ccc;
+            margin-top: 30px;
+        }
+
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 24px;
+            line-height: 30px;
+            text-align: center;
+            float: left;
+            border: 1px solid #000;
+        }
+
+        h2 {
+            width: 50px;
+            background: #ccc;
+        }
+
+        h3 {
+            width: 100px;
+            background: #ccc;
+        }
+
+        h4 {
+            width: 200px;
+            background: #ccc;
+        }
+
+        h5 {
+            width: 200px;
+            background: #ccc;
+        }
+
+        h6 {
+            width: 150px;
+            background: #ccc;
+        }
+
+        span {
+            width: 50px;
+            float: right;
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
+            background: pink;
+        }
+
+        section {
+            width: 800px;
+            margin-top: 30px;
+        }
+
+        article {
+            width: 800px;
+            overflow: hidden;
+            background: powderblue;
+            border: 3px solid black;
+
+        }
+
+        article h2,
+        article h3 {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="">标题:</label>
+    <input type="text" class='title'>
+    <label for="">内容:</label>
+    <input type="text" class='cont'>
+    <label for="">作者</label>
+    <input type="text" class='autor'>
+    <button class='btn'>保存</button>
+    <div>
+        <h2>ID</h2>
+        <h3>帖子名称</h3>
+        <h4>内容预览</h4>
+        <h5>发布时间</h4>
+            <h6>作者
+        </h5>
+        <span>操作</span>
+    </div>
+    <sectio class="infroBox">
+        <!-- <article>
+                 <h2>ID</h2>
+        <h3>帖子名称</h3>
+        <h4>内容预览</h4>
+        <h5>发布时间</h4>
+        <h6>作者</h5>
+        <span>操作</span>
+            </article> -->
+        </section>
+        <script src="./myAPi/myApi.js/myAPI.js"></script>
+        <script>
+            var
+                oTitle = document.querySelectorAll('.title')[0],
+                oCont = document.querySelectorAll('.cont')[0],
+                oBtn = document.querySelectorAll('.btn')[0],
+                oAutor = document.querySelectorAll('.autor')[0],
+                oInfo = document.querySelectorAll('.infroBox')[0];
+            function Cont() {
+                var
+                    oTitleV = oTitle.value,
+                    oContV = oCont.value,
+                    oAutorV = oAutor.value;
+                if (oTitleV && oContV && oAutorV) {
+                    //创建新元素
+                    var createArticle = document.createElement('article');
+                    var createH2 = document.createElement('h2');
+                    var createH3 = document.createElement('h3');
+                    var createH4 = document.createElement('h4');
+                    var createH5 = document.createElement('h5');
+                    var createH6 = document.createElement('h6');
+                    var createSpan = document.createElement('span');
+                    createH2.innerHTML = '25';
+                    createH3.innerHTML = oTitleV;
+                    createH4.innerHTML = oContV;
+                    createH5.innerHTML = '2019/9/23';
+                    createH6.innerHTML =  oAutorV;
+                    createSpan.innerHTML = 'delete';
+                    createArticle.appendChild(createH2);
+                    createArticle.appendChild(createH3);
+                    createArticle.appendChild(createH4);
+                    createArticle.appendChild(createH5);
+                    createArticle.appendChild(createH6);
+                    createArticle.appendChild(createSpan);
+                    oInfo.appendChild(createArticle);
+
+                }
+            }
+
+            //事件代理:
+            function del(e) {
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                if (target.tagName == 'SPAN') {
+                    target.parentNode.remove();
+                }
+            }
+            
+            addEventListener(oBtn, 'click', Cont);
+            addEventListener(oInfo, 'click', del);
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <span>全选</span>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <input type="checkbox" name="" id=""><label for="">运动</label>
+    <script>
+        var 
+            aInput = document.querySelectorAll('input');
+            aSpan = document.querySelector('span');
+            aSpan.onclick = function(){
+                for(var i = 0 ;i < aInput.length;i++){
+                    //未被选中时false
+                    if(aInput[i].checked){
+                        aInput[i].checked = false;
+                    }else{
+                        aInput[i].checked = true;
+                    }
+                }
+            } 
+    </script>
+</body>
+</html>

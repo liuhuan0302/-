@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width:800px;
+            overflow:hidden;
+            background:orange;
+            margin-top:30px;
+        }
+        h2,h3{
+            font-size:24px;
+            line-height:30px;
+            text-align:center;
+            float:left;
+        }
+        h2{
+            width:150px;
+            background:orangered;
+        }
+        h3{
+            width:500px;
+            background:orchid;
+        }
+        span{
+            width:150px;
+            float:right;
+            font-size:24px;
+            color:#fff;
+            font-weight:bold;
+            line-height:30px;
+            text-align:center;
+            background:pink;
+        }
+        section{
+            width:800px;
+            margin-top:30px;
+        }
+        article{
+            width:800px;
+            overflow:hidden;
+            background:powderblue;
+            border:3px solid black;
+           
+        }
+        article h2,article h3{
+            color:#fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <label for="">学员姓名</label>
+    <input type="text" class='stuName'>
+    <label for="">联系方式</label>
+    <input type="text" class='tel'>
+    <button class ='btn'>信息发布</button>
+    <div>
+        <h2>名称</h2>
+        <h3>联系方式</h3>
+        <span>删除信息</span>
+    </div>
+    <sectio class="infroBox">
+        <!-- <article>
+            <h2>王小名</h2>
+            <h3>1111111</h3>
+            <span>delete</span>
+        </article> -->
+    </section>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    /*  1.获取输入框中的元素
+        2.创建新的元素
+        3.将获取的元素放到新元素里面
+    
+    */
+    var    
+        stuN =document.querySelectorAll('.stuName')[0],
+        oTel = document.querySelectorAll('.tel')[0],
+        oBtn = document.querySelectorAll('.btn')[0],
+        oInfo = document.querySelectorAll('.infroBox')[0];
+        function student(){
+            var 
+                stuNval = stuN.value,
+                oTelVal = oTel.value;
+                if(stuNval && oTelVal){
+                    //创建新元素
+                    var createArticle = document.createElement('article');
+                    var createH2 = document.createElement('h2');
+                    var createH3 = document.createElement('h3');
+                    var createSpan = document.createElement('span');
+                    //将获取的内容放到新元素中
+                    createH2.innerHTML = stuNval;//把名称放到h2中
+                    createH3.innerHTML = oTelVal;//把联系方式放到h3中
+                    createSpan.innerHTML = 'delete';
+                    createArticle.appendChild(createH2);
+                    createArticle.appendChild(createH3);
+                    createArticle.appendChild(createSpan);
+                    oInfo.appendChild(createArticle);
+
+                }
+        }
+
+        //事件代理:
+        function del(e){
+            //获取事件对象
+            e = e || window.event;
+            //获取事件源(触发事件的元素)
+            var target = e.target || e.srcElement;
+            //对事件源进行判断
+            if(target.tagName =='SPAN'){
+                //如果事件源是span, 则删除其父元素
+                target.parentNode.remove();
+            }
+        }
+        //绑定事件
+        // oBtn.onclick = function(){
+        //     student();
+        // }
+        //绑定事件第二种方法(事件监听)
+        addEventListener(oBtn,'click',student);
+        addEventListener(oInfo,'click',del);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    console.log('start');  //同步
+
+    setTimeout( ()=>{       //异步
+        console.log('time1');
+    },0)
+   
+   new Promise( (resolve)=>{   
+        console.log('Promise');  //同步
+        resolve();
+   })
+   .then( ()=>{     //.then是异步  微任务(.then是script的微任务,所以在同步执行完毕之后,异步任务中的宏任务 开始顺序执行 script time1 time2)
+       console.log('then');
+   })
+
+   setTimeout( ()=>{    //宏任务
+       console.log('time2');
+   },0)
+
+   console.log('外部console');    //同步
+
+
+    /*
+    打印顺序:
+            start
+            promise
+            外部console
+
+
+            then 
+            time1
+            time2
+        */
+   /*
+   
+   js 单线程
+
+   代码的执行顺序:  (EVENT LOOP 事件循环) 
+
+   1.同步任务先执行,等同步任务执行完毕(异步等待主线程任务清空)
+   2.主线程任务清空之后 异步进入任务队列,开始从任务队列进行到主线程
+   3.在异步任务里面 :
+        宏任务   微任务
+
+        宏任务 : 定时器 /script
+        微任务: .then
+    
+    宏任务和微任务的执行顺序:
+        先执行宏任务,
+        下一个宏任务执行之前,上一个宏任务的微任务全部执行完毕
+   
+   */
+    /*
+            例子：
+                银行去办理业务：
+                    取号  ： 
+                        1  老大爷：
+                            开始办理业务：领取退休金
+                                当领完退休金，如果老大爷想把退休金存到自己账户，不需要排队取号。
+                                而是直接告诉 柜台人员 直接存钱
+                                存钱结束，然后 老大爷又要半张信用卡  ，仍然不需要重新排队取号
+                                直接办理信用卡
+
+                        2  你
+                        
+                        3
+                        
+                        4
+                        
+                        5
+                        6
+                        ......
+
+                排队去窗口的顺序：  
+
+                    首先 1号老大爷 先去窗口
+                    2 你 等待 1号老大爷 之后  再到窗口
+
+
+
+                排队取得号： 宏任务
+                老大爷办理得 （存钱、信用卡得办理） ： 微任务
+        */
+    </script>
+</body>
+</html>

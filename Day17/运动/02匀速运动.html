@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .box{
+        width:100px;
+        height:100px;
+        background:orange;
+        position:absolute;
+        opacity: 0.3;
+    }
+    .line{
+        width:1px;
+        height:500px;
+        background:blue;
+        position:absolute;
+        top:0;
+        left:1000px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <span class='line'></span>
+    <script>
+        /*
+        匀速运动的逻辑:
+            1.先清除定时器(防止连续触发越来越快)
+            2.在开启定时器(不断调整位置)
+            3.判断运动终止条件
+            4.把运动的代码防止else里面(防止停止之后再次触发在发生移动)
+        */
+        
+        var oBox = document.querySelector('.box');
+        var speed = 10;
+        //目的点击之前,为了清除定时器
+        var timer = null;
+        document.onclick = function(){
+            // 4：连续触发运动越来越快： 每次开启定时器之前 先清除一边
+            // clearInterval(timer);
+            timer = setInterval(() => {
+            //判断条件,关闭定时器
+            if(oBox.offsetLeft >= 1000){
+                clearInterval(timer);
+            }else{
+            // 3：停止之后再次触发会移动:把运动的代码放在else里面
+            //不断获取元素距左侧的位置(元素距离左侧的距离 = 距离左侧的距离 + 速度)
+            oBox.style.left = oBox.offsetLeft + speed +'px';
+            }
+            console.log(oBox.offsetLeft);
+        },30)
+        }
+
+        
+        //鼠标滑过改变透明度
+        var oBox =document.querySelector('.box');
+        var speed = 10;
+        var timer = null;
+        oBox.onmouseover = function(){
+            //清除定时器
+            clearInterval(timer);
+            timer = setInterval(() => {
+            //实时获取透明度(获取非行间样式)
+            var iCur = getStyle(oBox,'opacity')*100;
+            if(iCur >= 100){
+                clearInterval(timer);
+            }else{
+            //设置运动(添加非行间样式)
+            oBox.style.opacity = (iCur + speed)/100;
+            oBox.style.filter = 'alpha(opacity='+ (iCur + speed) +')';
+            }
+            },300)
+        }
+      //封装获取非行间样式
+      function getStyle(ele,attr){
+            return ele.currentStyle ? ele.currentStyle[attr] : getComputedStyle(ele,null)[attr];
+      }
+    </script>
+</body>
+</html>
+
+<!-- 
+    匀速运动：
+                1:让运动停止：  关闭定时器
+                2:停止条件  大于等于目标值
+                3：停止之后再次触发会移动  ：  把运动的代码放在else里面
+                4：连续触发运动越来越快  ：   每次开启定时器之前 先清除一边
+
+ -->

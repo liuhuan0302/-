@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function string(num){
+        let str =  String(num);
+        // console.log(str.slice(1))
+        if(str.slice(1) == 0 ){
+             str.slice(1);
+        }
+        // let str2 = '';
+        if(str.length > 3){
+            for(let i = 0; i < str.length; i++){
+                if (str.includes('.')) {
+                     str1 = str.replace('.','');
+                     str = str1.substr(0,3) + '.' + str1.slice(3);
+                }else{
+                    str = str.substr(0,3) + '.' + str.slice(3);
+                }
+            }
+        }else{
+            console.log()
+            switch(str.length){
+                case 1 :str = str + '00';
+                break;
+                case 2 :str = str+'0';
+                break;
+                case 3 :str = str;
+                break;
+            }
+        }
+         return str;
+    }    
+    string(123);    
+    </script>
+</body>
+</html>

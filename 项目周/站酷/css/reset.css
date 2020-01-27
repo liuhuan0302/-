@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img,input,figure,figcaption{margin:0;padding:0;}
+body{font-family: "微软雅黑";font-size: 16px;}
+h1,h2,h3,h4,h5,h6{font-size: 16px;font-weight: normal;}
+b,string{font-weight: normal;}
+i,em{font-style: normal;}
+a,u{text-decoration: none;}
+input{outline: none;}
+img{border: 0;display: block;}
+textarea{resize: none;}
+ul,ol,li{list-style: none;}
+html,body{height: 100%;}
+
+
+

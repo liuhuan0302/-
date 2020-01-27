@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //事件源获取
+        document.onclick = function(e){
+            e = e || window.event;
+            console.log(e);
+        }
+        document.onmousemove = function(e){
+            e = e || window.event;
+            console.log(e);
+        }
+        //获取事件类型
+        document.onclick = function(e){
+            e = e || window.event;
+            console.log(e.type);
+        }
+    </script>
+</body>
+</html>
+<!-- 
+
+     事件对象！！！
+
+         事件  跟大哥  ->  浏览器
+        浏览器 给 事件 找了个对象             （ 存在兼容问题 ）
+        他这个对象 知道 关于事件的所有的事情    （ 事件对象 存储 着关于 事件所有的东西 ）
+        并且 对象 很羞涩，不招呼她  不出来。    （ 获取事件信息，必须找到事件对象 ）
+
+
+
+    点击谁,谁就是事件源
+        事件源.事件 = function(e){
+        e = e || window.event;    获取事件对象并且处理兼容问题
+        //事件处理程序
+            }
+    事件的类型：
+         e.type
+
+            e.type获取的事件类型  是没有 on的
+
+
+ -->

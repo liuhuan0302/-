@@ -1,0 +1,101 @@
+H5-1920-薛鹏辉 18:48:02
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        form{width: 500px;overflow: hidden; border: 2px solid red;margin: 50px auto;position: relative;}
+        span{display: block; color: #ccc;font-size: 12px;position: absolute;left: 75px;}
+        label{width: 100px;height: 100px;}
+        .zhuce{margin-left: 250px;}
+    </style>
+</head>
+<body>
+    <script src="./myApi.js"></script>
+    <form action="">
+            <label for="">*邮箱地址：</label>
+            <input type="text" class="email">@
+            <select name="" id="">
+                <option value="">163.com</option>
+                <option value="">qq.com</option>
+            </select><br>
+            <span>6~18个字符，可以使用字母，数字，下划线，需要以字母开头</span><br>
+            <label for="">*密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="password" class="mima"><br>
+            <span class="txt"></span><br>
+            <span>6~16个字符，区分大小写</span><br>
+            <label for="">*验证码：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" class="yanzheng"><br>
+            <span>请填写图片中的字符，不区分大小写</span><br>
+            <span class="random">
+                <div class="box"></div>
+                <a href="" class="gaibian">看不清楚？换张图片</a>
+            </span>
+            <br><br>
+            <label for="">*手机号码：</label>
+            <input type="text" class="phone"><br>
+            <input type="button" value="立即注册" class="zhuce">
+    </form>
+
+    <script>
+        var
+            oEmail = document.querySelector(".email") ,
+            oMima = document.querySelector(".mima") ,
+            oYanzheng = document.querySelector(".yanzheng") ,
+            oPhone = document.querySelector(".phone") ,
+            btn = document.querySelector(".zhuce") ,
+            reg1 = /^[a-zA-Z]\w{5,17}$/ ,
+            reg2 = /^.{6,16}$/ ,
+            // reg3 = new RegExp("oBox.innerHTML","i") ,
+            reg4 = /^1[356789]\d{9}$/ ,
+            oGaibian = document.querySelector(".gaibian") ,
+            oBox = document.querySelector(".box") ;
+        btn.onclick = function(){
+            var 
+                oE = oEmail.value ,
+                oM = oMima.value ,
+                oY = oYanzheng.value ,
+                oP = oPhone.value ;
+            if(reg1.test(oE) && reg2.test(oM) && (oY.toLowerCase() == oBox.innerText.toLowerCase()) && reg4.test(oP)){
+                alert("验证成功") ;
+            }else{
+                alert("重新输入") ;
+            }
+        }
+        //随机验证码
+            var str = "" ;
+            for (var i = 0 ; i < 4 ; i++){
+                var num = randomNumber(48,122);
+                if (num >= 48 && num <= 57 || num >= 65 && num <= 90 || num >= 97 && num <= 122){
+                    str += String.fromCharCode(num);
+                }else{ 
+                    i--;
+                }
+            }
+            oBox.innerHTML = str ;
+        //密码强度
+        var teshuStr = "!@#$%^&*" ;
+        oMima.oninput = function(){
+            var oM = oMima.value ;
+            var txt = document.querySelector(".txt") ;
+            if (oM.length < 6 || oM.length > 16){
+                return txt.innerHTML = "字符串长度不合法";
+            }
+            if ( typeof (Number(oM)) == 'number' && !isNaN(oM)){
+                return txt.innerHTML = "密码强度弱";
+            }
+            for (var i = 0 , k = teshuStr.length ; i < k ; i++){
+                if (oM.indexOf(teshuStr[i]) != -1){
+                    return txt.innerHTML = "密码强度强";
+                }
+            }
+            return txt.innerHTML = "密码强度适中";
+        }
+    </script>
+</body>
+</html>
+

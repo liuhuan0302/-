@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Fn1(){
+        this.name = 'one';
+    }
+    Fn1.prototype.work = function(){
+        console.log('工作');
+    }
+    Fn1.prototype.run = function(){
+        console.log('跑步');
+    }
+
+    function Fn2(){
+        this.name = 'two';
+    }
+    //原型继承 : 继承fn1的方法(将Fn1的所有方法继承给Fn2) 
+    Fn2.prototype = Fn1.prototype;
+
+    Fn2.prototype.sleep = function(){
+            console.log('睡觉');
+        }
+    
+    var fn = new Fn2();
+    console.log(Fn1.prototype);
+    console.dir(Fn2);
+    console.dir(fn);
+    /*
+        原型继承出现的问题：
+            1:constructor 指向错误 (继承函数(Fn2)的构造器指向被继承的函数(Fn1))
+            2：被继承构造函数会收到 继承构造函数的影响（ 污染父类 ）(值传递与引用传递  浅拷贝问题)(改变的fn1的方法))
+        */
+    </script>
+</body>
+</html>

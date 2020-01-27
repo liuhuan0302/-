@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //  function Timo(name){
+    //         this.name = name;
+    //     }
+    //     Timo.prototype = {
+    //         skill : function(){
+    //             console.log('种蘑菇');
+    //         }
+    //     }
+
+        //把上述的构造函数的写法  改成 类
+        //constructor  构造器：  管理属性的！ 一般情况下 类的属性 都放在constructor
+    class Timo{
+        constructor(name,height){
+            this.name = name;
+            this.height = height;
+        }
+        skill(){
+            console.log('种蘑菇');
+        }
+    } 
+    var hero = new Timo('小提莫','0.6');
+    console.dir(hero);
+
+
+    // function Drag(){
+        //     this.box = document.querySelector('.box');
+        //     this.init();
+        // }
+        // Drag.prototype = {
+        //     init : function(){
+        //         this.eventBind();
+        //     },
+        //     handleDown : function(){
+
+        //     },
+        //     handleMove: function(){
+
+        //     },
+        //     handleUp : function(){
+
+        //     },
+        //     eventBind : function(){
+
+        //     }
+        // }
+        // new Drag()
+
+
+        //用类实现拖拽
+        class Drag{
+            constructor(){
+                this.box = document.querySelector('.box');
+                this.a = document.querySelector('a');
+                this.wrap = document.querySelector('p');
+            }
+            init(){
+
+            }
+            handleDown(){
+
+            }
+            handleMove(){
+
+            }
+            handleUp(){
+
+            }
+            eventBind(){
+                
+            }
+        }
+    
+        
+    </script>
+</body>
+</html>

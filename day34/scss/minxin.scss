@@ -1,0 +1,7 @@
+@mixin transition($attr:all,$dur:1s,$delay:0s,$type:liner){
+    -webkit-transition: $attr $dur $delay $type;
+    -moz-transition: $attr $dur $delay $type;
+    -o-transition: $attr $dur $delay $type;
+    -ms-transition: $attr $dur $delay $type;
+    transition: $attr $dur $delay $type;
+}

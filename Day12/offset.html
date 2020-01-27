@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box{
+        float:left;
+        height:300px;
+        width:400px;
+        background:red;
+        font-size:14px;
+        margin:100px 30px;
+        border:20px solid blue;
+        /* padding:20px; */
+    }
+    section{
+        height:500px;
+        width:600px;
+        background:#ccc;
+    }
+    </style>
+</head>
+<body>
+    <section>
+    <div class='box'></div>
+    </section>
+    <script>
+    var oBox = document.querySelector('div');
+    //获取宽度(包括边框+宽+padding)(获取的是一个数值)
+    console.log(oBox.offsetWidth);
+    //获取高度(包括边框+宽+padding)(获取的是一个数值)
+    console.log(oBox.offsetHeight);
+    //获取距离顶部
+    console.log(oBox.offsetTop);
+    //获取距离左侧
+    console.log(oBox.offsetLeft);
+    //获取父元素(也就是他的参照物)
+    console.log(oBox.offsetParent);
+      //获取屏幕的宽(包含滚动条)
+    console.log(document.documentElement.offetWidth)
+
+     //获取宽度(不包括border和margin 但包括padding)(获取的是一个数值)
+     console.log(oBox.clientWidth);
+    //获取高度(不包括border和margin 但包括padding)(获取的是一个数值)
+    console.log(oBox.clientHeight);
+    //获取单边框的宽度
+    console.log(oBox.clientTop);
+    //获取单边框的宽度
+    console.log(oBox.clientLeft);
+    //获取屏幕的宽
+    console.log(document.documentElement.clientWidth)
+    </script>
+</body>
+</html>
+<!-- 
+        offsetWidth      这个宽度和高度包括border和padding值
+        offsetHeight        
+        offsetLeft      (距离左侧的距离值left+margin值)
+        offsetTop        (距离左侧的距离值top+margin值)
+        offsetParent    
+        
+
+        拓展:
+        clientWidth     clientHeight        ( 不包括border    不包括 滚动条 )
+        clientLeft    clientTop          （ 获取的值就是border的单边的宽度 ）
+
+
+ -->

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       
+        // console.log(arr.indexOf(3,3));
+//利用indexOf 给数组去重
+        //逻辑:1.建立一个临时数组,把数组中的每一项和临时数组做比较
+            // 2.如果临时数组.indexOf(需要去重数组中的元素)为-1,则把该数组值push到临时数组中
+            // 3.原理:如果为-1,则说明临时数组中没有这个数据
+        var arr = [1,3,4,2,6,2,3,9,10,5];
+        function norepeat(arr){
+            var tempArr = [];
+            for(var i = 0,k = arr.length; i < k;i++){
+                if(tempArr.indexOf(arr[i]) == -1){
+                    tempArr.push(arr[i]);
+                }
+            }
+            return tempArr;
+        }
+        console.log(norepeat(arr));
+
+// 输出数组中没有重复的项
+        //利用indexOf和lastIndexOf,如果同一个数组值,他们的下标相同,这说明这是一个数,则是不重复的
+        var arr = [3,3,4,5,4,6,6]
+        for(var i = 0; i < arr.length; i++){
+            if(arr.indexOf(arr[i]) == arr.lastIndexOf(arr[i])){
+                console.log(arr[i]);
+            }
+        }
+//把原数组加1,并映射到一个新数组中
+        var arr = [3,3,4,5,4,6,6];
+        var arr2 = arr.map(function(value,index,arr){
+            return value+1;
+        })
+        console.log(arr2);
+        //
+        console.log(arr.lastIndexOf(3,5));
+//遍历数组,求数组值的和
+        var sum = 0;
+        arr.forEach(function(value,index,arr){
+            sum += value;
+        })
+        console.log(sum);
+
+//利用arr.reduce 对数组求和
+        var arr = [3,3,4,5,4,6,6]
+        var res = arr.reduce(function(acc,value){
+            return acc+value;
+        })
+        console.log(res);
+//过滤掉小于5的数组值
+        var res = arr.filter(function(value,index,arr){
+            return value >5;
+        })
+        console.log(res);
+        
+        
+    </script> 
+   
+</body>
+</html>
+
+<!-- 
+    ES5新增的API:
+        1.arr.indexOf(value)
+            a.第一次出现的下标
+            b.两个参数,后面参数代表从哪个下标开始查找
+            c.如果不存在,返回的为-1
+        2.arr.lastIndexOf();
+            a.从后往前找,返回的也是下标
+            b.接受两个参数,第二个参数从哪个下标开始
+        3.arr.forEach(function(value,index,arr)) 遍历数组
+            value:数组项
+            index:下标
+            arr:数组本身
+        4.arr.map(function(value,index,arr){})
+            把原数组映射到一个新数组上,不会对原数组造成影响
+            不会检测空数组
+        5.arr.reduce(function(acc,value,index,arr){
+             acc 累计器
+             value 数组的每一个值
+             index 下标
+             arr 数组本身
+
+             return acc+value //累加(数组之和)
+             return acc*value //累乘
+             return acc/value //累除
+             return acc-value //累减
+        })
+        不改变原数组
+
+        6.arr.filter(function(value,index,arr){
+            //return 过滤条件
+        })
+ -->

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 100px;
+            margin: 20px auto;
+            width: 770px;
+        }
+
+        div {
+            height: 100px;
+            width: 100px;
+            background: blue;
+            margin-right: 10px;
+            float: left;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        span {
+            height: 100px;
+            width: 100px;
+            background: #ccc;
+            float: left;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        section {
+            width: 770px;
+            margin: 0 auto;
+        }
+
+        section div {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <header class='box1'>
+        <div>日</div>
+        <div>一</div>
+        <div>二</div>
+        <div>三</div>
+        <div>四</div>
+        <div>五</div>
+        <div>六</div>
+    </header>
+    <section class='box2'>
+
+    </section>
+    <script>
+        var box2 = document.querySelector('.box2');
+
+        //需求:打印 11月的日历
+        var date = new Date('2019-11-7');
+        //设置成下一个月
+
+        //设置成下一个1号
+        date.setDate(1);
+        //获取下一个月1日是周几
+        var weeks = date.getDay();
+        var fragment = document.createDocumentFragment();
+        for (var i = 0; i < weeks; i++) {
+            //第一种循环添加元素
+            // box2.innerHTML += '<span></span>'
+            //第二种循环添加元素
+            // var span = document.createElement('span');
+            // box2.appendChild(span);
+            createSpan = document.createElement('span');
+            fragment.appendChild(createSpan);
+        }
+        box2.appendChild(fragment);
+        //这个月有多少天
+        date.setMonth(date.getMonth() + 1);
+        // console.log(date);
+        //把日期设置成0,可以计算上个月的天数
+        date.setDate(0);
+        var days = date.getDate();
+        for (var i = 1; i <= days; i++) {
+            box2.innerHTML += '<div> ' + i + ' </div>';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     span{
+            display:block;
+            width:200px;
+            height:30px;
+            border:1px solid red;
+            text-align:center;
+            font-size:24px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <span id="code" ></span>
+    <button id="btn">获取验证码</button>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        /*
+        事件逻辑:
+            点击获取验证码
+            绑定点击事件
+            获取随机数  48 -122 
+            循环4次  每一次去一个字符,并把他们拼接起来
+            判断条件48 - 57 65 - 90  97 - 122   在这个范围的时候 正确，如果不在，重新获取
+            把获取的验证码添加到输入框中
+        */
+            //绑定点击事件
+            code.onclick = function(){
+                //获取一个空字符串
+                var str = '';
+                for(var i = 0; i < 4; i++){
+                    //获取随机数
+                    var num = randomNumber(48,122);
+                    //判断随机数是否在条件之内
+                    if(num >= 48 && num <= 57 || num >= 65 && num <= 90 || num >= 97 &&num <= 122 ){
+                        str += String.fromCharCode(num);
+                    }else{
+                        //不满足条件
+                        i--;
+                    }
+                }
+                //把随机码放到文本框中
+                code.innerHTML = str;
+                //给文本添加随机颜色
+                code.style.color = randomColor(); 
+            }
+
+
+    //随机颜色的获取
+            function randomColor(){
+                var str = "0123456789abcdef";
+                var color = "#";
+                for(var i = 0; i < 6; i++){
+                    //获取0-15之间的随机下标(注意:区分chartAt和str.charCodeAt)
+                    color += str.charAt(Math.random()*16);
+                }
+                return color;
+            }
+    </script>
+</body>
+</html>
+<!-- 
+    str.charCodeAt('下标');   获取的是ASCII码
+
+    String.fromCharCode(97)   把ASCII码转成字符
+ -->
+

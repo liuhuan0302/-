@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    面向对象回顾:
+        1:对象的形式(键值对)对描述一个英雄联盟的英雄
+
+        var obj = new Object();
+        obj.name = '亚索';
+        obj.skill = '斩';
+        obj.fn = function(){
+            console.log(obj.skill);
+        }
+        obj.fn();
+
+        2.如果描述100个英雄?
+            封装在一个函数里面(工厂模式)
+            function hero(name,skill){
+                var obj = new Object(); //工厂
+                obj.name = name;
+                obj.skill = skill;//加工
+                obj.fn = function(){
+                    console.log(obj.skill);
+                }
+                return obj; //出厂
+            }
+        
+        3.面向对象写法  -把new提取出来  实例化对象 生成一个this并指向当前对象
+         特点: 把new 提取出来
+
+         function Hero(name,skill){
+             this.name = name;
+             this.skill = skill;
+             this.fn = function(){
+                 console.log(this.skill);
+             }
+         }
+        
+        var timo = new Hero('提莫','种蘑菇');
+
+        4.如果new 多个英雄时 多个英雄的方法 是否是同一个方法
+
+         function Hero(name,skill){
+             this.name = name;
+             this.skill = skill;
+             this.fn = function(){
+                 console.log(this.skill);
+             }
+         }
+
+        var timo = new Hero('提莫','种蘑菇');
+        var yasuo = new Hero('亚索','斩');
+        console.log(timo.fn == yasuo.fn);  //false 私有方法和属性 
+
+        5.prototype  原型对象
+            a: 存放公共的属性和方法
+            b: 可以扩展属性和方法
+            c: 节约内存消耗
+
+        6.方法都放在 prototype 上面
+    
+    */
+    
+    function Hero(name,skill){
+            this.name = name;
+            this.skill = skill;
+            this.init();
+        }
+        Hero.prototype= {
+            init : function(){
+                //做方法的整合
+            },
+            eventBind : function(){
+
+            }
+        }
+        var timo = new Hero('提莫','种蘑菇');
+        var yasuo = new Hero('亚索','斩');
+        console.log(timo.fn == yasuo.fn);
+
+
+
+
+
+        /*
+            面向对象特点：
+                封装、继承、多态
+
+
+                抽象、封装、继承
+        */
+    
+    </script>
+</body>
+</html>

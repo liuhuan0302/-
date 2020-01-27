@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    /*
+    单例模式：单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例单例模式。单例模式只应在有真正的“单一实例”的需求时才可使用
+    */ 
+    function Fn1(){
+        this.name = 'a';
+    }    
+    var a = new Fn1();
+    var b = new Fn1();
+    console.log(a == b);//false;
+    /*
+    模态框,每点击一次,就重新new一次,会造成内存浪费
+    打大龙
+
+    单例模式:反复创建都是唯一的,提升性能,节省空间
+    
+    */
+
+    //动态创建div 标签
+   function CreateTag(){
+       this.init();
+   }
+   CreateTag.prototype = {
+       init : function(){
+
+       },
+       create : function(){
+           var newTag = document.createElement('div');
+           document.body.appendChild(newTag);
+       },
+       event : function(){
+           document.addEventListener('click',this.create.bind(this));
+       }
+   }
+   var a = new CreateTag(); 
+   var b = new CreateTag();
+   console.log(a == b);//false
+   //每次new 都会开辟一块新的空间
+
+
+   //单例模式(使构造函数成为唯一的)
+    
+    function CreateTag(){
+            //给构造函数添加一个 静态属性
+            //判断这个静态属性是否存在
+            //!CreateTag.instance == true
+            /*
+                每次都会判断是否存在CreateTag.instance
+                如果存在则不执行 下面代码块
+                直接返回CreateTag.instance
+
+                第一次执行时,没有这个属性,会给它添加上这个属性,第二次执行时则具有这个属性了,直接执行
+            */ 
+            if(!CreateTag.instance){
+                CreateTag.instance = {
+                    //书写代码
+                    init:function(){
+                        this.event();
+                    },
+                    create : function(){
+                        var newTag = document.createElement('div');
+                        document.body.appendChild(newTag);
+                    },
+                    event : function(){
+                        document.addEventListener('click',this.create.bind(this));
+                    }
+                }
+            }
+            return CreateTag.instance;
+        }
+        var a = new CreateTag(); 
+        var b = new CreateTag();
+        console.log(a == b);//true
+
+        //如何执行
+        var a = CreateTag();
+        a.init();
+
+
+        var createDiv = ( function(){
+            var createDiv;//声明一个变量
+            //闭包的思想(函数中返回函数)
+            return function(){
+                //如果存在这个变量,则直接返回
+                if(!createDiv){
+                    createDiv = document.createElement('div');
+                }
+                return createDiv;
+            }
+        })()//立即执行函数
+        console.log(createDiv());
+        console.log(createDiv() == createDiv());//true
+    </script>
+</body>
+</html>

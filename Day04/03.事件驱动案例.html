@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box{
+        height:50px;
+        width:50px;
+        background:yellow;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="box"></div>
+    <script>
+    //  常用的事件:
+    //             鼠标事件
+    //                 单击事件 onclick
+    //                 双击事件 ondblclick
+    //                 鼠标划入 onmouseover
+    //                 鼠标划出 onmouseout
+    //                 鼠标滚轮(滚动 单击) onmousewheel
+    //                 鼠标的移动 onmousemove
+    //             按键
+    //                 按下某个键不松开 onkeydown
+    //                 抬起某个键 onkeyup
+    //                 按下并抬起来 onkeypress
+    //             输入框:
+    //                 获取焦点 onfocus
+    //                 失去焦点 onblur
+    //                 改变输入框的内容 onchange
+
+        box.onclick = function() {
+            console.log(12334);
+        }
+        box.onmouseover = function() {
+            console.log(12334);
+        }
+
+        function fn(){
+            console.log("你好");
+        }
+        box.onmousewheel = function(){
+            fn();
+        }
+    </script>
+</body>
+</html>

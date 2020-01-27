@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 200px;
+            background: orange;
+            margin:10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        var a = 10;
+        {
+            console.log(a);//10
+            {
+                var b = 10;
+            }
+        }
+        console.log(b);//10
+        var oDiv = document.querySelectorAll("div");
+        for (var i = 0; i < oDiv.length; i++) {
+            oDiv[i].index = i ;
+            oDiv[i].onclick = function () {
+                console.log(this.index);
+            }
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+    1.块级作用域:
+        { }包起来的称为块级作用域,但是对象(obj)不是;
+    2.为什么添加块级作用域:
+        1:防止局部变量污染全局
+        2:防止变量泄露在全局
+
+        块级作用域{ } 形成一个暂时性的死区
+        注:for循环是同步
+ -->

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .menu{
+        height:400px;
+        width:200px;
+        background:#ccc;
+        position:absolute;
+        display:none;
+    }
+    </style>
+</head>
+<body>
+    <div class="menu"></div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    var oMenu = $('.menu');
+    document.oncontextmenu = function(e){
+        e = e || window.event;
+        preventDefault(e);
+        var 
+            l = e.clientX,
+            t = e.clientY;
+            oMenu[0].style.display = 'block';
+            oMenu[0].style.left = l + 'px';
+            oMenu[0].style.top = t + 'px';
+    }
+   
+    </script>
+</body>
+</html>

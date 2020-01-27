@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //输入三个数,按从小到大输出
+    var a = 9, b = 6, c = 10;var tmp = 0;
+    if(a>b){
+        tmp = b;
+        b = a;
+        a = tmp;
+    }
+    if(a>c){
+        tmp = c;
+        c = a;
+        a = tmp;
+    }
+    if(b>c){
+        tmp = c;
+        c = b;
+        b = tmp;
+    }
+    console.log("最大值"+c);
+    console.log("最小值"+a);
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // a = 20;
+    // console.log(a);
+    // var a = 10;
+
+
+    var a = 10;
+    function fn(){
+        console.log(a); // 10(在局部可以访问全局)
+    }
+    fn();
+//-----------------------------------------
+    var a = 10;
+    function fn(){
+        var a = 20;
+        console.log(a);// 20
+    }
+    fn();
+//---------------------------------------
+    var a = 10;
+    function fn(){
+        var a = 20;
+        console.log(a);// 20
+    }
+    console.log(a); //10
+    fn();
+//------------------------------------------
+  
+    function fn(){
+        var a = 10;
+        console.log(a);// 10
+    }
+    fn();
+    console.log(a); //=is a not defined
+//--------------------------------------------------
+    var a = 10;
+    function fn(){
+        console.log(a); // undefined
+        var a = 20;
+        console.log(a); //20
+    }
+   fn();
+   
+  //-------------------------------------------------- 
+   var a = 10;
+   function outerFn(){
+       console.log(a);   //undefined
+       var a = 20;
+       function innerFn(){
+           var a = 30;
+           console.log(a);  //30
+       }
+       innerFn();
+       console.log(a);  //20
+   }
+   outerFn();
+   console.log(a);
+
+   a = 10;
+   function fn(){
+       
+   }
+    </script>
+</body>
+</html>

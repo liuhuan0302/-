@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="">请输入名称(字母下划线开头字母数字下划线组合,'6-10位')</label>
+    <input type="text">
+    <span></span>
+    <script>
+        var
+            oInput = document.querySelector('input'),
+            oSpan = document.querySelector('span');
+        //第一个字符已经占了一位
+        var reg = /^[a-zA-Z_]\w{5,9}$/;
+        //onblur 获取焦点
+        oInput.oninput = function () {
+            var info = oInput.value;
+            if (reg.test(info)) {
+                oSpan.innerHTML = '验证成功';
+            } else {
+                oSpan.innerHTML = '验证失败';
+            }
+        }
+    </script>
+</body>
+
+</html>

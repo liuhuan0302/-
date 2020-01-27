@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /* 
+        创建 一个 对象 描述车 
+
+        需求：描述100辆车
+                封装
+    */ 
+    function car(name,color,price){
+        var obj = new Object();
+        obj.name = name;
+        obj.color = color;
+        obj.price = price;
+        return obj;
+    }
+    var car1 = car("奔驰","red","1000");
+    var car2 = car("宝马","blue","2000");
+    console.log(car1);
+    console.log(car2);
+    </script>
+</body>
+</html>

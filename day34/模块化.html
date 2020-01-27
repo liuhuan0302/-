@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./b.js"></script>
+    <script src="./c.js"></script>
+    <script src="./a.js"></script>
+
+
+    <!-- 
+        有时候我们为了解决页面堵塞会采用异步加载js的方式，这种方式往往带来了一些不确定因素。
+        为了解决这些问题，James Burke 便搞了一个AMD（Asynchronous Module Definition 异步模块定义）规范
+        异步加载模块，模块加载不影响后续语句执行。
+        我们这里要学习的require.js就是一个实现了AMD的库，他的提出解决了以下问题：
+
+        
+        ① 实现javascript异步加载，避免页面假死
+        ② 管理模块之间的依赖性，便于代码编写与维护
+        ② 简化过于复杂的模块依赖关系
+
+     -->
+
+    <!--
+        1:同步加载引入的js文件，容易造成页面的假死（阻塞）
+        2：复杂依赖关系。
+
+
+        模块化：
+
+            commonJS  nodeJS
+            AMD规范(依赖前置)   require.js
+            CMD规范(依赖就近)   sea.js
+            ES6模块化
+    -->
+
+
+
+    <!-- 
+        ES6模块化
+            export default  暴漏模块
+            import  引用模块
+     -->
+
+    
+</body>
+</html>

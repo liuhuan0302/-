@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr = [1,2,43,7,3,4,5,690,30,4];
+    function quickSort(arr){
+        if(arr.length <= 1){
+            return arr;
+        }
+        var 
+            middleIndex = parseInt(arr.length/2),
+            middleValue = arr[middleIndex],
+            leftArr = [],
+            rightArr = [];
+            for(var i = 0 , k = arr.length; i < k; i++){
+                if(arr[i] == middleValue){
+                    continue;
+                }else if(arr[i] < middleValue){
+                    leftArr.push(arr[i]);
+                }else{
+                    rightArr.push(arr[i]);
+                }
+            }
+            var res = quickSort(leftArr).concat(middleValue).concat(quickSort(rightArr));
+            return res;
+    }
+    console.log(quickSort(arr));
+    </script>
+</body>
+</html>

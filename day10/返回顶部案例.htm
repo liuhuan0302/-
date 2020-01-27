@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    div{
+        height:5000px;
+        width:400px;
+        background:#ccc;
+    }
+    #btn{
+        height:40px;
+        width:40px;
+        background:black;
+        position:fixed;
+        right:0;bottom:0;
+        font-size:30px;
+        line-height:40px;
+        text-align:center;
+        color:#fff;
+
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+        <p>document.dcument</p>
+    </div>
+    <button id ="btn">^</button>
+    <script>
+        //创建一个返回顶部的效果
+        function goTop(){
+            //设置一个速度(滚动条滚动的速度)
+            var speed = 8;
+            //开启一个定时器
+            var timer = setInterval(function(){
+                //获取滚动条高度
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                //设置滚动条高度(高度是不断减小的)
+                console.log(scrollTop);
+                document.documentElement.scrollTop = document.body.scrollTop = (scrollTop -speed); 
+                //滚动的速度不断加快
+                speed += 10;  
+                //清除定时器
+                if(scrollTop <= 0){
+                    clearInterval(timer); 
+                }
+                console.log(scrollTop);        
+            },30);
+        }
+       
+        btn.onclick = function(){
+            goTop();
+        }
+        // document.onmousewheel
+        // setInterval(function(){
+        //     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //     console.log(scrollTop);
+        // },30)
+    </script>
+</body>
+</html>

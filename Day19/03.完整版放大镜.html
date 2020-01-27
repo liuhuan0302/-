@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+        }
+
+        .showBox {
+            height: 530px;
+            width: 430px;
+            background: orange;
+            margin: 50px 0 0 200px;
+
+
+        }
+
+        .productImg {
+            height: 430px;
+            width: 430px;
+            position: relative;
+        }
+
+        .smallImg {
+            height: 100%;
+            width: 100%;
+        }
+
+        .bigBox {
+            height: 600px;
+            width: 600px;
+            background: #ccc;
+            position: absolute;
+            right: -600px;
+            top: 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        /* 大图的尺寸
+        遮罩 / bigBox  =  小图  / 大图
+        200 / 600    =  430 / 1290
+     */
+        .bigBox img {
+            height: 1290px;
+            width: 1290px;
+            position: absolute;
+            display: block;
+        }
+
+        .filter {
+            height: 200px;
+            width: 200px;
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+
+        /* 下面轮播图 */
+        .productList {
+            height: 100px;
+            width: 430px;
+            background: pink;
+        }
+
+        .productList span {
+            display: block;
+            float: left;
+            height: 100px;
+            width: 15px;
+            background: #000;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .imgListShow {
+            height: 100px;
+            width: 400px;
+            background: pink;
+            float: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .listBox {
+            height: 100px;
+            position: absolute;
+
+        }
+
+        .listBox article {
+            box-sizing: border-box;
+            height: 100px;
+            width: 100px;
+            border: 3px solid #ccc;
+            float: left;
+            cursor: pointer;
+        }
+
+        .listBox article img {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="showBox">
+        <div class="productImg">
+            <img src="./img2/1.jpg" alt="" class="smallImg">
+            <div class="bigBox">
+                <img src="./img2/1.jpg" alt="">
+            </div>
+            <span class="filter"></span>
+        </div>
+
+        <div class="productList">
+            <span id="pre">
+                <</span> <div class="imgListShow">
+                    <div class="listBox">
+                        <article><img src="./img2/1.jpg" alt=""></article>
+                        <article><img src="./img2/2.jpg" alt=""></article>
+                        <article><img src="./img2/3.jpg" alt=""></article>
+                        <article><img src="./img2/4.jpg" alt=""></article>
+                        <article><img src="./img2/5.jpg" alt=""></article>
+                        <article><img src="./img2/6.jpg" alt=""></article>
+                        <article><img src="./img2/7.jpg" alt=""></article>
+                    </div>
+        </div>
+        <span id="next">></span>
+        </div>
+    </section>
+
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script src="../../myAPi/myApi.js/move.js"></script>
+
+    <script>
+        /* 放大镜  */
+        var
+            oShowBox = $('.showBox')[0],
+            oProductImg = $('.productImg')[0],
+            oSmallImg = $('.smallImg')[0],
+            oBigBox = $('.bigBox')[0],
+            oFilter = $('.filter')[0],
+            //图片滚动
+
+            oPre = $('#pre'),
+            oNext = $('#next'),
+            oListBox = $('.listBox')[0],
+            aArticle = oListBox.getElementsByTagName('article'),
+            distance = aArticle[0].offsetWidth,
+            count = 0;
+
+        //事件绑定
+        oProductImg.onmousemove = function (e) {
+            e = e || window.event;
+            var
+                l = e.clientX - oShowBox.offsetLeft - oFilter.offsetWidth / 2,
+                t = e.clientY - oShowBox.offsetTop - oFilter.offsetHeight / 2;
+            //对运动边界进行限定
+            l = l < 0 ? 0 : (l > 230 ? 230 : l);
+            t = t < 0 ? 0 : (t > 230 ? 230 : t);
+
+            //遮罩层跟随鼠标运动
+            oFilter.style.left = l + 'px';
+            oFilter.style.top = t + 'px';
+            //大图的移动(大盒子里面的图片)
+            oBigBox.firstElementChild.style.left = - l * 3 + 'px';
+            oBigBox.firstElementChild.style.top = - t * 3 + 'px';
+        }
+        //
+
+        /* 图片滚动 */
+        //设置oListBox 的宽度
+        oListBox.style.width = aArticle.length * aArticle[0].offsetWidth + 'px';
+        //图片的移动
+        function toImg() {
+            move(oListBox, { 'left': -distance * count });
+        }
+        //下一张
+        function next() {
+            if (count >= aArticle.length - 4) {
+                count = aArticle.length - 4;
+                oNext.style.background ='#ccc';
+            } else {
+                count++;
+                oPre.style.background ='#000';
+                clearBorderColor()
+                aArticle[count].style.borderColor = 'red';
+            }
+            toImg();
+        }
+        //上一张
+        function pre() {
+            if (count <= 0) {
+                count = 0;
+                oPre.style.background ='#ccc';
+            } else {
+                count--;
+                oNext.style.background ='#000';
+                clearBorderColor()
+                aArticle[count].style.borderColor = 'red';
+            }
+            toImg();
+        }
+        //事件绑定
+        addEventListener(oPre, 'click', pre);
+        addEventListener(oNext, 'click', next);
+        //鼠标滑过时切换图片
+        for (var i = 0; i < aArticle.length; i++) {
+            //当鼠标滑过小图,把小图地址给大图
+            aArticle[i].onmouseover = function () {
+                // clearBorderColor();
+                // this.style.borderColor = 'red';
+                oSmallImg.src = this.firstElementChild.src;
+                console.log(this);//this.是指aArticle 标签  this.firstElementChlid 是指img
+                oBigBox.firstElementChild.src = this.firstElementChild.src;
+            }
+        }
+        function clearBorderColor(){
+            for(let i = 0; i < aArticle.length; i++){
+                aArticle[i].style.borderColor = '#fff';
+            }
+            
+        }
+        //当鼠标移入时, 遮罩层 和 bigBox 的display 显示
+        oProductImg.onmouseover = function () {
+            oFilter.style.display = 'block';
+            oBigBox.style.display = 'block';
+        }
+        //当鼠标移出时, 遮罩层 和 bigBox 的display 显示
+        oProductImg.onmouseout = function () {
+            oFilter.style.display = 'none';
+            oBigBox.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .box{
+        height:100px;
+        width:100px;
+        background:orange;
+        position:absolute;
+    }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    function Drag(){
+        this.box = document.querySelector('.box');
+        this.fn = null;
+        this.init();
+    }
+    Drag.prototype = {
+        //初始化对象
+        init : function(){
+            this.evnetBlind();
+        },
+        //鼠标按下
+        handleDown:function(e){
+            e = e || window.event;
+            //鼠标按下获取鼠标 在div 中的位置
+            // let x = e.offsetX, y = e.offsetY;
+            //将x y 定义为Drag 中的两个属性
+            this.x = e.offsetX;
+            this.y = e.offsetY;
+            //鼠标移动事件
+            addEventListener(document,'mousemove',this.fn = this.handleMove.bind(this));
+            //当鼠标抬起
+            addEventListener(document,'mouseup',this.handleUp.bind(this));
+        },
+        //鼠标移动
+        handleMove:function(e){
+            e = e || window.event;
+            //获取鼠标的位置
+            let 
+                l = e.clientX - this.x,
+                t = e.clientY - this.y;
+                //元素的位置
+                this.box.style.left = l +'px';
+                this.box.style.top = t + 'px';
+        },
+        //当鼠标抬起
+        handleUp:function(){
+            //移除事件监听(鼠标抬起移除鼠标移动事件)
+            //removeEventListener 规定:移除事件监听 必须要和绑定的函数一致
+            document.removeEventListener('mousemove',this.fn);
+        },
+        //事件绑定
+        evnetBlind:function(){
+            //当鼠标按下时调用按下事件
+            addEventListener(this.box,'mousedown',this.handleDown.bind(this));
+        }
+    }
+    new Drag();
+    </script>
+</body>
+</html>

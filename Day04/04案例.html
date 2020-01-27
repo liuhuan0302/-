@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>   
+      function operation(num1,num2,sign){
+          switch(sign){
+            case "+":console.log(num1+num2);
+                break;
+            case "-":console.log(num1-num2);
+                break;
+            case "*":console.log(num1*num2);
+                break;
+            case "/":console.log(num1/num2);
+                break;
+          }
+      } 
+      operation(3,4,"*"); 
+
+
+      var compare = function(a,b,c){
+          var tmp = 0;
+          if(a>b){
+              tmp = b;
+              b = a;
+              a = tmp;
+          }
+          if(a>c){
+              tmp = c;
+              c = a;
+              a = tmp;
+          }
+          if(b>c){
+              tmp = c;
+              c = b;
+              b = tmp;
+          }
+          console.log(a,b,c);
+      }
+      compare(6,9,5,);
+    </script>
+</body>
+</html>

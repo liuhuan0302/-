@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;        
+        }
+        section{
+            width:300px;
+            height:100px;
+            position:fixed;
+            background:black;
+            left:0;right:0;
+            top:0;bottom:0;
+            margin:auto;
+            transform: rotateX(20deg) rotateY(30deg);
+            transform-style:preserve-3d;
+        }
+        div{
+            width:300px;
+            height:100px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <section id = "box">
+        
+    </section>
+    
+    <script>
+        //利用数学函数,制作万花筒效果
+        //设一个变量z,此数为图片原点移动的距离,和图片向外移动的距离
+        var z = 150 / Math.tan((2 * Math.PI / 360) * 30) ;
+        //每张图片旋转60deg,每一次循环,做一次div样式
+        for(var i = 0; i < 6; i++){
+            box.innerHTML += '<div style="transform-origin: center center '+ (-z) +'px;transform:translateZ('+ z +'px) rotateY('+ i*60 +'deg);background:'+ randomColor() +'"></div>';
+        }
+        //随机颜色
+        function randomColor(){
+                var str = "0123456789abcdef";
+                var color = "#";
+                for(var i = 0; i < 6; i++){
+                    //获取0-15之间的随机下标(注意:区分chartAt和str.charCodeAt)
+                    color += str.charAt(Math.random()*16);
+                }
+                return color;
+            }
+    </script>
+</body>
+</html>
+<!-- 
+
+    Math.random();  //0 - 1 的随机数
+    Math.round()    //四舍五入取整
+    Math.ceil()     //向上取整
+    Math.floor()    //向下取整
+    Math.abs()      //绝对值
+    Math.max(num1,num2....)   //比较最大值
+    Math.min(num1,num2....)   //比较最小值
+    Math.PI        //π  3.1415926  - 3.1415927 
+    Math.pow(x,y)   //x的y次方
+    Math.sqrt()    //开平方
+    Math.sin
+    Math.cos
+    Math.tan
+
+ -->

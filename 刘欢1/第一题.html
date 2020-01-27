@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            height: 100%;
+        }
+
+        i,
+        em {
+            font-style: normal;
+        }
+
+        header {
+            height: 20%;
+            width: 100%;
+            background: #000;
+        }
+
+        section {
+            height: 80%;
+            width: 100%;
+            background: #bbb;
+        }
+
+        header>div {
+            background: #000;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header>div>input {
+            height: 30px;
+            width: 300px;
+            margin-right: 200px;
+        }
+
+        div {
+            width: 800px;
+            min-height: 80px;
+            margin: 0 auto;
+            background: #bbb;
+
+        }
+
+        .title {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        em {
+            display: block;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background: #fff;
+            line-height: 30px;
+            text-align: center;
+            margin-right: 30px;
+        }
+
+        section>div>span {
+            display: block;
+            height: 30px;
+            width: 750px;
+            background: #fff;
+            padding: 0px 10px;
+            margin: 10px 10px;
+
+        }
+
+        section>div>span>input {
+            display: block;
+            height: 20px;
+            width: 20px;
+            background: #bbb;
+            float: left;
+            margin: auto 10px;
+            ;
+            margin-top: 10px;
+        }
+
+        section>div>span>i {
+            display: block;
+            float: left;
+            line-height: 30px;
+            ;
+        }
+
+        section>div>span>button {
+            height: 20px;
+            width: 20px;
+            display: block;
+            float: right;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <label for="">ToDoList</label>
+            <input type="text" placeholder="添加ToDoList" class="txt">
+        </div>
+    </header>
+    <section>
+        <div class="bigBox1">
+            <div class="title">
+                <h2>正在进行</h2>
+                <em class="num1">0</em>
+            </div>
+            <!-- <span class="box1">
+                <input type="checkbox" class="check-1">
+                <i class='cont1'>aaa</i>
+                <button class="del1"></button>
+            </span> -->
+            <!-- <span>
+                    <input type="checkbox">
+                    <i>aaa</i>
+                    <button></button>
+            </span> -->
+        </div>
+        <div class="bigBox2">
+            <div class="title">
+                <h2>已经完成</h2>
+                <em class="num2">0</em>
+            </div>
+            <!-- <span>
+                <input type="checkbox" class="check-1">
+                <i></i>
+                <button></button>
+            </span> -->
+        </div>
+    </section>
+    <script>
+        class addDate {
+            constructor() {
+                this.txt = document.querySelector('.txt');
+                this.num1 = document.querySelector('.num1');
+                this.num2 = document.querySelector('.num2');
+                this.bigBox1 = document.querySelector('.bigBox1');
+                this.bigBox2 = document.querySelector('.bigBox2')
+                this.count1 = this.num1.innerHTML;
+                this.count2 = this.num2.innerHTML;
+                this.init();
+            }
+            init() {
+                this.eventbind();
+            }
+            createTag(txtVal) {
+                this.check1 = document.createElement('input');
+                this.cont1 = document.createElement('i');
+                this.del1 = document.createElement('button');
+                this.box1 = document.createElement('span');
+                this.cont1.innerHTML = txtVal;
+                this.box1.appendChild(this.check1);
+                this.box1.appendChild(this.cont1);
+                this.box1.appendChild(this.del1);
+                this.check1.type = 'checkbox';
+            }
+            adding() {
+                let txtVal = this.txt.value;
+                if (txtVal) {
+                    this.createTag(txtVal);
+                    this.bigBox1.appendChild(this.box1);
+                    console.log(Number(this.num1.innerHTML))
+                    this.num1.innerHTML = ++this.count1;
+                    this.txt.value = '';
+                }
+            }
+            del(e) {
+                e = e || window.event;
+                //获取事件源(触发事件的元素)
+                var target = e.target || e.srcElement;
+
+                //对事件源进行判断
+                if (target.tagName == 'BUTTON') {
+                    //如果事件源是button, 则删除其父元素
+                    if (target.parentNode.parentNode.className == 'bigBox1') {
+                        this.num1.innerHTML = --this.count1;
+                    } else {
+                        this.num2.innerHTML = --this.count2;
+                    }
+                    target.parentNode.remove();
+
+                } else if (target.tagName == 'INPUT') {
+                    if (target.parentNode.parentNode.className == 'bigBox1') {
+                        //如果事件源是P, 则删除其父元素
+                        target.parentNode.remove();
+                        this.num1.innerHTML = --this.count1;
+                        var newBox = target.parentNode.cloneNode(true);
+                        this.bigBox2.appendChild(newBox);
+                        this.num2.innerHTML = ++this.count2;
+                    } else {
+                        target.parentNode.remove();
+                        this.num2.innerHTML = --this.count2;
+                        var newBox = target.parentNode.cloneNode(true);
+                        this.bigBox1.appendChild(newBox);
+                        this.num1.innerHTML = ++this.count1;
+                    }
+                }
+            }
+
+            eventbind() {
+                let _this = this;
+                document.onkeydown = function (e) {
+                    e = e || window.event;
+                    var keyCode = e.keyCode || e.which;
+                    //回车发送
+                    if (keyCode == 13) {
+                        _this.adding();
+                    }
+                }
+                this.bigBox1.addEventListener('click', () => {
+                    this.del();
+                });
+                this.bigBox2.addEventListener('click', () => {
+                    this.del();
+                });
+            }
+
+        }
+        new addDate();
+    </script>
+</body>
+
+</html>

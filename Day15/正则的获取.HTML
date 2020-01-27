@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     var str = '我是xx,身份证132280199909093123'
+     //想要得到谁,就把谁放在括号里面,称为子匹配项
+     var reg = /\d{6}(\d{4})(\d{2})(\d{2})\d{3}(\d|X)/;
+     var str1 = reg.exec(str);//返回的是一个数组
+     var str1 = str.match(reg);
+     console.log(str1);
+    </script>
+</body>
+</html>
+<!-- 
+    正则的方法:
+    reg.exec(str);
+
+        返回值为一个数组:
+            数组第一项[0]:正则所匹配到的所有信息
+            数组第二项[1]:正则第一个()所取到的信息
+            数组第三项[2]:正则第二 个()所取到的信息
+        
+    字符串的方法:
+    str.match(reg); 
+
+ -->

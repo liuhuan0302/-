@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="num1">
+    <select name="" id="info">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+    </select>
+    <input type="text"  id="num2">
+    <input type="button" value="=" id="btn">
+    <input type="text" id="res">
+
+
+<script>
+    btn.onclick= function(){
+        var
+            val1 = parseInt(num1.value),
+            val2 = parseInt(num2.value),
+            val3 = info.value;
+        switch(val3){
+                case "+": res.value = val1 + val2;
+                break;
+                case "-": res.value = val1 - val2;
+                break;
+                case "*": res.value = val1 * val2;
+                break;
+                case "/": res.value = val1 / val2;
+                break;
+                case "%": res.value = val1 % val2;
+
+            }
+            
+    }
+</script>
+</body>
+</html>

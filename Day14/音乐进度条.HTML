@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+        }
+    section{
+        height:10px;
+        width:1000px;
+        background: #cccccc;
+        margin:100px auto;
+        position:relative;
+    }
+    span{
+        height:16px;
+        width:16px;
+        background:blue;
+        border-radius:8px;
+        position:absolute;
+        top:-4px;
+        /* 鼠标指针变成小手 */
+        cursor: pointer;
+    }
+    div{
+        height:10px;
+        width:0px;
+        background:red;
+
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div></div>
+        <span></span>
+    </section>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    var 
+        oDiv = document.getElementsByTagName('div')[0],
+        oSpan = document.getElementsByTagName('span')[0];
+        oSpan.onmousedown = function(e){
+            e = e || window.event;
+            //获去鼠标距span左侧和上侧的位置
+            var x = e.offsetX;
+            console.log(x);
+            document.onmousemove = function(e){
+                e = e || window.event;
+                //获取section(父元素)距离左边的位置
+                var sectionLeft = oSpan.parentNode.offsetLeft;
+                console.log(sectionLeft);
+                //获取鼠标的位置
+                var l = e.clientX - x - sectionLeft;
+                console.log(l);
+                //对span的运动边界进行限制
+                l = l <= 0 ? 0 : ( l >= 984 ? 984 : l);
+                oSpan.style.left = l+'px';
+                oDiv.style.width = l+'px';
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

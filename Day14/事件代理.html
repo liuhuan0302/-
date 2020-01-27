@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    section{
+        width:1000px;
+        height:150px;
+        background:pink;
+
+    }
+    div{
+        height:100px;
+        width:100px;
+        background:red;
+        margin:20px;
+        float:left;
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </section>
+    <script>
+        //获取父元素
+    var oS = document.querySelector('section');
+   oS .onclick = function(e){
+        //获取事件对象
+        e = e || window.event;
+        //获取事件源(元素,节点)
+        var target = e.target || e.srcElement;
+        console.log(target);
+        //获取事件源的标签名
+        if(target.tagName == 'DIV'){
+            //打印元素内的内容
+            console.log(target.innerHTML);
+        }
+    }
+    </script>
+</body>
+</html>
+<!-- 
+
+    事件代理:
+        把事件绑定到父元素上,对事件源进行判断,然后执行不同的代码块;(className tagName)
+
+    优点:
+        1.减少事件的绑定次数
+        2.能实现对未来元素的事件绑定
+ -->

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            height:300px;
+            width:100%;
+            background:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+    /*
+    延时器:setTimeout(function(){
+
+    },1000)
+    */
+
+    var height = 300;
+    //设置延时效果
+    setTimeout(function(){
+    //设置一个定时器
+    var timer = setInterval(function(){
+        //控制box的高度,使其不断减少
+        height -= 10;
+        //将效果绑定到box上
+        box.style.height = height +"px";
+        //关闭定时器
+        if(height <= 0){
+            clearInterval(timer);
+        }
+    },30)
+},1000)
+    </script>
+</body>
+</html>

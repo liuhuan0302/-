@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        section中的文本
+        <div>
+            div中的文本
+        </div>
+    </section>
+    <script>
+        var oS = document.querySelector('section'); 
+        var oDiv = document.querySelector('div');
+       
+        //获取或设置对象下面所有内容及标签
+        console.log(oS.innerHTML); 
+        console.log(oDiv.innerHTML);  //显示div中的文本
+        //设置或者获取对象及其内容的HTM
+        console.log(oS.outerHTML); 
+        console.log(oDiv.outerHTML);
+        //获取标签中的所有文本
+        console.log(oS.innerText);
+        console.log(oS.outerText);
+
+    </script>
+</body>
+</html>
+<!-- 
+
+    innerHTML:用于获取或者设置位于对象起始或者结束标签内的HTML
+    outerHTML:设置或者获取对象及其内容的HTML
+
+ -->

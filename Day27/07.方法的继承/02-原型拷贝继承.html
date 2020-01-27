@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+        function Fn1(){
+            this.name = 'one';
+        }    
+        Fn1.prototype.work = function(){
+            console.log('工作');
+        }
+        Fn1.prototype.run = function(){
+            console.log('跑步');
+        }
+
+
+        function Fn2(){
+            this.name = 'two';
+        }
+
+        //原型拷贝继承 ( 推荐使用 )：fn2  继承  fn1的方法
+
+        for(var key in Fn1.prototype){
+            // console.log(Fn1.prototype);
+            Fn2.prototype[key] = Fn1.prototype[key];
+            
+        }
+
+        
+        Fn2.prototype.sleep = function(){
+            console.log('睡觉');
+        }
+
+        console.log(Fn1.prototype);
+        console.log(Fn2.prototype);
+        // console.dir(Fn1);
+
+    </script>
+</body>
+</html>

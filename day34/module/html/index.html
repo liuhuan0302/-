@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        es6模块规范:
+            es6模块目前只针对谷歌浏览器(必须开启环境)
+            1.首先要在谷歌开启 Override software rendering list  开启
+                输入:chrome://flags/
+            2.引入模块 import  引用模块
+            3.暴露模块 export default  暴漏模块
+
+     -->
+     <!-- 
+         es6的模块化(前端模块化)
+            解决相互依赖问题
+        1.index.html 引用a模块
+        2.a运行 在运行主要功能时,同时引入b 模块
+        3. b 模块运行,在运行b 功能时,再次引用a 模块
+      -->
+
+      <!-- 
+
+       1.c运行 引用a(完),同时a进行运行 打印a 同时引入b 模块
+       2. b 模块运行 打印b,在
+       -->
+    
+
+     <script type="module">
+         //引入模块
+         import a from '../js/a.js';
+         //运行引入的方法
+         a();
+     </script>
+</body>
+</html>

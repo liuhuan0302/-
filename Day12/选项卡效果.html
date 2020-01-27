@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 600px;
+            height: 30px;
+            margin: 20px auto 0;
+        }
+
+        span {
+            float: left;
+            width: 100px;
+            height: 30px;
+            background: yellow;
+            margin: 0 30px;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            color: #000;
+            /* 点击出现小手,互动效果 */
+            cursor: pointer;
+        }
+
+        section {
+            width: 600px;
+            height: 500px;
+            background: #ccc;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        article {
+            width: 600px;
+            height: 500px;
+            background: orange;
+            font-size: 100px;
+            line-height: 500px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            position: absolute;
+            /* 透明度样式 */
+            opacity:0;
+            filter:alpha(opacity=0);
+            /* 过渡样式 */
+            transition:1s;
+
+
+        }
+        .active {
+            background: blue;
+        }
+        .show{
+            opacity:1;
+            filter:alpha(opacity=100);
+            z-index:10;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="active">Tab1</span>
+        <span>Tab2</span>
+        <span>Tab3</span>
+    </div>
+    <section>
+        <article class="show">contact1</article>
+        <article>contact2</article>
+        <article>contact3</article>
+    </section>
+    <script>
+        /*
+        业务逻辑:
+        1.先个切换按钮绑定点击事件(集合绑定事件通过循环遍历)
+        2.同时在遍历是要记录下标,通过下标给下面的内容块添加样式
+        注:给标签绑定类名之前要注意清除以前的样式
+        
+        */
+        //获取所需要的元素
+        var aBtn = document.querySelectorAll('span');
+        var aCon = document.querySelectorAll('article');
+        //循环遍历,绑定事件
+        for (var i = 0; i < aBtn.length; i++) {
+            //记录每个按钮的下标
+            aBtn[i].index = i;
+            //绑定点击事件
+            aBtn[i].onclick = function () {
+                //清除所有类名
+                clearClass();
+                //给他添加类名
+                this.className = "active";
+                //用按钮的下标给内容块添加样式
+                aCon[this.index].className = 'show';
+            }
+        }
+        //封装清除类名的方法
+        function clearClass() {
+            //利用循环清除样式
+            for (var k = 0; k < aBtn.length; k++) {
+                    aBtn[k].className ='';
+                    aCon[k].className = '';
+                
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

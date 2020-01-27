@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    class Fn1{
+        constructor(age){
+            this.age = age;
+        }
+        sleep(){
+            console.log('睡觉');
+        }
+        run(){
+            console.log('跑步');
+        }
+    }
+    // var obj = new Fn1('提莫');//传参
+    // console.dir(obj);
+
+    class Fn2 extends Fn1{
+        constructor(age){
+            super(age)//代表的是父类 继承的是fn1 的age 属性
+        }
+    }
+
+    var obj = new Fn2('提莫');    
+    </script>
+</body>
+</html>

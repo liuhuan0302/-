@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //传参数是,返回参数,没传参数是返回100;  ||短路问题
+        function fn(a){
+            return a = a || 100;
+        }
+        console.log(fn(200));
+
+        //es6 默认值的赋值
+        function fn(a = 100){
+            return a;
+        }
+        console.log(fn());
+    </script>
+</body>
+</html>

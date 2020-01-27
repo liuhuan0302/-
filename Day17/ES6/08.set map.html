@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [1,2,1,4,3,4,5,6,7,8,7];
+        var arrSet = new Set(arr);
+        console.log(arrSet.size);
+        arrSet.add('aa');
+        arrSet.delete(1);
+        // arrSet.clear();
+        console.log(arrSet.has(2));
+        console.log(arrSet);
+
+        var d = new Map();
+        d.set('name','xiaoming');
+        d.set('age','20');
+        d.set('set','nan');
+        console.log(d.size);
+        console.log(d);
+        d.set(true,'aaa');
+        console.log(d.get(true));
+        d.set(10,100);
+        d.delete(true);
+        // d.clear();
+        console.log(d.has(10));
+        console.log(d.values());
+        console.log(d.keys());
+    </script>
+</body>
+</html>
+<!-- 
+
+    对数组的包装
+        1：数组去重 
+        2：size属性  记录的数组的长度
+        3：add()  添加
+        4: delete()  删除
+        5: clear()   清空
+        6: has()   检测是否存在  返回的为布尔值
+
+    map   字典数据结构       属性值:可以是任何类型
+            size属性获取长度
+            set()设置属性
+            get()获取属性
+            delete()删除属性
+            clear()清空
+            has()查找
+            values()获取所有的value值
+            keys（）获取key值 
+ -->

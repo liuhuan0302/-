@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var str = "aaabcdc";
+        // var str2 = str.slice(-4,-2);
+        // // var str2 =str.substring(2,5);
+        // // var str2 =str.substr(2,2);
+          // console.log(str2);
+//将字符串转成数组
+        var str = 'BAIDUID=9FF0B8AA8FC08CF64DD8378684FCC8C8:FG=1; PSTM=1557282068; BIDUPSID=2CF37A79FA3C0115B2D5D9E5571F67D9; BD_UPN=12314753; MCITY=-131%3A; H_WISE_SIDS=125704_133106_128700_133850_106370_133676_120170_134720_132909_133043_131247_132440_130762_132378_131518_118884_118861_118839_118834_118795_107319_132781_134391_133351_134855_132553_129656_134434_132250_127027_131861_128968_133473_133838_133847_132551_134462_134319_133577_134213_129644_131423_134608_134601_110085_134153_127969_131296_128201_134150_134231_134655_134298_134354; ispeed_lsm=2; sug=3; sugstore=0; ORIGIN=0; bdime=0; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; delPer=0; BD_HOME=0; H_PS_PSSID=1423_21091_29522_29520_29721_29567_29221_29461_28701';
+        
+        var newStr = str.split("; ");
+       
+        console.log((newStr[1].split("="))[1]);
+       
+
+      
+
+//str.replace的应用
+        var str = "wwwwwwwww";
+        for(var i = 0; i < str.length;i++){
+            str = str.replace("w","s");
+        }
+        console.log(str);
+
+
+    </script>
+</body>
+</html>

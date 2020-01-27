@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    img{
+        position:absolute;
+    }
+    </style>
+</head>
+<body>
+    <img src="./imges/1.gif" alt="">
+    <script src="./move.js"></script>
+    <script>
+        var oImg = document.querySelector('img');
+        document.onclick = function(e){
+            e = e || window.event;
+            var 
+                l = e.clientX,
+                t = e.clientY;
+                oImg.src = './imges/2.gif';
+                move(oImg,{'left':l,'top':t},() =>{
+                    oImg.src = './imges/1.gif';
+                })
+
+        }
+    </script>
+</body>
+</html>

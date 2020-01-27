@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    section{
+        height:350px;
+        width:1000px;
+        background:orange;
+        margin:30px auto;
+        position:relative;
+    }
+    section span{
+        display:block;
+        height:50px;
+        width:50px;
+        border-radius: 50%;
+        background:rgba(200,0,0,0.8);
+        position:absolute;
+        top:150px;
+        font-size:30px;
+        line-height:50px;
+        text-align:center;
+        font-weight:bold;
+        color:#fff;
+        z-index:1;
+        cursor: pointer;
+
+    }
+    section span:nth-of-type(1){
+        left:20px;
+    }
+    section span:nth-of-type(2){
+        right:20px;
+    }
+    .imgBox{
+        height:350px;
+        position:absolute;
+    }
+    .imgBox img{
+        height:350px;
+        width:1000px;
+        float:left;
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="imgBox">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+        </div>
+        <span><</span>
+        <span>></span>
+        <script src="./move.js"></script>
+        <script src="../../myAPi/myApi.js/myAPI.js"></script>
+        <script>
+        //获取元素
+        let 
+            oImgBox = document.querySelector('.imgBox'),
+            aImg = oImgBox.getElementsByTagName('img'),
+            distance = aImg[0].offsetWidth,
+            aBtn = document.getElementsByTagName('span'),
+            count = 0;
+        //动态设置 oImgBox的宽度
+            oImgBox.style.width = aImg.length * distance + 'px';
+        //图片移动
+        function toImg(){
+            move(oImgBox,{'left':-distance * count})
+        }
+        //下一张
+        function next(){
+            //判断count
+            if(count >= aImg.length-1){
+                count = 0;
+            }else{
+                count++;
+            }
+            toImg();
+        }
+        //上一张
+        function pre(){
+            //判断count
+            if(count <= 0){
+                count = aImg.length - 1;
+            }else{
+                count--;
+            }
+            toImg();
+        }
+        //事件绑定
+        addEventListener(aBtn[1],'click',next);
+        addEventListener(aBtn[0],'click',pre);
+        </script>
+    </section>
+</body>
+</html>

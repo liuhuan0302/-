@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //js中函数是在声明中产生作用域,还是在调用中产生作用域(在声明时产生 )
+        var a = 10;
+        function fn1() {
+            //此时a 的作用域为var a = 10;
+            console.log(a);
+        }
+        function fn2() {
+            var a = 20;
+            fn1();
+        }
+        fn2();
+        console.log(a);
+        //----------------------------------------------
+
+
+        var b = 100;
+        function fn() {
+            console.log(b);//undefined
+            var b = 10;
+        }
+        fn();
+
+        //运行过程
+        var b = 100;
+        function fn() {
+            var b;// 把 var b 声明的变量提升到当前作用域最顶端
+            console.log(b);
+            b = 10;
+        }
+        //------------------------------------------
+        var b = 100;
+        function fn() {
+            console.log(b);//undefined
+            var b = 10;
+        }
+        fn();
+        console.log(b);//100
+
+        //-------------------------------------------------
+        // 此时会打印,function关键字声明的函数,也会整体提升到最顶端
+        fn1();
+        function fn1() {
+            console.log(1);
+        }
+        //-----------------------------------------
+// 注: 以下两种的区分
+        //匿名函数不会被提升
+        var fn = 10;
+        console.log(fn);
+        var fn = function () {
+
+        }
+        console.log(fn);
+
+        //运行过程解析:
+        var fn;
+        var fn;
+        fn = 10;
+        console.log(fn);
+        fn = function(){
+
+        }
+        console.log(fn);
+
+        // 第二种
+        //打印出来是10,function关键字的函数也会被整体提升.
+        var fn = 10;
+        function fn() {
+
+        }
+        console.log(fn);
+
+        运行过程解析:
+        var fn;
+        function fn() {
+
+        }
+        fn = 10;
+        console.log(fn);
+
+//---------------------------------------------------------
+        var n = 10;
+        function test() {
+            console.log(n); //undefined
+            var n = 20;
+            console.log(n); //20
+        }
+        //匿名函数不会被提升, 是个赋值语句,
+            box.onclick = function () {
+
+            }
+    </script>
+</body>
+
+</html>

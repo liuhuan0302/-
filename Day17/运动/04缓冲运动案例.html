@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    body{height:5000px;}
+    .box{
+        height:100px;
+        width:100px;
+        background:red;
+        position:absolute;
+        right:0;
+    }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+    var timer = null;
+    let oBox = document.querySelector('.box');
+    //获取当前视口的高度
+    let vH = document.documentElement.clientHeight;
+    //让元素在视口居中
+    oBox.style.top = vH/2 - oBox.offsetHeight / 2 +"px";
+    window.onscroll = function(){
+        //获取滚动条的高度
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //元素始终在视口居中(视口高度的一半 - 元素高度的一半 + 滚动条的高度)
+        // oBox.style.top = vH/2 - oBox.offsetHeight / 2 + scrollTop +"px";
+        //调用缓冲运动函数
+        //目标值(即元素始终在视口居中)(视口高度的一半 - 元素高度的一半 + 滚动条的高度)
+        //目标值:vH / 2 - oBox.offsetHeight / 2 + scrollTop
+        cushionmove(oBox,vH/2 - oBox.offsetHeight + scrollTop);
+        console.log(scrollTop);
+    }
+    //封装缓冲运动
+    function cushionmove(ele,iTarget){
+        clearInterval(timer);
+        timer = setInterval(() =>{
+            //设置速度(iTarget为目标值)(Math.round 解决抖动问题)
+            var speed = Math.round((iTarget - ele.offsetTop) / 8);
+            //对速度进行处理
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            //条件判断,当高度等于目标值时,清除定时器
+            if(ele.offsetTop == iTarget || speed == 0){
+                clearInterval(timer);
+            }else{
+                //运动代码:(元素距顶端的距离 = 元素距顶端的距离+ 运算速度)
+                ele.style.top = ele.offsetTop + speed + 'px';
+            }
+            console.log(speed);
+        },30)
+    }
+    //抖动解决方法:给速度进行四舍五入
+
+    </script>
+</body>
+</html>

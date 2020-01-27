@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            font-size: 150px;
+            font-weight: bold;
+            color: red;
+            line-height: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">A</div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        //获取按键的ascii码值
+        document.onkeydown = function(e){
+            e = e || window.event;
+            var keyCode = e.keyCode || e.which;
+            console.log(keyCode);
+            //将ascii码转成对应的字符
+            console.log(String.fromCharCode(keyCode));
+        }
+
+
+
+        /*
+            1.获取box中字符的ascii码
+            2.如果输入的字母和box中的相对应,
+            3则随机产生一个字符(65-90),并且放在box里面
+        */
+        var oBox = document.querySelector('div');
+        document.onkeydown = function (e) {
+            //获取事件对象的信息
+            e = e || window.envent;
+            //获取box 中字母的 ascii 值
+            var letterCode = oBox.innerHTML.charAt(0).charCodeAt(0);
+            console.log(letterCode);
+            //获取输入字符的ascii码
+            var keyCode = e.keyCode || e.which;//解决兼容问题
+            //输入的字符和当前字符做对比
+            if (keyCode == letterCode) {
+                var num = randomNumber(65, 90);
+                //将ascill 值转成对此的字母
+                oBox.innerHTML = String.fromCharCode(num);
+            }
+
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+
+    怎么获取按键的ascii 码
+     e.keyCode ||e.which    //解决兼容问题
+ -->

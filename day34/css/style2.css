@@ -1,0 +1,86 @@
+section {
+  width: 100px;
+  height: 200px;
+  font-size: 16px;
+  -webkit-transition: all 1s 0s liner;
+  -moz-transition: all 1s 0s liner;
+  -o-transition: all 1s 0s liner;
+  -ms-transition: all 1s 0s liner;
+  transition: all 1s 0s liner;
+}
+
+.box {
+  width: 100px;
+}
+
+.box1 {
+  transform: rotate(36deg);
+}
+
+.box2 {
+  transform: rotate(72deg);
+}
+
+.box3 {
+  transform: rotate(108deg);
+}
+
+.box4 {
+  transform: rotate(144deg);
+}
+
+.box5 {
+  transform: rotate(180deg);
+}
+
+.box6 {
+  transform: rotate(216deg);
+}
+
+.box7 {
+  transform: rotate(252deg);
+}
+
+.box8 {
+  transform: rotate(288deg);
+}
+
+.box9 {
+  transform: rotate(324deg);
+}
+
+.box10 {
+  transform: rotate(360deg);
+}
+
+.wrap1 {
+  transform: rotate(20deg);
+}
+
+.wrap2 {
+  transform: rotate(40deg);
+}
+
+.wrap3 {
+  transform: rotate(60deg);
+}
+
+.wrap4 {
+  transform: rotate(80deg);
+}
+
+.wrap5 {
+  transform: rotate(100deg);
+}
+
+.box {
+  width: 200px;
+}
+
+@media screen and (max-width: 1000px) and (min-width: 500px) {
+  .box {
+    width: 100px;
+  }
+}
+
+/*# sourceMappingURL=style2.css.map */

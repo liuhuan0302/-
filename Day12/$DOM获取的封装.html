@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section></section>
+    <div id = 'box'></div>
+    <p class = 'txt'></p>
+    <p class = 'txt'></p>
+    <p class = 'txt'></p>
+    <p class = 'txt'></p>
+
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    //var oBox = $('#box'); $是一个函数名  selector 选择器
+    function $(selector) {
+        //对selector 进行判断  #box .txt 标签
+        //获取对一个字符(# .)(否则代表是标签)
+        var firstLetter = selector.charAt(0);
+        //对第一个字符进行判断
+        switch(firstLetter){
+            case"#": return idSelector(selector.slice(1));//如果第一个字符为#,调用id方法
+            break;
+            case".": return classSelector(selector.slice(1));//如果第一个字符为,调用class方法
+            break;
+            default:return tagSelector(selector);//如果为标签,则调用tag方法
+        }
+        //函数方法(注意此时传递的参数idS是和selector有区别的  例:"box" 和 ".box")
+        function idSelector(idS){
+            return document.getElementById(idS);
+        }
+        function classSelector(classS){
+            return document.getElementsByClassName(classS);
+        }
+        function tagSelector(tagS){
+            return document.getElementsByTagName(tagS);
+        }
+
+    } 
+    $('.box');//调用方法,传入参数
+    var oBox = $('#box');
+    console.log(oBox);
+    var aTxt = $('.txt');
+    console.log(aTxt);
+    </script>
+</body>
+</html>

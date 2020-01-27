@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+// //随机颜色封装方法
+    /*
+        逻辑:先随机rgb值,在将rgb值转换成十六进制
+    */
+        function randomColor(r,g,b){
+        var 
+            r = randomNumber(0,255),
+            g = randomNumber(0,255),
+            b = randomNumber(0,255);
+            return 'rgb('+ r + ',' + g + ',' + b +')';
+        }
+        document.body.style.background = randomColor();
+        console.log(randomColor());
+
+//随机颜色封装方法
+    /*
+        逻辑:先随机rgb值,在将rgb值转换成十六进制
+    */
+    function randomColor(r,g,b){
+        var 
+            r = randomNumber(0,255),
+            g = randomNumber(0,255),
+            b = randomNumber(0,255);
+            return systemChange(r,g,b);
+        }
+    function systemChange(r,g,b){
+            r = r.toString(16) < 2 ?  "0" + r.toString(16) : r.toString(16);
+            g = g.toString(16) < 2 ?  "0" + g.toString(16) : g.toString(16);
+            b = b.toString(16) < 2 ?  "0" + b.toString(16) : b.toString(16);
+            return '#' + r + g + b;
+    }
+        document.body.style.background = randomColor();
+        console.log(randomColor());
+    </script>
+</body>
+</html>

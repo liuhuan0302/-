@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    点击页面三个函数同时执行
+    
+    */
+    // document.addEventListener('click',() =>{
+    //     fn1('A');
+    //     fn2('B');
+    //     fn3('C');
+    // })
+    function fn1(a){
+        console.log(1+a);
+    }
+    function fn2(a){
+        console.log(2+a);
+    }
+    function fn3(a){
+        console.log(3+a);
+    }
+
+    function f1(a){
+        console.log('01'+a);
+    }
+    function f2(a){
+        console.log('02'+a);
+    }
+    function f3(a){
+        console.log('03'+a);
+    }
+    
+    /*
+    不用DOM操作,执行事件
+    
+    */
+    //先准备一个容器,把所有要执行的函数,放在空间
+    var eventObj = {
+        //自己规划一个事件
+        //   事件名称（自定义）  ：[fn1,fn2,fn3,fn4]
+        // 'wangshuai' : [],
+        // '小叮当' : [],
+        // '郝涛' :[]
+       
+    }
+    // console.log(eventObj[aa].fn1);
+
+    //事件绑定
+    //eventName 执行的事件,fn需要执行的函数
+    // function on(eventName,fn){
+    //     //判断事件库里面是否有这个事件
+    //     //如果没有这个事件
+    //     if(!eventObj[eventName]){
+    //         //动态创建这个事件
+    //         eventObj[eventName] = [];
+    //     }
+    //     eventObj[eventName].push(fn);
+    // }
+
+    //事件执行()
+    //param 所需要执行函数传的参数
+    function emit(eventName,param){
+        //判断是否有这个事件
+        if(eventObj[eventName]){
+            console.log(eventObj);
+            eventObj[eventName].map( (items)=>{
+                
+                //items 代理数组里面的每一项函数
+                //函数
+                items(param);
+               
+            })
+        }
+    }
+
+    //事件解绑
+    function off(eventName,fn){
+        //判断eventObj 里面 是否存在eventObj 
+        if(eventObj[eventName]){
+            //如果有第二个参数的时候。移除第二个参数对用的函数
+            if(fn){
+                var index = eventObj[eventName].indexOf(fn);
+                eventObj[eventName].splice(index,1);
+            }else{
+                //如果不存在第二个参数：想要移除整个事件
+                eventObj[eventName].length = 0;
+            }
+        }
+    }
+    //绑定事件
+    // on('ws',fn1)
+    // on('ws',fn2)
+    // on('ws',fn3)
+
+    // on('aa',f1)
+    // on('aa',f2)
+    // on('aa',f3)
+    // console.log(eventObj);
+    // emit('aa','2222222')
+    //解绑aa 里面的f2
+    // off('aa',f2);
+    // console.log(eventObj);
+
+    emit('aa',f1,'bbb');
+    emit('aa',f2,'bbb');
+    emit('aa',f3,'bbb');
+    console.log(eventObj)
+    //事件执行
+    emit('ws','你好');
+    </script>
+</body>
+</html>

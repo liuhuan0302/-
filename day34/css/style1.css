@@ -1,0 +1,52 @@
+@charset "UTF-8";
+div {
+  height: 200px;
+  background: red;
+  width: 100px;
+  font-size: 12px;
+  border-left: 1px;
+  margin: 30px;
+}
+
+/*
+注释2
+*/
+section, div {
+  height: 100px;
+  width: 200px;
+}
+section div, div div {
+  height: 100px;
+  width: 100px;
+}
+section div span, div div span {
+  background: red;
+}
+section div span a, div div span a {
+  font-size: 10px;
+}
+section div span a:hover, div div span a:hover {
+  background: red;
+}
+
+div {
+  border-left: 1px solid #fff;
+  border-top: 2px solid #ccc;
+  border-right: 3px solid red;
+  border-bottom: 4px solid blue;
+  margin-top: 3px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+section, div {
+  height: 300px;
+  width: 200px;
+  background: yellow;
+}
+
+div {
+  background: red;
+}
+
+/*# sourceMappingURL=style1.css.map */

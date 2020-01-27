@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            height: 350px;
+            width: 1000px;
+            background: orange;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        section span {
+            display: block;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background: rgba(200, 0, 0, 0.8);
+            position: absolute;
+            top: 150px;
+            font-size: 30px;
+            line-height: 50px;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            z-index: 1;
+            cursor: pointer;
+
+        }
+
+        section span:nth-of-type(1) {
+            left: 20px;
+        }
+
+        section span:nth-of-type(2) {
+            right: 20px;
+        }
+
+        .imgBox {
+            height: 350px;
+            position: absolute;
+        }
+
+        .imgBox img {
+            height: 350px;
+            width: 1000px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="imgBox">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+        </div>
+        <span>
+            <</span> <span>>
+        </span>
+        <script src="../../myAPi/myApi.js/move.js"></script>
+        <script src="../../myAPi/myApi.js/myAPI.js"></script>
+        <script>
+          
+            /*  面向对象实现轮播图  */
+
+            /*
+                功能模块拆分:
+                    1.图片移动
+                    2.上一张
+                    3.下一张
+                    4.事件绑定模块
+            */
+            function Banner() {
+                //存储属性
+                this.oImgBox = document.querySelector('.imgBox');
+                this.aImg = document.getElementsByTagName('img');
+                this.distance = this.aImg[0].offsetWidth;
+                this.aBtn = document.getElementsByTagName('span');
+                this.count = 0;
+
+                this.init();
+            }
+
+            Banner.prototype = {
+                //初始化方法
+                init: function() {
+                    this.oImgBox.style.width = this.aImg.length * this.distance + 'px';
+                    this.eventBind();
+                },
+                toImg: function() {
+                    move(this.oImgBox, { 'left': -this.distance * this.count });
+                },
+                next: function() {
+                    if (this.count >= this.aImg.length - 1) {
+                        this.count = 0;
+                    } else {
+                        this.count++;
+                    }
+                    this.toImg();
+                },
+                pre: function() {
+                    if (this.count <= 0) {
+                        this.count = this.aImg.length - 1;
+                    } else {
+                        this.count--;
+                    }
+                    this.toImg();
+                },
+                eventBind: function() {
+                    addEventListener(this.aBtn[1], 'click', this.next.bind(this));
+                    addEventListener(this.aBtn[0], 'click', this.pre.bind(this));
+                },
+            }
+            new Banner();
+        </script>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    body,html{
+        height:100%;
+    }
+    body{
+        background:#000;
+    }
+    </style>
+</head>
+<body>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        /*
+        业务逻辑:
+            1.创建一个img标签及属性
+            2.通过随机调整星星的位置,来弹出星星
+        
+        */
+        //获取网页的宽和高 clientWight 会把滚动条的高去掉
+        var     
+            vw = document.documentElement.clientWidth - 38;
+            vh = document.documentElement.clientHeight - 39
+        //同时定时器不断弹出星星
+        setInterval(function(){
+            //创建一个标签
+            var createImg = document.createElement('img');
+            //给新标签添加属性
+            createImg.src = "./img/star.gif";
+            createImg.style.position = 'absolute';
+            //随机位置
+            createImg.style.left = randomNumber(0,vw)+'px';
+            createImg.style.top = randomNumber(0,vh)+'px';
+            createImg.onclick = function(){
+                this.remove();
+            }
+            //将新元素添加到body里面
+            document.body.appendChild(createImg);
+
+        },500)
+    </script>
+</body>
+</html>

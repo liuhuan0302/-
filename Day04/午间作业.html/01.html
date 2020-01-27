@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1、写一个功能，传入一个数字，计算数字的平方。Math.pow
+
+    // function Num(n){
+    //     n = Math.pow(n,2);
+    //     console.log(n);
+    // }
+   
+    // Num(prompt("请输入数字n"));
+
+    // 2、定义一个加法功能，传入一个数字，计算从1到该数字整数的和。
+    // function Num(n){
+    //     var sum = 0;
+    //     for(i = 1;i <= n;i++){
+    //         sum+=i;
+    //     }
+    //     console.log(sum);
+    // }
+   
+    // Num(prompt("请输入数字n"));
+
+    // 3、定义一个功能，传入两个数字m,n(m<n)，随机生成m-n之间的随机整数  Math.random
+    function Num(m,n) {
+        if(m<n){
+            document.write(parseInt(Math.random() * (n-m+1)+m));
+        }else{
+            return status;
+        }
+    }      
+   Num(12,10);
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+/*
+
+模块/包  commomJS(模块化的思想)
+
+1.模块化思想的发展
+        avaScript模块化是如何一步一步地发展起来的，并且也会主要对这些模块化方式做一个简单的比较。
+
+        第一阶段：无模块化
+
+        优点：
+            1.相比于使用一个js文件，这种多个js文件实现最简单的模块化的思想是进步的。　
+        缺点：
+            1.污染全局作用域。 因为每一个模块都是暴露在全局的，简单的使用，会导致全局变量命名冲突，当然，我们也可以使用命名空间的方式来解决。
+            2.对于大型项目，各种js很多，开发人员必须手动解决模块和代码库的依赖关系，后期维护成本较高。
+            3.依赖关系不明显，不利于维护。 比如main.js需要使用jquery，但是，从上面的文件中，我们是看不出来的，如果jquery忘记了，那么就会报错。
+
+        第二阶段： CommonJS规范   ->  后端！ node commonjs规范的实现！！！
+
+        优点：
+            1.CommonJS规范在服务器端率先完成了JavaScript的模块化，解决了依赖、全局变量污染的问题，这也是js运行在服务器端的必要条件。
+        缺点：
+            2.此文主要是浏览器端js的模块化， 由于 CommonJS 是同步加载模块的，在服务器端，文件都是保存在硬盘上，所以同步加载没有问题，但是对于浏览器端，需要将文件从服务器端请求过来，那么同步加载就不适用了，所以，CommonJS是不适用于浏览器端的。
+
+
+AMD规范：依赖前置
+
+CMD规范：依赖就近
+
+
+2.commonjs规范 模块的思想
+        1 ： 定义模块（一个js文件，每个js文件都会有自己的功能）
+
+        2 ： 定义好模块之后，暴漏接口（给其他引用当前模块的模块提供数据） 
+            //暴漏接口。
+            module.exports = {
+                num : 1,
+                fn : function(){
+
+                }
+            }
+
+        3 ： 引用模块     require('模块的名称');
+
+
+        注:nodeJS  是 commonjs规范的 实现。
+            nodeJS模块(内置模块 第三方模块 自定义模块)
+*/    
+</script>
+</body>
+</html>

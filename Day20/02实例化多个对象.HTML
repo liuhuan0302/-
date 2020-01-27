@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    //封装数组去重
+    var arr = [1,4,5,3,5,2,3,2,2,3,2];
+    Array.prototype.norepeat = function(){
+        var arrTemp = [];
+        for(let i = 0; k = this.length, i < k; i++){
+            if(arrTemp.indexOf(this[i]) == -1){
+                arrTemp.push(this[i]);
+            }
+        }
+        return arrTemp;
+    }
+    console.log(arr.norepeat());
+      
+      function Car(name,type){
+          this.name = name;
+          this.type = type;
+      }
+    //   Car.prototype.printName = function(){
+    //       console.log(this.name);
+    //   }
+    //   Car.prototype.printType = function(){
+    //       console.log(this.type);
+    //   }
+//以对象的方式进行添加
+    Car.prototype = {
+        printName: function(){
+            console.log(this.name)
+        },
+        printType: function(){
+            console.log(this.type)
+        },
+    }
+      var car1 = new Car('1','22');
+      var car2 = new Car('a','bbb');
+      console.log(car1,car2);
+      console.dir(Car);
+      console.log(car1.printName == car2.printName);
+     </script>
+</body>
+</html>

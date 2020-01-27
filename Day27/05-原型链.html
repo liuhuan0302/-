@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+        1:prototype 每一个函数上面都会存在一个prototype 指向原型对象
+            prototype指向原型对象里面 保存的是 公共的属性和方法
+            作用：保存的是 公共的属性和方法、节省内存消耗、扩展属性方法。
+    
+        2.每一个对象都存在一个__proto__属性 指向的是 (构造当前对象的构造函数) 的原型对象
+
+            构造函数里面.prototype == 实例化对象.__proto__;      true
+
+        3:constructor 构造器! es6 之前没有具体的作用  指向构造对象的构造函数
+    
+    */
+    var arr = new Array();
+        console.dir(Array);  //构造函数 的公共的属性和方法 在 prototype 存在
+        console.dir(arr) //实例化对象 对象的属性和方法存在 _ _proto_ _ 里面
+        console.log(Array.prototype == arr.__proto__);//true
+
+
+    //构造函数
+    function Person(){
+        this.name = 'aaa';
+    }
+    Person.prototype.work = function(){
+        console.log('工作');
+    }
+    var xm = new Person();//实例化对象
+    console.log(Person.prototype == xm.__proto__);//true
+
+    console.dir(Person);
+    console.dir(xm);
+    xm.__proto__.work();
+    </script>
+</body>
+</html>

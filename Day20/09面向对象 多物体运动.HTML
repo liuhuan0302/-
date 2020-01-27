@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    div{
+        height:100px;
+        width:100px;
+        background:orange;
+        margin-bottom:20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <script>
+    /*
+        多物体运动:
+            运动元素不确定
+            运动目标不确定
+            运动的属性不确定
+            ele:运动元素
+            attr:运动属性
+            iTarget:运动目标
+            fn: 回调函数 记录是否还需要运动代码
+    
+    */
+   /*
+
+        链式运动:先执行一种运动,在执行一种运动
+        链式运动的逻辑:
+            1.添加运动元素自己的定时器  ele.timer
+            2.清除定时器(防止点击次数越多速度运动)
+            3.开启定时器
+            4.获取运动元素的属性值
+            5.增加:判断是否获取元素的透明度属性
+                iCur = attr == 'opacity' ?  iCur*100 : parseInt(iCur);
+            6..设置缓冲速度(目标值 - 初始值) / 8
+            7.对缓冲速度进行限定
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            8.对运动终止条件进行判断(目标值 = 初始值)(清除定时器)
+                增加:链式运动增加步骤  关闭定时器运动完毕，完毕之后检测是否还有要运行的代码
+
+
+            9.将运动的代码放到else里面()
+                增加:判断是否是获取透明度属性
+                 if(attr == 'opacity'){
+                        //如果是透明属性,则不断改变属性值
+                        ele.style.opacity = (iCur + speed) / 100;
+                        ele.style.filter = 'alpha(opacity ='+ (iCur + speed) +')';
+                    }else{
+                        ele.style[attr] = iCur + speed + 'px';
+                    }
+
+        
+
+   */
+                    
+        var timer = null;
+        function chainMove(ele,attr,iTarget,fn){
+            //清除定时器 ele.timer(防止抢定时器)
+            clearInterval(ele.timer);
+            //开启定时器
+            ele.timer = setInterval(() =>{
+                //获取运动元素属性值(即初始值)
+                var iCur = getStyle(ele,attr);
+                //判断是否获取元素的透明度属性
+                iCur = attr == 'opacity' ? iCur*100 : parseInt(iCur);
+                //设置缓冲速度(目标值 - 初始值) / 系数
+                var speed = (iTarget - iCur) / 8;
+                //对速度进行限制
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                //对运动终止条件进行判断(初始值 = 目标值)
+                if( iCur == iTarget){
+                    //清除定时器
+                    clearInterval(ele.timer);
+                    //清除之后,判断是否还有其他的运动需要执行
+                    // if(fn){
+                    //     fn()
+                    // }
+                    //可简写成
+                    if(fn) fn();
+                }else{
+                    //判断是否改变运动元素的透明度属性
+                    if( attr == 'opacity'){
+                        //获取透明度值
+                        ele.style.opacity = (iCur + speed) / 100;
+                        //filter = 'alpha(opacity=value)'  变量要用引号引起来
+                        ele.style.filter = 'alpha(opacity='+ (iCur + speed) +')';
+                    }else{
+                        //改变运动元素的其他属性
+                        ele.style[attr] = iCur + speed + 'px';
+                    }
+                }
+            },30)
+        }
+
+        //封装获取非行间样式
+        function getStyle(ele,arrt){
+            return ele.currentSyle ? ele.currentStyle[arrt] : getComputedStyle(ele,null)[arrt];
+        }
+        //获取元素
+        var aDiv = document.querySelectorAll('div');
+        //绑定事件
+        aDiv[0].onmouseover = function(){
+            chainMove(this,'width',600,() =>{
+                //箭头函数this 指向离他最近得作用域
+                // chainMove(this,'height',300);
+                this.style.background ='red';
+            })
+        }
+        aDiv[1].onmouseover = function(){
+            chainMove(this,'width',600,function(){
+                
+                chainMove(aDiv[1],'height',300);
+                //注意这时不能使用this
+                // aDiv[1].style.background ='red';
+            })
+        }
+    </script>
+</body>
+</html>

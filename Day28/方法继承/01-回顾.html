@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>   
+     // function Fn(){
+        //     this.name = '你好';
+        // }
+
+
+        // var obj = new Fn();
+        // obj.work();    //obj.work is not a function   查找work得过程：首先先自身查找，如果没有找到得情况下:会沿着__proto__向 构造函数得原型对象查找。如果仍然没找到，会查找Object得原型对象
+
+
+        /*
+            prototype   指向原型对象
+            __proto__   指向得就是原型对象
+
+
+            Fn.prototype == obj.__proto__    true;
+        */
+
+        /*
+            原型链：
+                
+        */
+
+
+
+
+
+
+        /*
+            方法继承：
+                1：原型继承      Fn2.prototype = Fn1.prototype
+                    问题：a:构造器指向错误  b:污染父类
+
+
+                2：原型拷贝
+
+                    for(var key in Fn1.prototype){
+                        Fn2.prototype[key] = Fn1.prototype[key];
+                    }
+                    
+                3：原型链继承
+                    分析：实例化对象得 __proto__执行得就是构造函数得原型对象。
+                    Fn2.prototype = new Fn1();
+
+                    问题: 会把父类得属性继承过来。
+
+                    
+        */
+
+        function Fn1(){
+            this.name = 'aaaaaa';
+        }
+        Fn1.prototype.work = function(){
+            console.log('工作')
+        }
+        Fn1.prototype.sleep = function(){
+            console.log('睡觉')
+        }
+
+       
+        function Fn2(){
+            this.name = 'bbbbbb';
+        }
+
+        Fn2.prototype = new Fn1();//将fn1 的__proto__ 赋值给Fn2的prototype;并重构了fn1 中的__proto__
+
+
+        Fn2.prototype.run = function(){
+            console.log('跑步');
+        }
+
+        var obj = new Fn2();
+        console.dir(Fn2)
+        console.log(obj);
+        console.log()
+
+
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    #showImg{
+        height:300px;
+        width:300px;
+        border:4px solid red;
+        margin:100px auto 0;
+        border-bottom:0;
+    }
+    #showImg img{
+        display:block;
+        height:100%;
+        width:100%;
+    }
+    #btnImg{
+        height:80px;
+        width:300px;
+        border:4px solid red;
+        border-top:0;
+        background:blue;
+        margin:0 auto 0;
+    }
+    #btnImg img{
+        display:block;
+        height:80px;
+        width:60px;
+        float:left;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <section id="showImg">
+        <img src="./img/1.jpg" alt="">
+    </section>
+    <div id="btnImg">
+        <img src="./img/1.jpg" alt="">
+        <img src="./img/2.jpg" alt="">
+        <img src="./img/3.jpg" alt="">
+        <img src="./img/4.jpg" alt="">
+        <img src="./img/5.jpg" alt="">
+    </div>
+    <script>
+        /*
+        获取图片元素,当鼠标滑过时,改变大图片的路径
+        鼠标滑过事件   onmouseover
+        如果获取的是一个节点集合，并且给每一个元素绑定事件   需要遍历
+        */
+        //获取图片元素
+        var bigImg =document.querySelector('#showImg img');
+        var oImg = document.querySelectorAll('#btnImg img');
+        
+        for(var i = 0;i < oImg.length;i++){
+            //循环遍历,绑定事件
+            oImg[i].onmouseover = function(){
+                //鼠标滑过每一张图片,获取他的src 直接更改大图的src  this指点击事件的元素
+                // bigImg.src = this.src;
+                var src = this.getAttribute('src');
+                bigImg.setAttribute('src',src);
+            }
+        }
+
+    </script>
+</body>
+</html>
+<!-- 
+         自定义属性：
+                作用: 保存数据       通用的自定义属性的前缀    data-属性="属性值"
+
+            注：自定义的属性 不能通过   元素.属性   取属性值。
+        */
+       /*
+            自定义属性
+            获取
+                元素.getAttribute('data-url')
+
+
+            设置：
+                节点.setAttribute('属性名称'，’修改后的属性值‘)
+
+
+            删除
+                元素.removeAttribute('data-url')
+       */
+
+
+ -->

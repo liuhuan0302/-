@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div></div>
+        <div></div>
+    </section>
+    <script>
+        //在元素中添加新的节点
+        var 
+            oS = document.querySelector('section'),
+            aDiv = document.querySelectorAll('div');
+        var createP = document.createElement('p');
+        //在第二个div前面添加一个新的p标签
+        console.log(oS.insertBefore(createP,aDiv[1]));
+    </script>
+</body>
+</html>
+<!-- 
+    父节点.insertBefore(new,node)
+ -->

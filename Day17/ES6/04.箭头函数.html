@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function fn(){
+        return 100;
+    }
+    console.log(fn());    
+    //箭头函数的基本语法
+    var fn = () => 100;
+    console.log(fn());
+    //箭头函数的参数
+    var fn = (a) => a;
+    console.log(fn(10));
+    var fn = (n,m) => n*m;
+    console.log(fn(10,20));
+
+    //箭头函数后面为一个代码块
+    var fn = (a,b) => {
+        return a + b;
+    }
+    console.log(fn(10,20));
+
+    var obj = {
+        sex:'nan',
+        fn: function(){
+            //定时器的this指向是window
+            setTimeout(function(){
+                console.log(this)
+            },20)
+        }
+    }
+    obj.fn();
+    var obj = {
+        sex:'nan',
+        fn: function(){
+           
+            setTimeout(() => {
+                console.log(this)
+            },20)
+        }
+    }
+    obj.fn();
+
+    var fn = (...num) => {
+        console.log(num.length);
+    }
+    fn(1,2,3)
+
+    //定时器
+    setinterval(function(){
+
+    },30)
+    setInteval(() =>{
+
+    },30)
+    //forEach
+    foreach((value,index,arr) =>{
+
+    })
+    arr.map((value,index,arr) =>{
+
+    })
+    arr.reduce((acc,value,index,arr) =>{
+
+    })
+    arr.filter((value,index,arr) =>{
+
+    })
+   
+    /*
+        箭头函数的特点:
+        1.箭头函数内部是没有this指向的。（ 箭头函数内部的this指向，指向的是离它最近的作用域 ）
+        2.在箭头函数里面没有arguments对象的，如果想获取参数的个数，只需对参数解构
+        3:箭头函数不能做为构造函数。(字符串,数组,对象,正则,时间)
+
+        箭头函数的应用:在回调函数
+
+
+        作业：定时器    forEach    map   reduce   filter   sort   fill    find   findIndex
+
+
+    
+    */ 
+    </script>
+</body>
+</html>

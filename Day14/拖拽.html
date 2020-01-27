@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .box{
+        height:100px;
+        width:100px;
+        background:red;
+        position:absolute;
+    }
+    </style>
+</head>
+<body>
+    <div class = 'box'></div>
+    <script>
+    var oBox = document.getElementsByClassName('box')[0];
+    /*
+        拖拽三剑客:
+            onmousedown
+            onmousemove
+            onmouseup
+
+    */
+   oBox.onmousedown = function(e){
+       //获取事件对象
+        e = e || window.event;
+        //当鼠标按下时,获取鼠标距离元素左侧和上侧的距离
+        var     
+            x = e.offsetX,
+            y = e.offsetY;
+            //当鼠标移动时,元素也进行移动
+            document.onmousemove = function(e){
+                e = e || window.event;
+                //获取鼠标的位置
+                var
+                    l = e.clientX,
+                    t = e.clientY;
+                    //div 移动的位置(注:一定要减去鼠标在元素内部的距离)
+                    oBox.style.left = l - x +'px';
+                    oBox.style.top = t - y +'px';
+            }
+            //单鼠标抬起时
+            document.onmouseup = function(){
+                //鼠标移动清空
+                //函数重置
+                document.onmousemove = null;
+            }
+
+   }
+    </script>
+</body>
+</html>

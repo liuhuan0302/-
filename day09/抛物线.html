@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div:nth-of-type(1) {
+            height: 600Px;
+            width: 1px;
+            background: red;
+            margin: 0 300px;
+            position: absolute;
+        }
+
+        div:nth-of-type(2) {
+            height: 1px;
+            width: 600px;
+            background: red;
+            margin: 300px 0;
+            position: absolute;
+        }
+
+        span {
+            display: block;
+            width: 2px;
+            height: 2px;
+            background: red;
+            border-radius: 1px;
+            position: absolute;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <script>
+        for(var x = -300; x <= 300; x++){
+            var y = -0.1 * Math.pow(x,2);
+            document.write('<span style = left:'+ ( x + 300) +'px;top:'+ (y + 300) +'px;></span>');
+        }
+    </script>
+</body>
+
+</html>

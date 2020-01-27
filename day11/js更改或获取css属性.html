@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .oBox{
+            height:300px;
+            width:300px;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //css样式设置 元素.style.属性 ="属性值"
+        var oBox = document.querySelector('div');
+        // oBox.style.width = "300px";
+        // oBox.style.height = "300px";
+        // oBox.style.background = "red";
+        //注意:fontSize用驼峰式命名不能出现-(属性有-的要有驼峰式命名)
+        // oBox.style.fontSize = "20px";
+        //通过添加类名:来添加样式
+        oBox.className = 'oBox';
+        oBox.style.cssText ="border:4px solid blue";
+
+        
+        //获取标签名都是大写
+        console.log(oBox.tagName);
+
+        //获区非行间样式的属性
+        var w = getComputedStyle(oBox,null).width;
+        //获取的是字符串300px;
+        console.log(w);
+        //获取的是数字
+        console.log(parseInt(w));
+        console.log(oBox.currentStyle);
+
+        //封装一个获取非行间样式的方法(解决兼容性)
+        function getStyle(ele,attr){
+            //判断浏览器是否支持
+            if(ele.currentStyle){
+                return ele.currentStyle[attr];
+
+            }else{
+                return getComputedStyle(ele,null)[attr];
+            }
+        }
+        console.log(getStyle(oBox,'background'));
+//第二种方法
+         //封装一个获取非行间样式的方法(解决兼容性)
+         function getStyle(ele,attr){
+            //判断浏览器是否支持
+            return ele.currentStyle ?  ele.currentStyle[attr] : getComputedStyle(ele,null)[attr];
+         }
+            
+        console.log(getStyle(oBox,'background'));
+
+
+        
+    </script>
+</body>
+</html>
+
+<!-- 
+
+css样式设置:
+    第一种方法:
+        节点.style.属性 = '属性值'
+    第二种方法:
+        通过类名添加样式
+        节点.className = 'box';
+    第三种方法:
+        通过cssText添加样式
+        节点.style.cssText ="border:4px solid blue";
+获取非行间样式
+    getComputedStyle(元素,null).属性;  //存在兼容问题
+    对象.currentStyle[attr](对象.currentStyle.属性)     //针对ie的
+ -->

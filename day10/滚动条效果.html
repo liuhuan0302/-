@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    section{
+        width:800px;
+        background:#ccc;
+        margin:40px auto;
+
+    }
+    div{
+        width:0;
+        height:40px;
+        background:blue;
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div id = "box"></div>
+    </section>
+    <script>
+        //设置一个速度
+        var speed = 10; 
+        //设置延时器
+        var timer = setInterval(function(){
+            //获取实时宽度并不断增加
+            box.style.width = box.offsetWidth + speed +'px';
+            if(box.offsetWidth > 800){
+                clearInterval(timer);
+            }
+
+        },30)
+    </script>
+</body>
+</html>

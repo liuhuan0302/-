@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </section>
+    <img src="" alt="">
+    <script>
+        var oS=document.querySelector("section");
+        var oDiv = document.querySelectorAll("div")
+        //获取父元素下面的第一个节点
+        console.log(oS.firstChild);
+        //获取父元素下面的最后个节点
+        console.log(oS.lastChild);
+        //获取父元素下面的第一个元素节点
+        console.log(oS.firstElementChild);
+        //获取父元素下面的最后个元素节点
+        console.log(oS.lastElementChild);
+
+        //获取相邻元素的上一个节点
+        console.log(oDiv[1].previousSibling);
+        //获取相邻元素的上一个元素节点
+        console.log(oDiv[1].previousElementSibling);
+        var createP  = document.createElement('p');
+        createP.innerHTML ="新添加";
+        oS.replaceChild(createP,oDiv[3]);
+
+        //获取当前元素的所有属性节点
+        var oImg = document.querySelector('img');
+        console.log(oImg.attributes);
+    </script>
+</body>
+</html>

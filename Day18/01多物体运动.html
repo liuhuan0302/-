@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    div{
+        height:100px;
+        width:100px;
+        background:orange;
+        margin-bottom:20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <script>
+    /*
+        运动元素不确定
+        运动属性不确定
+        运动目标不确定
+        
+    */
+
+    var aDiv = document.querySelectorAll('div');
+    //初始化定时器
+    var timer = null;
+    //封装,传参(元素,属性,目标值)
+    function moreMove(ele,attr,iTarget){
+        //清除定时器(防止越点击速度越快)
+        clearInterval(timer);
+        //开启定时器
+        timer = setInterval(() =>{
+            //获取元素的css属性(获取初始值)(初始值为arrt的属性值)
+            //获取的初始值是字符串(100px),要转成数值
+            var iCur = parseInt(getStyle(ele,attr));
+            //设置缓冲速度(目标值 - 初始值) /系数
+            var speed = (iTarget - iCur) / 8;
+            //对速度进行判断
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed); 
+            //判断运动终止条件(初始值 = 目标值)
+            if(iCur == iTarget){
+                //清除定时器
+                clearInterval(timer);
+            }else{
+                //运动代码(当属性为变量时,要放在[]里面)
+                ele.style[attr] = iCur + speed + 'px'; 
+            }
+            console.log(speed);
+        },30)
+
+    }
+//封装获取非行间样式(为了获取初始值)
+    function getStyle(ele,attr){
+        return ele.currentStyle ? ele.currentStyle[attr] : getComputedStyle(ele,null)[attr];
+    }
+
+    aDiv[0].onmouseover = function(){
+        //调用运动方法(传参)(属性要双引号)
+        moreMove(this,'width',500)
+    }
+    aDiv[1].onmouseover = function(){
+        moreMove(this,'height',300)
+    }
+    aDiv[2].onmouseover = function(){
+        //注:fontSize  要这样写
+        moreMove(this,'fontSize',30)
+    }
+
+</script>
+</body>
+</html>
+<!-- 
+
+    多物体运动逻辑:
+        1.清除定时器(防止多次点击速度加快)
+        2.开启定时器()
+            增加:获取元素的css属性值( 获取初始值)
+        3.设置缓冲速度(物体越来越慢)(目标值 - 初始值) / 系数
+        4.对速度进行判断
+        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
+        5.设置运动终止的判断条件  (当) 
+        6.把运动的代码放到else 里面
+ -->

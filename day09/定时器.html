@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    #box{
+        height:40px;
+        width:300px;
+        background:red;
+        margin:100px auto;
+        font-size:20px;
+        color:#fff;
+        line-height:40px;
+        text-align:center;
+        font-weight:900;
+    }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+//计时器的设置和关闭
+        // var count = 0;
+        // var timer = setInterval(function(){
+        //     console.log(count);
+        //     count++;
+        //     if(count >10){
+        //         clearInterval(timer);
+        //     }
+        // },1000)
+//计时器的设置和关闭
+        setInterval(function(){
+            console.log('a');
+        },1000)
+        setInterval(function(){
+            console.log('b');
+        },1000)
+        setInterval(function(){
+            console.log('c');
+        },1000)
+
+        clearInterval(2);
+//定时器的设置
+      /*
+         逻辑:以前的字符串只能刷新才能显示最新的时间
+             现在通过计时器,可以让其每一秒循环跳动一次
+         */
+        // //先将时间转成字符串
+        function printDate(d,sign){
+            //判断是否传入的sign
+            sign = !sign ? '/' : sign;
+            return ''+ d.getFullYear() + sign + mendZero(d.getMonth()) + sign + mendZero(d.getDate()) + ' '+mendZero(d.getHours()) + ':' + mendZero(d.getMinutes()) + ':' + mendZero(d.getSeconds());
+        }
+        //封装一个补零的方法
+        function mendZero(num){
+            return num < 10 ? '0' + num : num;
+        }
+        //设置一个计时器
+        setInterval(function(){
+            var d = new Date();
+            // document.write(d);
+            box.innerHTML = printDate(d);
+        })
+    </script>
+</body>
+</html>
+<!-- 
+    1.定时器
+        setInterval(参数1,参数2)  
+        参数1:回调函数 定时器要执行的代码块
+        参数2:时间 1000ms
+
+    2.清除定时器
+        clearInterval()
+        参数:可以是定时器的编号,也可以是定时器的名称 
+        
+ -->

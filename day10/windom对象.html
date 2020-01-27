@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        // alert('你好');
+        // confirm("aaa");
+        // console.log(window.prompt('请输入'));
+        // document.onclick =function(){
+        //     open('http://www.baidu.com/','','width = 300px,height=200px');
+        // }
+        // window.resizeTo(1000,300);//(要在打开的页面操作)
+        
+
+        document.onclick = function(){
+            location.href = 'http://www.taobao.com';
+        } 
+        
+    </script>
+</body>
+</html>
+
+<!-- 
+
+    window 对象
+        alert();
+        confirm();
+        prompt();
+        open('url','','width=500px,height=300px');
+        window.resizeTo(1000,500)//更改窗口大小
+    
+    BOM对象
+        history 
+            history.go(-1) 后退
+            history.go(0) 刷新
+            history.go(1) 前进
+            
+
+        history.back()函数---后退一页
+        history.forward()函数--前进
+
+        location对象
+            1.location用于获取或设置窗体的URL,并且可以用来解析URL,是BOM中最重要的对象
+            2.location既是window对象又是document对象的属性
+            3.location 常用的属性和方法
+                location.href
+                location.href = 'url'   页面的跳转
+                location.reload(); 页面的刷新   
+                如果参数为true  清除缓存
+        navigator
+            1.navigator对象通常用于检测浏览器和操作系统
+            2.navigator.userAgent:检测浏览器版本和操作系统信息
+
+            网页:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
+
+            移动端:"Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1"
+
+        window.onload事件
+
+            window.onload = function(){
+
+                    //等待页面资源加载完成之后  再执行onload里面的代码
+             }
+        window.onscroll事件
+
+             window.onscroll = function(){
+                //高频触发   滚动条只要滚动  触发！
+             }
+
+            滚动条滚动  获取滚动条的高度
+
+                document.documentElement.scrollTop;
+                document.body.scrollTop;
+
+        延时器:
+            setTimeout(function(){
+
+                },1000)
+
+----------------------------------------------------------------------------
+window对象:
+        window对象是js中的顶级对象，所有定义在全局作用域中的变量、函数都会变成window对象的属性和方法，在调用的时候可以省略window。
+
+        1、window代表当前窗口
+
+        2、window对象是BOM的顶层(核心)对象，所有对象都是通过它延伸出来的，也可以称为window的子对象
+
+        3、由于window是顶层对象，因此调用它的子对象时可以不指明window对象，例如下面两行代码是一样的：       
+        alert('我被弹出来了');  等价   window.alert('我被弹出来了');
+
+        var a  = 10;  window.a;
+
+        4、js中的任何一个全局函数或全局变量都是window的属性
+
+        如何在局部定义全局？（把变量或者方法名当做window的属性）
+     
+        function test(){
+            window.a = 10;
+        }
+            test();
+            console.log(a);
+
+
+
+        
+ -->

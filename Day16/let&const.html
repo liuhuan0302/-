@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        height:100px;
+        width:100px;
+        background:orange;
+        margin:10px 0 ;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        // {
+        //     let a = 10;
+        //     {
+        //         let b = 20; 
+        //         console.log(a,b);
+        //     }
+        //     console.log(a,b) ;
+        // }
+        var oDiv = document.querySelectorAll('div');
+        for(let i = 0, k = oDiv.length; i < k; i++){
+            oDiv[i].onclick = function(){
+                console.log(i);
+            }
+        }
+        // console.log(a);
+        // let a = 10;
+
+        fn();
+        function fn(){
+            console.log(1);
+        }
+
+        {
+            let a = 10;
+            let a = 20;
+            console.log(a);
+        }
+        
+        
+        </script>
+</body>
+</html>
+<!-- 
+
+    1.let用于声明块级变量
+        注意:
+            1.let与const都是只在声明所在的块级作用域内有效(外部的不能访问内部的变量)
+            2.同一个{}中不能用let重复定义同一个变量
+            错误案例:
+            {
+            let a = 10;
+            let a = 20;
+            console.log(a);
+            }
+            3.let 不会进行变量提升(不会泄露在全局)(先声明后执行)
+            4.let定义的变量可以将值保存在块级作用域内(遍历节点)
+    2.const 用于声明常量(不可改变的量)
+            1.同一个{ }中不能使用const重复定义一个变量
+            2.常量不能被修改
+            3.const 不进行变量提升
+
+            注:let 和const声明的变量不在挂在window对象上面
+            函数在块级作用域里面仍然保持着提升
+
+ -->

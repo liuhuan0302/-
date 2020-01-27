@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        适配器模式常用来做数据类型的转换
+        
+        */
+    var obj = [
+            {
+                id : 01,
+                city : '北京'
+            },
+            {
+                id : 02,
+                city : '上海'
+            },
+            {
+                id : 03,
+                city : '杭州'
+            },
+            {
+                id : 04,
+                city : '苏州'
+            },
+            {
+                id : 05,
+                city : '西安'
+            }
+        ]
+
+    //适配器(把数据转成数组)
+    function adaptation(data){
+        //把数据转成数组
+        var tempArr = [];
+        //把城市名称取出来 放在数组里面
+        //items 是数组项
+        data.map( (items) => {
+            tempArr.push(items.city);
+        })
+        return tempArr;
+    }
+    
+
+    function weather(arr){
+        arr.map( (items) =>{
+            console.log(items + '城市的天气');
+        })
+    }
+    weather(adaptation(obj));
+    </script>
+</body>
+</html>

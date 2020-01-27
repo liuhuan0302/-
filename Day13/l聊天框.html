@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .txtShow{
+        width:375px;
+        height:500px;
+        background:pink;
+        margin: 30px auto 0;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
+        flex-direction: column;
+        align-items: flex-end;
+        overflow:auto;
+        padding-top:15px; 
+    }
+    .txtShow div{
+        height:24px;
+        max-width:100%;
+        margin-right:10px;
+        margin-bottom:40px;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+    }
+    .txtShow span{
+        font-size:8px;
+        color:#ccc;
+    }
+
+    .txtShow p{
+        font-size:16px;
+        background:#0b0;
+        border-radius:12px;
+        color:#000;
+        line-height:20px;
+        padding:5px;  
+    }
+    .box{
+        height:30px;
+        width:375px;
+        margin:0 auto;
+    }
+    .box .info{
+        border:0;
+        height:30px;
+        width:300px;
+        float:left;
+        background:#ccc;
+    }
+    .box .btn{
+        border:0;
+        display:block;
+        height:30px;
+        width:75px;
+        font-size:20px;
+        color:#fff;
+        line-height:30px;
+        text-align:center;
+        background:black;
+        float:left;
+    }
+    </style>
+</head>
+<body>
+    <section class="txtShow">
+            <!-- <p>文本文本文本文本文本文本</p> -->
+    </section>
+    <div class="box">
+        <input type="text" class="info">
+        
+        <button class="btn">发送</button>
+    </div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    /*
+        业务逻辑:
+            1.获取info输入的内容信息
+            2.将内容信息填到一个新元素中
+            3.将新元素放section中
+            新添加功能:
+            1.文字输入完,输入框清空
+            2.空格不能发送
+            3.输入文字显示时间
+            4.在添加Div,在div中添加span 和p 标签
+    
+    */
+   var  
+        oInfo = $('.info')[0],
+        oBtn = $('.btn')[0],
+        oTxtShow = $('.txtShow')[0];
+        function info(){
+            if(oInfo.value){//如果输入的信息不为空时在执行;
+            //获取输入信息
+            var infoVal = oInfo.value;
+            //创建一个div div用来存放时间 和 p
+            var createDiv = document.createElement('div');
+            var createP = document.createElement('p');//创建节点,存放info信息
+            createP.innerHTML = infoVal;//把info中的信息,存放在p中
+            //将p中的信息放到div中
+            createDiv.appendChild(createP);
+            //发送每一条信息都带有时间
+            var date = new Date();//获取现在的时间
+            //把时间放在一个span标签中
+            var createSpan = document.createElement("span");
+            //把时间放在span中
+            createSpan.innerHTML = mendZero(date.getHours())+':'+mendZero(date.getMinutes())+':'+mendZero(date.getSeconds());
+            //将span加到Div 中
+            createDiv.appendChild(createSpan);
+
+            oTxtShow.appendChild(createDiv);//将Div放在oTxtShow中
+            oTxtShow.scrollIntoView(true);//让内容始终在可视区域
+            oInfo.value = '';//清空输入框
+
+        }
+    }
+        //事件绑定
+        // oBtn.onclick = function(){
+        //     info();
+        // }
+        //键盘触发
+        document.onkeydown = function(e){
+            e = e || window.event;
+            var keyCode = e.keyCode || e.which;
+            //回车发送
+            if( keyCode == 13 && e.ctrlKey){
+                info();
+            }
+        }
+
+    </script>
+</body>
+</html>

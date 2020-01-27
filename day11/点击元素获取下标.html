@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        width:100px;
+        height:100px;
+        background:orange;
+    }
+</style>
+</head>
+<body>
+    <section>
+        <div>0</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+    <script>
+        var aDiv = document.querySelectorAll('section div');
+        console.log(aDiv);
+        //绑定单击事件
+        for(var i = 0, k = aDiv.length; i < k ; i++ ){
+            //为每一个div 添加一个属性,把i保存在这个属性当中
+            //给aDiv这个对象添加一个属性index
+            aDiv[i].index = i;
+            aDiv[i].onclick = function(){
+                //打印下标(this是指这个对象,index是属性)
+                console.log(this.index);
+            }
+        }
+        //循环 变量的泄露! 再循环里面 循环变量不会保存在循环的代码块中;
+
+        //第二种方法
+        var aDiv = document.querySelectorAll('section div');
+        console.log(aDiv);
+        //绑定单击事件
+        //let为es6中获取元素
+        for(let i = 0, k = aDiv.length; i < k ; i++ ){
+            aDiv[i].onclick = function(){
+                //打印下标
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>   
+<!-- 
+
+    异步:  事件  定时器 ajax  
+    同步:  for循环
+    js是一种单线程语言   需要先把同步程序执行完之后,在执行异步
+ -->

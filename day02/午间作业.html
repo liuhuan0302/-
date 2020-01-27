@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //+ 1. 案例：输入分数，判定成绩等级
+    // + 2. 输入月份，显示当月的天数
+    var score = 90;
+    if(score <= 60){
+        console.log("F");
+    }else if(score <= 70 && score >= 60){
+        console.log("D");
+    }else if(score <= 80 && score >= 70){
+        console.log("C");
+    }else if(score <= 90 && score >= 80){
+        console.log("B");
+    }else{
+        console.log("A");
+    }
+     var score = 90;
+    if(score <= 60){
+        console.log("F");
+    }else if(score <= 70 ){
+        console.log("D");
+    }else if(score <= 80){
+        console.log("C");
+    }else if(score <= 90){
+        console.log("B");
+    }else{
+        console.log("A");
+    }
+        var month =10;
+        switch(month){
+            case 2:if(year % 100 != 0 && year % 4 == 0 || year % 400 == 0){
+                console.log("28天")
+            }else{
+                console.log("29天")
+            };
+            break;
+            case 1: 
+            case 3: 
+            case 5: 
+            case 7: 
+            case 8: 
+            case 10: 
+            case 12:
+                 console.log("31天") ;
+                break;
+            default:
+                console.log("30天") ;
+            
+        }
+    </script>
+</body>
+</html>

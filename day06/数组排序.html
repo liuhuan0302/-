@@ -1,0 +1,80 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr =[10,7,8,9,30,20,1];
+        
+        function bubbleSort(arr){
+            // 确定循环的次数
+            for(i = 0 ;i < arr.length - 1; i++){
+                //确定比较的次数
+                for(k = 0;k < arr.length - i -1;k++){
+                    //比较相邻两个数,谁大谁往后放
+                    if(arr[k] > arr[k+1]){
+                        var tmp = arr[k];
+                        arr[k] = arr[k+1];
+                        arr[k+1] = tmp;
+                    }
+                    
+                }
+            }
+            return arr;
+        }
+        console.log(bubbleSort(arr));
+
+        // //选择排序
+        var arr =[10,7,8,9,30,20,1];
+        function chooseSort(arr){
+            //确定外层循环次数(几轮)
+            for(var i = 0; i < arr.length - 1; i++ ){
+                // 确定交换次数
+                for(var k = i + 1; k < arr.length; k++){
+                    //第一个数依次与后面数进行比较
+                    if(arr[i] > arr[k]){
+                        var tmp = arr[k];
+                        arr[k] = arr[i];
+                        arr[i] = tmp;
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(chooseSort(arr));
+        //快速排序
+        var arr = [10,20,77,30,50,88,190,40];
+        function quickSort(arr){
+            if(arr.length <= 1){
+                return arr;
+            }
+            //取中间值以及中间值的下角标,并定义左右的数组
+            var 
+                midIndex =parseInt(arr.length/2),
+                midValue = arr[midIndex],
+                rightArr =[],
+                leftArr =[];
+                //遍历数组,都和中间值作比较,大的放在右边数组,小的放在左边数组
+                for(var i = 0;i < arr.length;i++){
+                    //中间值不和自身做比较,当arr[i]等于中间值时,跳出本次循环;
+                    if(midIndex == i){
+                        continue;
+                    }
+                    if(arr[i] <= midValue){
+                        leftArr.push(arr[i]);
+                    }else{
+                        rightArr.push(arr[i]);
+                    }
+                }
+                //利用递归处理左右两边的数组;
+                var res = quickSort(leftArr).concat(midValue).concat(quickSort(rightArr));
+                return res;
+        }
+        console.log(quickSort(arr));
+    </script>
+</body>
+</html>

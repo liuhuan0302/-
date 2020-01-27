@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h3{
+            font-size:24px;
+            color:red;
+        }
+        h2 span{
+            font-size:24px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h2>商品单价:</h2>
+    <h3>1000</h3>
+    <div>
+        <button class="minus">-</button>
+        <input type="text" value="0">
+        <button class='add'>+</button>
+    </div>
+    <h2>总额:<span id='price'>0</span></h2>
+    <script>
+        /*
+          1.获取上面的元素
+          通过调整加减来控制总额
+        */
+        var 
+            oMinus = document.querySelector('.minus'),
+            oAdd = document.querySelector('.add'),
+            oPrice = document.querySelector('#price'),
+            money = document.querySelector('h3').innerHTML;
+
+            //绑定单击事件
+            oAdd.onclick = function(){
+                //获取前面一个元素的value值,通过单击,不断调整input里面的值
+                oAdd.previousElementSibling.value++;
+                //计算总额,总额等于单价*数量,并将其带入input中
+                oPrice.innerHTML = money * oAdd.previousElementSibling.value;
+            }
+            oMinus.onclick = function(){
+                //获取后面的一个元素的value值,通过单击,不断减input里面的值
+               oMinus.nextElementSibling.value--;
+                
+                if(oMinus.nextElementSibling.value <= 0){
+                    oMinus.nextElementSibling.value = 0;
+                }
+                oPrice.innerHTML = money * oMinus.nextElementSibling.value;
+            }
+    </script>
+</body>
+
+</html>

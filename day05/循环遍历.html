@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function fn(){
+
+        // // return arguments.length;
+        // var sum = 0;
+        // for(var i = 0;i < arguments.length;i++){
+        //      sum += arguments[i];
+        //   }
+        //   return sum;
+        // }
+        // console.log (fn(1,2,3,4,5,6,7));
+        function getMax(){
+            for(var i = 1;i < arguments.length;i++){
+                if(arguments[0]<arguments[i]){
+                    arguments[0] = arguments[i];
+                }
+            }
+            return arguments[0];
+        }
+
+        console.log(getMax(1,4,7,10,8));
+        function getMax(){
+            var Max = arguments[0];
+            for(i = 1;i <= arguments.length;i++){
+               if(arguments[i] > Max){
+                   Max = arguments[i];
+               } 
+            }
+            return Max;
+        }
+        console.log(getMax(1,4,7,10,8));
+
+        // function fn(x,y){
+        //     if(arguments.length == 1){
+        //         var proudt = 1;
+        //         for(i = 1; i <= x; i++){
+        //             proudt *= i;
+        //         }
+        //         return proudt;
+        //     }
+        //     return Math.pow(x,y);
+        // }
+        // console.log(fn(3));
+
+        var a = 20;
+        function fn(){
+            console.log(a);
+        }
+        fn();
+
+
+    </script>
+</body>
+</html>
+
+<!-- 
+参数的个数不确定:
+    arguments  对象
+        存放函数内部所有的参数;
+        arguments.length 记录所有传递参数的个数
+        arguments存放参数的形式类似于数组,但arguments不是数组
+        arguments 取出里面的存放的数据,通过下标,下标从0开始 arguments[0]
+        如果把arguments 存放的数据全部取出,需要循环遍历!!!!
+
+函数作用域:
+    全局变量
+    局部变量
+
+    1.变量的关系:
+        1.写在函数内部的叫作局部变量
+        2.在全局不能访问局部变量
+        3.在局部可以访问全局变量
+        4.函数在不调用的时候,局部变量是不存在的.
+        5.在函数运行完毕之后,变量被垃圾回收机制回收
+    注:什么是作用域链？（面试常问）
+
+     a、 根据在内部函数可以访问外部函数变量的这种机制，用链式查找决定哪些数据能被内部函数访问。 简单说就是作用域集合
+
+     b、当前作用域 -> 父级作用域 -> ... -> 全局作用域   形成的作用域链条
+
+     js的执行环境 ：
+     每个函数的执行都会产生一个执行环境 ；全局执行环境是最外围的执行环境，全局执行环境被认为是window对象，因此所有的全局变量和函数都作为window对象的属性和方法创建的。
+
+
+    2.词法作用域(静态作用域)
+            作用域:在函数声明过程中产生的
+
+       动态作用域:
+            在函数调用的时候产生作用域
+
+            注:js里面的函数的作用域,是在声明时候产生的
+    3.变量提升:
+        1.把声明的变量var a 提升到当前作用域的最顶端
+        2.赋值语句和逻辑语句都不做提升,原地等待执行
+        3.function关键字声明的函数也会等待提升到作用域的最顶端
+        4.变量提升的规则:所有用var声明的变量先提升,然后在提升function声明的函数整体(官方解释:函数的执行的权重比较高)
+        5.匿名函数不会被提升.
+
+        注:js的解析过程:
+            1:预编译(预解析)
+                a:对语法的检测.如果有语法错误,直接报错
+                b:变量提升
+            2.执行
+函数里面的this指向：
+         谁调用函数，this指向谁！！！
+         事件驱动：给谁绑定事件，this指向谁
+立即执行函
+        当页面打开的时候自动执行函数
+        语法：
+            （function(){
+                执行代码
+            }）（）
+
+    建议：再立即执行函数前面加一个运算符（目的：防止上面代码的执行
+
+    使用范围：
+        立即执行函数
+        事件（onclick/onmouseover......）
+    
+递归 :自己调用自己
+
+        * 在程序中函数直接或间接调用自己
+            1. 直接调用自己
+            2. 间接调用自己
+        * 跳出结构,有了跳出才有结果
+
+ -->

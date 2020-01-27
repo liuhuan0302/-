@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*
+    实现类的继承：
+        extends
+        super()  //更改this指向   必须放在constructor 第一位
+*/
+    class Fn1{
+        constructor(){
+            this.name = '第一个类';
+        }
+        eat(){
+            console.log('吃');
+        }
+        run(){
+            console,log('跑步');
+        }
+    }
+    
+    class Fn2 extends Fn1{
+        constructor(){
+            super();
+            this.name = '第二个类';
+        }
+        play(){
+            console.log('玩');
+        }
+    }
+
+    class Fn3 extends Fn2{
+            constructor(){
+                super()
+                this.name = '第三个类';
+            }
+            sleep(){
+                console.log('睡觉')
+            }
+        }
+    var obj = new Fn3();
+    obj.eat();
+    console.dir(Fn3);
+    </script>
+</body>
+</html>

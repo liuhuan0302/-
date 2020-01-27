@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = 2222;
+        var str = ` 
+       <div class="goods">
+            <a href="#">
+                 <img src="${a}" alt="">
+            </a>
+            <h2>${a}</h2>
+            <p>${a}</p>
+        </div>`;
+        console.log(str);
+        var str = 'nihao';
+        console.log(str.includes('n'));
+        var str = "how are you";
+        console.log(str.repeat(10));
+        console.log(str.startsWith('are'));
+
+
+    </script>
+</body>
+
+</html>
+<!-- 
+
+    ES6字符串模板
+        ''
+        拼接变量   ${变量}
+    
+    字符串API
+        1.includes 字符串搜索
+            返回值为:true false 
+            var str = 'nihao';
+            console.log(str.includes('n'));
+        2.startsWith  endWith  判断开头或结尾
+
+        3.repeat  复制字符串
+        str.repeat(10)
+
+ -->

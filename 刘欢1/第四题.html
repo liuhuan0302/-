@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div>
+            <span>
+                <p></p>
+                <p></p>
+            </span>
+            <span></span>
+        </div>
+    </section>
+    <script>
+    //  Array.from()
+     let dom = document.getElementsByTagName('*');
+     let arr =[];
+     let count = 0;
+     let newArr =[];
+     for(let item of dom){
+        arr.push(item.tagName.toLocaleLowerCase())
+     }
+    
+
+    for(var i = 0; i < arr.length; i++){
+        if(arr.indexOf(arr[i]) == arr.lastIndexOf(arr[i])){
+            newArr.push(arr[i]);
+            count++;
+
+        }
+        
+    }
+    
+    console.log("不重复标签" + count );
+    let tempArr = [];
+   for(let i = 0; i < arr.length;i++){
+       if(tempArr.indexOf(arr[i]) == -1){
+           tempArr.push(arr[i]);
+       }
+   }
+
+    for(var k = 0; k < tempArr.length; k++){
+        var count1 = 0;
+        for(var j = 0; j < arr.length;j++){
+            if(tempArr[k] == arr[j]){
+                count1++;
+            }
+        }
+        console.log(tempArr[k] + '出现了' + count1 + '次');
+    }
+     
+        
+        
+    </script>
+</body>
+</html>

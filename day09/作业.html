@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+        
+            background:url(./images/bg.gif),url(./images/bg.jpg) repeat;
+        }
+        #box{
+        height:40px;
+        width:400px;
+        background:red;
+        margin:100px auto;
+        font-size:20px;
+        color:#fff;
+        line-height:40px;
+        text-align:center;
+        font-weight:900;
+    }
+    span{
+        display:block;
+        width:500px;
+        font-size:24px;
+        line-height:28px;
+        color:gold;
+        
+        margin:0 auto;
+    }
+    
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <span id= "box1"></span>
+    <script>
+        //计算两个日期的差值
+        setInterval(function(){
+            var agoTime = new Date('1993/3/2');
+            var nowTime = new Date();
+            //计算两个日期差距的毫秒
+            var ms = nowTime - agoTime;
+            //计算有多少整天
+            var day = parseInt(ms/(24*60*60*1000));
+            var hours = parseInt(ms%(24*60*60*1000)/(60*60*1000));
+            var m = parseInt(ms%(24*60*60*1000)%(60*60*1000)/(60*1000));
+            var s = parseInt(ms%(24*60*60*1000)%(60*60*1000)%(60*1000)/1000);
+            box.innerHTML = ''+'倒计时' + day + '天' + hours + '小时' + m + '分钟' + s +
+'秒';
+        })
+        var count = 0;
+        var str = "这山是座不知名的野山。在这个春光明媚的日子，我们几人相约，沿山沟而上。路很难走，崎岖而狭小。沟两边岩石大多裸露，一层一层的被水流冲刷的痕迹明显。没有什么树，只有些低矮的酸枣树，绿的也只是野草罢了。登到半山腰却没路了，眼前是齐腰高的荒草一片，去年冬天的枯黄还没有被今春的草绿完全覆盖。这荒草好生奇怪，不像一般北方山上的野草，倒像是河边的芦苇一般。也看不见裸露的岩石了，植被矮小却很茂盛，不知道再往上是什么情况。"
+        setInterval(function(){
+            if(count < str.length){
+                box1.innerHTML += str.charAt(count);
+                count++;
+            if(count > str.length){
+                clearInterval(1);
+            }
+            }
+        },200)
+        
+
+    </script>
+</body>
+</html>

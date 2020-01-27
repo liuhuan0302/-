@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // + 编写一个函数，生成4位数字的验证码  
+
+        // function fn(){
+        //     var str = "";
+        //     for(var i = 1;i <= 4;i++){
+        //         str += parseInt(Math.random()*10);
+        //     }
+        //     return str;
+        // }
+        // console.log(fn());
+
+
+        // function createNumber() {
+        //     return parseInt(Math.random() * 9000 + 1000);
+        // }
+        // console.log(createNumber());
+        // + 编写函数digit(num, k)，函数功能是：求整数num从右边开始的第k位数字的值，如果num位数不足k位则返回0。
+        var isNumber = function (num,k){
+            if ((num / Math.pow(10, k - 1)) < 1){
+                return console.log(0);
+            } else {
+                for (i = 1; i < k; i++) {
+                    num = parseInt(num / 10);
+                }
+                return console.log(num % 10);
+            }
+        } 
+        isNumber(2,5);
+
+        // var isNumber = function (num, k) {
+        //     for (i = 1; i < k; i++) {
+        //         num /= 10;
+        //     }
+        //     if (parseInt(num % 10 == 0)) {
+        //         return 0;
+        //     } else {
+        //         return parseInt(num % 10);
+        //     }
+
+        // }
+        // console.log(isNumber(1, 5));
+
+        // + 编写函数计算一个数字的长度   //fn(num)  返回的是数字的长度。
+        // function fn(num) {
+        //     var i = 1;
+        //     while (true) {
+        //         if (num <= 9) {
+        //             return console.log(i);
+        //             break;
+        //         }
+        //         num = parseInt(num / 10);
+        //         i++;
+        //     }
+        // }
+        // fn(1.11);
+
+        function fn(num){
+            var count = 0;
+            while(true){
+            num = num / 10;
+            count++;
+            if(parseInt(num) == 0){
+              break;
+            } 
+        }
+        return count;
+    }
+    document.write(fn(12345.678));
+
+        // + 编写一个函数，计算任意两个数字之间所能组成的奇数个数。比如：计算0~3之间能组成的奇数是： 01/03/11/13/21/23/31/33
+
+        function count(m,n) { 
+                var k = 0;
+                for(var i = m ; i <= n ; i++){
+                    for(var j = m;j <= n; j++){
+                        if(j % 2 != 0){
+                            k++;
+                        }
+                    }
+                }
+                document.write(k);
+            }
+
+        // count(0,3);
+        // function count(m,n){
+        //     var k = 0;
+        //     for(i=m;i<=n;i++){
+        //         if( i % 2 != 0){
+        //             k++;
+        //         }
+        //     }
+        //     var sum = k *(n-m+1);
+        //     document.write(sum);
+        // }
+        // count(0,5);
+    // + 某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，
+    //  加密规则如下：每位数字都加上5,然后用除以10的余数代替该数字，再将第一位和第四位交换，
+    //   第二位和第三位交换，请编写一个函数，传入原文，输出密文 
+        // function code(num){
+
+        //     var a = parseInt(num /1000);
+        //     var b = parseInt(num /100 % 10);
+        //     var c = parseInt(num /10 % 10);
+        //     var d = parseInt(num % 10);
+
+        //         a = (a+5)%10;
+        //         b = (b+5)%10;
+        //         c = (c+5)%10;
+        //         d = (d+5)%10;
+
+        //     // var tmp1 = 0;
+        //     // var tmp2 = 0;
+
+        //     //     tmp1 = a;
+        //     //     a = d;
+        //     //     d = tmp1;
+
+        //     //     tmp2 = b;
+        //     //     b = c;
+        //     //     c = tmp2;
+
+        //     //     d = d*1000;
+        //     //     c = c*100;
+        //     //     b = b*10;
+
+        //         return ''+d+c+b+a;
+        // }
+        // console.log(code(2222));
+    </script>
+
+</body>
+
+</html>

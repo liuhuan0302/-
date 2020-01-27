@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height:5000px;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        header{
+            width:100%;
+            height:200px;
+            background:red;
+        }
+        nav{
+            width:100%;
+            height:100px;
+            background:blue;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <nav id="nav1"></nav>
+    <script>
+    //利用滚动条制作吸顶效果
+    onscroll = function(){
+        //利用滚动条事件获取高度
+        var scrollTop = document.documentElement.scrollTop ||document.body.scrollTop;
+        //判断高度,如果大于200,则fixed,否则:static
+        if(scrollTop >= 200){
+            nav1.style.position = "fixed";
+            nav1.style.top = 0;
+        }else{
+            nav1.style.position = "static";
+        }
+
+    }
+    </script>
+</body>
+</html>

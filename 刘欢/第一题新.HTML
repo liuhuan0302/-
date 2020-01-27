@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    em {
+        font-style: none;
+    }
+
+    section {
+        width: 400px;
+        padding: 20px 10px;
+        margin: 30px auto;
+        border: 2px solid #000;
+    }
+
+    div {
+        height: 40px;
+        margin-bottom: 10px;
+
+    }
+
+    p {
+        font-size: 14px;
+        color: #ccc;
+        line-height: 14px;
+        margin: 3px 40px;
+    }
+
+    .btn {
+        height: 30px;
+        width: 60px;
+        font-size: 14px;
+        color: #000;
+        line-height: 30px;
+        text-align: center;
+        background: green;
+        margin: 10px 0 0 100px;
+
+    }
+
+    span {
+
+        height: 30px;
+        width: 200px;
+        background: #ccc;
+        font-size: 25px;
+        font-weight: bold;
+        color: #000;
+        line-height: 30px;
+    }
+
+    /* #txt1{
+        font-size: 14px;
+        color: black;
+        border: 1px solid #000;
+    } */
+
+    .p1 {
+        float: left;
+        margin-left: 0px;
+
+    }
+
+    .p2 {
+        font-size: 14px;
+        color: blue;
+        line-height: 14px;
+        margin-top: 3px;
+        float: left;
+        margin-left: 10px;
+    }
+</style>
+
+<body>
+    <section>
+        <div>
+            <label for="">*邮件地址</label>
+            <input type="text" id='mail'><label for="">a</label>
+            <select name="" id="">
+                <option value="">163.com</option>
+            </select>
+            <p>6-18字符,可使用字母,数字,下划线,需要字母开头</p>
+        </div>
+        <div>
+            <label for="">*密码</label>
+            <input type="password" value="" autocomplete="off" id='passWord'>
+            <p id="txt1">6-18字符,区分大小写</p>
+        </div>
+        <div>
+            <label for="">*验证码</label>
+            <input type="text" id='code'> <span id='txt2'>AAAAaa</span>
+            <p class='p1'>请填写图片中的字符,不区分大小写</p><em class='p2'>看不清楚,换张图片</em>
+        </div>
+        <label for="">*手机号码</label>
+        <input type="text" id='num'>
+        <div>
+            <button class='btn'>立即注册</button>
+        </div>
+        <script src="./myAPi/myApi.js/myAPI.js"></script>
+        <script>
+            var
+                oMail = document.querySelector('#mail'),
+                pwd = document.querySelector('#passWord'),
+                oCode = document.querySelector('#code'),
+                txt1 = document.querySelector('#txt1'),
+                txt2 = document.querySelector('#txt2'),
+                oP2 = document.querySelector('.p2');
+                oBtn = document.querySelector('.btn'),
+                oNum = document.querySelector('#num');
+               
+
+            /*
+            逻辑:
+                当邮箱,密码,验证码和手机号格式都正确是,注册成功
+            
+            */
+            var reg = /^[a-zA-Z]\w{5,17}$/;
+            var reg1 = /^1[356789]\d{9}$/;
+            var reg2 = /^.{6,16}$/;
+            
+            oBtn.onclick = function () {
+                var oMailVal = oMail.value;
+                var oNumV = oNum.value;
+                var oCodeV = oCode.value;
+                var oPwd = pwd.value;
+                console.log(oCodeV);
+                if (reg.test(oMailVal) && reg1.test(oNumV) && reg2.test(oPwd) &&   (oCodeV.toLowerCase() == txt2.innerText.toLowerCase())){
+                    alert('注册成功');
+                } else {
+                    alert('注册失败');
+                }
+            }
+            //获取随机验证码
+            oP2.onclick = function () {
+                //获取一个空字符串
+                var str = '';
+                for (var i = 0; i < 6; i++) {
+                    //获取随机数
+                    var num = randomNumber(48, 122);
+                    //判断随机数是否在条件之内
+                    if (num >= 48 && num <= 57 || num >= 65 && num <= 90 || num >= 97 && num <= 122) {
+                        str += String.fromCharCode(num);
+                    } else {
+                        //不满足条件
+                        i--;
+                    }
+                }
+                //把随机码放到文本框中
+                txt2.innerHTML = str;
+                //给文本添加随机颜色
+                code.style.color = randomColor();
+            }
+            //对输入的密码进行监测
+            var special ="@#$%^&*";
+                //绑定输入框,对其进行监测
+                pwd.oninput = function(){
+                    //对输入框中值进行获取
+                    var pwdValue = pwd.value;
+                    //判断输入数值长度是否在6-16
+                    if(pwdValue.length < 6 || pwdValue.length > 16 ){
+                        return txt1.innerHTML = "密码长度不合法";
+                    }
+                    if(Number(pwdValue) == pwdValue){
+                        return txt1.innerHTML = "密码弱";
+                    } 
+                    for(var i = 0;i < special.length;i++){
+                        if(pwdValue.indexOf(special[i] != -1)){
+                            return txt1.innerHTML = "密码强度强";
+                        }
+                    }
+                    return pwd.innerHTML = "密码强度适中";
+                }
+
+
+        </script>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box{
+        height:300px;
+        width:300px;
+        background:red;
+    }
+    .wrap{
+        border:4px solid blue;
+    }
+</style>
+</head>
+<body>
+    <div  title='aaaaa' style="border:4px solid blue;"></div>
+    <script>
+        var oBox = document.querySelector('div');
+        //标签.属性   可以直接获取元素属性
+        console.log(oBox.title);
+        //但是类名只能通过className 获取  (节点.className) 注:不能通过oBox.class
+        console.log(oBox.className);
+        //还可以获取类型(节点.className = '类名')(动态添加类名)
+        oBox.className = 'box';
+         //添加多个类名 (注:是+=  要有空格)
+         oBox.className +=' wrap';
+
+         //tagName 获取标签名(都是大写的)
+         console.log(oBox.tagName);
+        console.log(oBox.innerHTML);
+        
+       
+    </script>
+</body>
+</html>
+<!-- 
+js中获取元素的属性
+    className  获取类名
+    tagName  获取标签名称
+    获取行间样式的属性大部分都可以通过 元素.属性 获取(但类名不可以)
+    获取元素中的属性,直接用 标签.属性 就可以获取
+    元素.innerHTML
+    元素.id
+    元素.style
+    元素.tagName
+    元素.title
+js中更改元素的属性(html属性(写在标签上面的都是html属性;也叫行间样式))
+    元素.属性
+    自定义属性:  setAttribute  getAttribute
+
+ -->

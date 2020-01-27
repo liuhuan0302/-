@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //存储当前日期
+        var date  = new Date();
+        //设置成下个月
+        date.setMonth(date.getMonth()+1);
+        //把日期设置为0
+        date.setDate(0);
+        //获取天数
+        console.log(date.getDate());
+    </script>
+</body>
+</html>

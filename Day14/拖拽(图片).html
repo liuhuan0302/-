@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./1.jpg" alt="">
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        var oImg = document.getElementsByTagName('img')[0];
+        oImg.onmousedown = function(e) {
+            e = e || window.event;
+            //阻止浏览器的默认行为
+            preventDefault(e);
+            //获取鼠标在元素中距离左侧和上侧的位置
+            var
+                x = e.offsetX,
+                y = e.offsetY;
+                console.log(x,y);
+            //鼠标移动
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                preventDefault(e);
+                //获取鼠标的位置
+                var
+                    l = e.clientX,
+                    t = e.clientY;
+                //图片跟着鼠标进行移动
+                oImg.style.left = l - x + 'px';
+                oImg.style.top = t - y + 'px';
+                //鼠标按键抬起
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

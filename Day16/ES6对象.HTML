@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            name:'小明',
+            age:20,
+            eat:function(){
+                console.log('会吃');
+            }
+        }
+        obj.eat();
+        //ES6
+        var obj = {
+            name:'小明',
+            age:20,
+            eat(){
+                console.log('会吃');
+            }
+        }
+        obj.eat();
+// 引用传递  arr和arr2都会改变(存的是堆中的地址)
+        var arr = [1,2,3,4,5];
+        var arr2 = arr;
+        arr2[0] = 'a';
+        console.log(arr2,arr  );
+        var  a = 10;
+        var b = a;
+         b = 20;
+         console.log(a,b);
+
+//true
+          var obj1 = {
+              name:'wang',
+              age:'19'
+          }
+          var obj2 = obj1;
+          console.log(Object.is(obj1,obj2));
+//false
+    var obj1 = {
+              name:'wang',
+              age:'19'
+          }
+    var obj2 = {
+              name:'wang',
+              age:'19'
+          }
+          console.log(Object.is(obj1,obj2));
+    </script>
+</body>
+</html>
+<!-- 
+
+    ES6中,在对象里面消除了function关键字
+
+    Object.is(obj1,obj2)//检测两对象的索引是否一致
+
+    Object.assign(obj1,obj2)
+    obj1:要合并的对象
+    obj2:被合并的对象
+ -->

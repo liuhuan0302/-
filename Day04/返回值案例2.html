@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function isYear(year){
+            if(parseInt(year) != year){
+                return alert("此数不是合格年数");
+            }
+            if(year < 0){
+                return alert("此数不是合格年数");
+            }
+            return alert("合格");
+        }  
+        isYear("aaa");  
+    </script>
+</body>
+</html>

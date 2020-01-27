@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    html,body{
+        height:100%;
+    }
+    body{
+        background:url(./img/timg.jpg);
+        background-size:100% 100%;
+        overflow: hidden;
+    }
+    div{
+        height:80px;
+        width:80px;
+        background:url(./img/plan.png) no-repeat;
+        background-size:100% 100%;
+        font-size:40PX;
+        font-weight:bold;
+        text-align:center;
+        line-height:80px;
+        color:orange;
+        position:absolute;
+    }
+    </style>
+</head>
+<script src="../../myAPi/myApi.js/myAPI.js"></script>
+<body>
+    <!-- <div class="plan">A</div> -->
+    <script>
+    /*
+        逻辑:
+            1.背景的移动
+            2.创建飞机
+            3.飞机的移动
+            4.飞机的爆炸
+            5.键盘事件触发
+        
+    
+    */ 
+   function Plan(){
+       //获取视口的宽和高
+       this.vw = document.documentElement.clientWidth - 80;
+       this.vh = document.documentElement.clientHeight - 80;
+       this.init();
+   }
+   Plan.prototype = {
+        init: function(){
+            this.bgMove();
+            // this.createPlan();
+            // this.PlanMove();
+            this.eventBind();
+        },
+        //背景的移动
+        bgMove : function(){
+            //速度
+            var speed = 5;
+            setInterval( ()=>{
+                speed += 5;
+                //背景图的移动(backgroundPositionY = background-position-Y)
+            document.body.style.backgroundPositionY = speed + 'px';
+            }, 50)
+        },
+        //创建飞机
+        createPlan : function(){
+            //动态创建飞机
+            var _this = this;
+            setInterval( ()=>{
+                let createDiv = document.createElement('div');
+                //添加内容(先随机产生65-90,在将其转换为字母)
+                createDiv.innerHTML = String.fromCharCode(randomNumber(65,90));
+                //在哪创建
+                createDiv.style.top = 0;
+                createDiv.style.left = randomNumber(0,_this.vw) +'px';
+                //注:添加元素直接添加
+                document.body.appendChild(createDiv);
+                //飞机创建后,进行移动
+                _this.planMove(createDiv);
+            },800)
+        },
+        //飞机的移动(这时并不知道谁在移动,需要设个行参)
+        planMove : function(ele){
+            let speed = 5;
+            let _this = this;
+            ele.timer = setInterval(function(){
+                //元素移动
+                ele.style.top = ele.offsetTop + speed +'px';
+                //当飞机到低部,清除定时器,游戏结束
+                if(ele.offsetTop >= _this.vh){
+                    clearInterval(ele.timer);
+                    alert('游戏结束');
+                    //重新刷新页面
+                    location.reload();
+                }
+            },100)
+
+        } ,
+        //飞机的爆炸(需要确定是那个一个飞机爆炸)(确定位置)
+        blast : function(l,t){
+            //创建爆炸的效果
+            let img = document.createElement('img');
+            img.src = './img/die.gif';
+            //给图片添加样式
+            img.style.cssText = 'width:80px;height:80px;position:absolute;left:'+ l +'px;top:'+ t +'px';
+            //将创建的飞机添加到body 中
+            document.body.appendChild(img);
+            //爆炸完 清除图片
+            setTimeout(() =>{
+               img.remove();
+            },400)
+
+        },
+        //键盘事件
+        eventFn: function(e){
+            e = e || window.event;
+            //获取按键的 ascii
+            let keyCode = e.keyCode || e.which;
+            //如果键盘上的ascii  码 和飞机上的ascii 码一致 飞机销毁
+            //对所有的飞机进行获取
+            /*
+                getElementsByTagName 获取的是动态集合(无缝轮播克隆后用ta 来获取)
+                querySelectorAll 获取的是静态集合
+            */
+            let allPlan = document.getElementsByTagName('div');
+            console.log(allPlan.length);
+            //进行循环遍历
+            //注:此时要用let 形成块级作用域
+            for(let i = 0, k = allPlan.length; i < k; i++){
+                //获取飞机中字母的ascii 值
+                let num
+                new Promise((resolve) => {
+                    num = allPlan[i].innerHTML.charCodeAt(0);
+                    resolve();
+                }).then(() => {
+                    console.log(allPlan.length);
+                    //console.log(allPlan[i]);
+                    //如果飞机的ascii 值和 键盘的ascii 值 相等
+                    if( keyCode == num){
+                        //飞机击中,记录飞机的位置
+                        let left = allPlan[i].offsetLeft;
+                        let top = allPlan[i].offsetTop;
+                        //console.log(allPlan[i].innerHTML);
+                        allPlan[i].remove();
+                        //同时飞机爆炸
+                        this.blast(left,top);
+                    }
+                })
+               
+                
+            }
+
+        },
+        eventBind :function(){
+            addEventListener(document,'keydown',this.eventFn.bind(this));
+            //点击页面时,游戏开始
+            addEventListener(document,'click',this.createPlan.bind(this));
+        }
+
+   }
+   new Plan();
+    </script>
+</body>
+</html>

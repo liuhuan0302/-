@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .imgShow{
+        height:300px;
+        width:300px;
+        background:#ccc;
+        position:absolute;
+        left:80px;
+        top:50px;
+    }
+    .imgShow>img{
+        display:block;
+        height:300px;
+        width:300px;
+        position:absolute;
+    }
+    .flter{
+        height:150px;
+        width:150px;
+        background:rgba(0,0,0,0.6); 
+        position:absolute;
+        /* 鼠标变成十字 */
+        cursor:move;
+        display:none;
+    }
+    .bigBox{
+        height:500px;
+        width:500px;
+        background:pink;
+        position:absolute;
+        left:300px;
+        top:0;
+        overflow:hidden;
+        display:none;
+    }
+    .bigImg{
+        display:block;
+        height:1000px;
+        width:1000px;
+        position:absolute;
+    }
+    </style>
+</head>
+<body>
+    <div class="imgShow">
+        <img src="./img/img/small.jpg" alt="">
+        <span class="flter"></span>
+        <div class="bigBox">
+            <img class= "bigImg" src="./img/img/big.jpg" alt="">
+        </div>
+    </div>
+    <script src='../../myAPi/myApi.js/myAPI.js'></script>
+    <script>
+        /*
+            1.遮罩层随着鼠标移动而移动(鼠标移动的范围在小图里面)
+            2.大图随着遮罩层的移动而移动
+        */
+        /*
+            遮罩层/bigBox =  小图/ 大图
+            150/500 = 300/1000 
+        */
+        var 
+            oImgShow = $('.imgShow')[0],
+            oFilter = $('.flter')[0],
+            oBigImg = $('.bigImg')[0],
+            oBigBox = $('.bigBox')[0];
+            oImgShow.onmousemove = function(e){
+                e = e || window.event;
+                //获取鼠标移动的位置
+                var 
+                    l = e.clientX - oImgShow.offsetLeft - oFilter.offsetWidth/2,
+                    t = e.clientY - oImgShow.offsetTop - oFilter.offsetHeight/2;
+                    //对鼠标移动的边界进行处理
+                    l = l <= 0 ? 0 : (l >= 150 ? 150 :l);
+                    t = t <= 0 ? 0 : (t >= 150 ? 150 :l);
+                    oFilter.style.left = l +'px';
+                    oFilter.style.top = t +'px';
+                    //控制大图的位置()
+                    oBigImg.style.left = -l/0.3 +'px';
+                    oBigImg.style.top = -t/0.3 +'px';
+
+            }
+            oImgShow.onmouseover = function(){
+                oFilter.style.display = 'block';
+                oBigBox.style.display = 'block';
+            }
+            oImgShow.onmouseout = function(){
+                oFilter.style.display = 'none';
+                oBigBox.style.display = 'none';
+            }
+    </script>
+</body>
+</html>
+<!-- 
+
+    类名和标签名获取的都是集合
+ -->

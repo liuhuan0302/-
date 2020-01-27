@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       
+        img{
+            height:100px;
+            width:100px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class='box'></div>
+    <textarea name="" id="" cols="30" rows="10"></textarea> -->
+    <img src="./img/1.jpg" alt="">
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        //鼠标显示位置
+        var txt = $('textarea');
+        document.onmousemove = function(e){
+            e = e || window.event;
+            var 
+                x = e.clientX,
+                Y = e.clientY;
+            txt[0].value = '距离左侧:'+x+'距离顶部:'+Y;
+
+        }
+
+
+         //图片跟着鼠标进行移动
+        var oImg = $('img');
+       
+        document.onmousemove = function(e){
+            //获取事件信息
+            e = e || window.event;
+            //获取鼠标的位置信息
+            var 
+                l = e.clientX,
+                t = e.clientY;
+                //根据鼠标位置信息,
+                oImg[0].style.left = l - 50 + 'px';
+                oImg[0].style.top = t - 50 + 'px';
+
+        }
+        //鼠标点击更改图片(按下)
+        document.onmousedown = function(){
+            oImg[0].src = './img/2.jpg';
+        }
+        //鼠标点击更改图片(抬起)
+        document.onmouseup = function(){
+            oImg[0].src = './img/1.jpg';
+        }
+      
+    </script>
+</body>
+</html>
+<!-- 
+
+    事件对象:
+        1.事件类型
+                e.type ----获取结果没有on
+        2.鼠标位置
+            offsetX   offsetY      鼠标再元素上面的位置
+            clientX   clientY      鼠标距离浏览器窗口左 上的位置
+            pageX     pageY        client + 滚动条的距离
+            screenX   screenY      距离屏幕的距离
+
+ -->

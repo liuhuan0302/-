@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .shopCar{
+        height:40px;
+        width:100px;
+        background:red;
+        position:absolute;
+        top:200px;
+        right:0;
+    }
+    span{
+        height:10px;
+        width:10px;
+        border-radius:50%;
+        background:blue;
+        position:absolute;
+    }
+    </style>
+</head>
+<body>
+    <div class="shopCar"></div>
+    <script>
+    //获取视口的宽度
+    var vW = document.documentElement.clientWidth - 100;
+        console.log(vW);
+    //点击事件
+    document.onclick = function(e){
+        e = e || window.event;
+        var 
+            l = e.clientX,
+            t = e.clientY;
+        //创建新元素
+        var createSpan = document.createElement('span');
+        //给新元素添加 left 和top
+        createSpan.style.left = l + 'px';
+        createSpan.style.top = t +'px';
+        //将新元素添加到body里面
+        document.body.appendChild(createSpan);
+
+        //给span绑定抛物线运动
+        //y = a*x*x + b * x;
+        //设置span的虚拟坐标(x,y)
+        var 
+            x = - (vW - l),
+            y = - (t - 200),
+            b =  (y - (-0.001*Math.pow(x,2))) / x;
+            //开启定时器
+            createSpan.timer = setInterval(()=>{
+                //抛物线变化的坐标
+                x += 20;
+                y = -0.001 * Math.pow(x,2) + b * x;
+                //真实的坐标
+                createSpan.style.left = (vW + x) + 'px';
+                createSpan.style.top = (200 - y) +'px';
+                //当x>0时,关闭定时器
+                if(x > 0){
+                    clearInterval(createSpan.timer);
+                }
+            },300)
+    }
+    </script>
+</body>
+</html>

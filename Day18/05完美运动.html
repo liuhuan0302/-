@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            height: 100px;
+            width: 100px;
+            background: orange;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <script>
+        /*
+            多物体运动:
+                运动元素不确定
+                运动目标不确定
+                运动的属性不确定
+                ele:运动元素
+                attr:运动属性
+                iTarget:运动目标
+                fn: 回调函数 记录是否还需要运动代码
+        
+        */
+        /*
+     
+             完美运动:某个元素的多个属性进行运动
+                 ele{
+                     height:400px;
+                     width:300px;
+                     font-size:30px
+                 }
+                 这时传入的就不是一个具体的属性了,而是一个由多个属性组成的对象了
+             完美运动的逻辑:
+                 1.添加运动元素自己的定时器  ele.timer
+                 2.清除定时器(防止点击次数越多速度运动)
+                 3.开启定时器
+                    增加:开关门口令
+                 4.循环遍历,获取运动元素的属性值
+     
+                 5.增加:判断是否获取元素的透明度属性
+                     iCur = attr == 'opacity' ?  iCur*100 : parseInt(iCur);
+                 6..设置缓冲速度(目标值 - 初始值) / 8
+                 7.对缓冲速度进行限定
+                 speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                 8.
+                    if (iCur != json[attr]) {
+                            flag = false;
+                        }
+                     
+                 9.将运动的代码放到else里面()
+                     增加:判断是否是获取透明度属性
+                      if(attr == 'opacity'){
+                             //如果是透明属性,则不断改变属性值
+                             ele.style.opacity = (iCur + speed) / 100;
+                             ele.style.filter = 'alpha(opacity ='+ (iCur + speed) +')';
+                         }else{
+                             ele.style[attr] = iCur + speed + 'px';
+                10.当元素的属性运动完毕之后,进行关门(清除定时器),执行后续代码
+     
+             
+     
+        */
+        /*
+              参数:
+                  ele:运动的元素
+                  json:元素需要运动的属性{width:目标值,height:目标值}
+        
+        */
+        var timer = null;
+        function move(ele, json, fn) {
+            //清除定时器
+            clearInterval(ele.timer);
+            //开启定时器
+            ele.timer = setInterval(() => {
+                //开关门思想(防止多个属性同时运动时,一个属性运动完,定时器被关闭,另一个属性没有运动完)(开关门写在定时器里面)
+                let flag = true;
+                //获取运动元素的属性值
+                //遍历对象:获取元素的attr值
+                //attr 是对象中的属性
+                //注:循环遍历 要在包含整个运动 let 就是声明
+                for (let attr in json) {
+                    //获取运动元素的属性值(初始值)
+                    let iCur = getStyle(ele, attr);
+                    //判断是否需要获取元素的透明度
+                    iCur = attr == 'opacity' ? iCur * 100 : parseInt(iCur);
+                    //设置缓冲速度(目标值 - 初始值) /系数
+                    //json[属性] 就是目标值   
+                    var speed = (json[attr] - iCur) / 8;
+                    //对速度进行限定
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    //判断运动终止条件
+                    //当高度为101时,(两个属性同时运动,其中一个运动完毕,定时器就会关闭,另一个运动即使没有运动完,也会停止)
+                    // if (iCur == json[attr]) {
+                    //     clearInterval(ele.timer);
+                    //     //判断是否还有执行的代码(延长业务逻辑)
+                    //     if (fn) fn();
+                    // } else {
+
+                    //开关门(当初始值 不等于 目标值时,flag = false),则会不断执行循环,当初始值 = 目标值时,flag = true,则清除定时器,执行后续代码
+                    if (iCur != json[attr]) {
+                        flag = false;
+                    }
+                    //判断是否获取元素透明度
+                    if (attr == 'opacity') {
+                        ele.style.opacity = (iCur + speed) / 100;
+                        ele.style.filter = 'alpha(opacity=' + (iCur + speed) + ')';
+                    } else {
+                        //如果不是获取透明度
+                        ele.style[attr] = iCur + speed + 'px';
+                    }
+                  
+                    // }
+                }
+                if (flag) {
+                    clearInterval(ele.timer);
+                    if(fn)fn();
+                }
+            }, 30)
+
+ w       }
+
+        //封装获取非行间样式
+        function getStyle(ele, attr) {
+            return ele.currentStyle ? ele.currentStyle[attr] : getComputedStyle(ele, null)[attr];
+        }
+        //事件绑定
+        var aDiv = document.querySelectorAll('div');
+        aDiv[0].onmouseover = function () {
+            move(this, { 'width': 500, 'height': 101 }, () => {
+                console.log(1);
+            })
+        }
+
+    </script>
+</body>
+
+</html>

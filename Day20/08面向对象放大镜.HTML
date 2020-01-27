@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+        }
+
+        .showBox {
+            height: 530px;
+            width: 430px;
+            background: orange;
+            margin: 50px 0 0 200px;
+
+        }
+
+        .productImg {
+            height: 430px;
+            width: 430px;
+            position: relative;
+        }
+
+        .smallImg {
+            height: 100%;
+            width: 100%;
+        }
+
+        .bigBox {
+            height: 600px;
+            width: 600px;
+            background: #ccc;
+            position: absolute;
+            right: -600px;
+            top: 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        /* 大图的尺寸
+        遮罩 / bigBox  =  小图  / 大图
+        200 / 600    =  430 / 1290
+     */
+        .bigBox img {
+            height: 1290px;
+            width: 1290px;
+            position: absolute;
+            display: block;
+        }
+
+        .filter {
+            height: 200px;
+            width: 200px;
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+
+        /* 下面轮播图 */
+        .productList {
+            height: 100px;
+            width: 430px;
+            background: pink;
+        }
+
+        .productList span {
+            display: block;
+            float: left;
+            height: 100px;
+            width: 15px;
+            background: #000;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .imgListShow {
+            height: 100px;
+            width: 400px;
+            background: pink;
+            float: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .listBox {
+            height: 100px;
+            position: absolute;
+
+        }
+
+        .listBox article {
+            box-sizing: border-box;
+            height: 100px;
+            width: 100px;
+            border: 3px solid #ccc;
+            float: left;
+            cursor: pointer;
+        }
+
+        .listBox article img {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="showBox">
+        <div class="productImg">
+            <img src="./img2/1.jpg" alt="" class="smallImg">
+            <div class="bigBox">
+                <img src="./img2/1.jpg" alt="">
+            </div>
+            <span class="filter"></span>
+        </div>
+
+        <div class="productList">
+            <span id="pre"><</span> 
+            <div class="imgListShow">
+                    <div class="listBox">
+                        <article><img src="./img2/1.jpg" alt=""></article>
+                        <article><img src="./img2/2.jpg" alt=""></article>
+                        <article><img src="./img2/3.jpg" alt=""></article>
+                        <article><img src="./img2/4.jpg" alt=""></article>
+                        <article><img src="./img2/5.jpg" alt=""></article>
+                        <article><img src="./img2/6.jpg" alt=""></article>
+                        <article><img src="./img2/7.jpg" alt=""></article>
+                    </div>
+            </div>
+            <span id="next">></span>
+        </div>
+    </section>
+
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script src="../../myAPi/myApi.js/move.js"></script>
+
+    <script>
+    
+        function Maginfy(){
+               this.oShowBox = $('.showBox')[0],
+               this.oProductImg = $('.productImg')[0],
+               this.oSmallImg = $('.smallImg')[0],
+               this.oBigBox = $('.bigBox')[0], 
+               this.oFilter = $('.filter')[0],
+
+               this.oProductList = $('.productImg')[0],
+               this.oImgListShow = $('.imgListShow')[0],
+               this.oListBox = $('.listBox')[0],
+               this.aPre = $('#pre'),
+               this.aNext = $('#next'),
+               this.aArticle = $('article'),
+               this.aImg = $('img');
+               this.distance = this.aArticle[0].offsetWidth;
+               this.count = 0;
+               this.init();
+        }
+        Maginfy.prototype = {
+            //初始化入口
+            init : function() {
+                //设置oListBox 的宽度
+                this.oListBox.style.width = this.aArticle.length * this.distance  + 'px';
+                this.eventBind();
+                // this.switch();
+            },
+            mouseMove : function(e){
+                e = e || window.event;
+                preventDefault(e);
+                let
+                    l = e.pageX - this.oShowBox.offsetLeft - 
+                    this.oFilter.offsetWidth / 2,
+                    t = e.pageY - this.oShowBox.offsetTop - this.oFilter.offsetHeight / 2;
+                    //对边界进行限定
+                    l = l < 0 ? 0 : (l > 230 ? 230 : l);
+                    t = t < 0 ? 0 : (t > 230 ? 230 : t);
+                    //遮罩层跟着鼠标进行移动
+                    this.oFilter.style.left = l + 'px';
+                    this.oFilter.style.top = t +'px';
+                    //大图的移动
+                    this.oBigBox.firstElementChild.style.left = - l * 3 + 'px';
+                    this.oBigBox.firstElementChild.style.top = -t * 3 + 'px';
+            } ,
+            toImg : function(){
+                move(this.oListBox,{'left': -this.distance * this.count});
+            },
+            next : function(){
+                if(this.count >= this.aArticle.length - 4){
+                    this.count = this.aArticle.length - 4;
+                }else{
+                    this.count++;
+                }
+                this.toImg();
+            },
+            pre : function(){
+                if(this.count <= 0){
+                    this.count = 0; 
+            }else{
+                this.count--;
+            }
+                this.toImg();
+            },
+            switch : function(i){
+                // for(let i = 0, k = this.aArticle.length; i < k ; i++){
+                        this.oSmallImg.src = this.aArticle[i].firstElementChild.src;
+                        this.oBigBox.firstElementChild.src = this.aArticle[i].firstElementChild.src;
+                // }
+               
+            },
+            block : function(){
+                this.oFilter.style.display = 'block';
+                this.oBigBox.style.display = 'block';
+                addEventListener(this.oProductImg,'mousemove',this.mouseMove.bind(this));
+               
+            },
+            none : function(){
+                this.oFilter.style.display = 'none';
+                this.oBigBox.style.display = 'none';
+            },
+            eventBind : function(){
+                this.oProductImg.addEventListener('mouseover',this.block.bind(this));
+                this.oProductImg.addEventListener('mouseout',this.none.bind(this));
+                this.aPre.addEventListener('click',this.pre.bind(this));
+                this.aNext.addEventListener('click',this.next.bind(this));
+                for(let i = 0, k = this.aArticle.length; i < k ; i++){
+                    this.aArticle[i].addEventListener('mouseover',this.switch.bind(this,i));
+                }
+               
+            }
+        }
+        new Maginfy();
+    </script>
+</body>
+
+</html>

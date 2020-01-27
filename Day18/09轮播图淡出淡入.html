@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    section{
+        height:350px;
+        width:1000px;
+        background:orange;
+        margin:30px auto;
+        position:relative;
+    }
+    section span{
+        display:block;
+        height:50px;
+        width:50px;
+        border-radius: 50%;
+        background:rgba(200,0,0,0.8);
+        position:absolute;
+        top:150px;
+        font-size:30px;
+        line-height:50px;
+        text-align:center;
+        font-weight:bold;
+        color:#fff;
+        z-index:1;
+        cursor: pointer;
+
+    }
+    section span:nth-of-type(1){
+        left:20px;
+    }
+    section span:nth-of-type(2){
+        right:20px;
+    }
+    .imgBox{
+        height:350px;
+        position:absolute;
+    }
+    .imgBox img{
+        height:350px;
+        width:1000px;
+        position:absolute;
+        opacity:0;
+        filter:alpha(opacity=0);
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="imgBox">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+        </div>
+        <span><</span>
+        <span>></span>
+    </section>
+    <script src="./move.js"></script>
+    <script>
+    let 
+        oImgBox = document.querySelector('.imgBox'),
+        aImg = document.querySelectorAll('img'),
+        oS = document.querySelector('section'),
+        aBtn = document.querySelectorAll('span'),
+        distance = aImg[0].offsetWidth;//获取每一次移动的距离
+        count = 0, //计数器,控制盒子移动的距离
+        timer = null;
+        //初始状态第一张为不透明
+        aImg[0].style.opacity = 1;
+        aImg[0].style.filter = 'alpha(opacity=100)';
+        //控制透明度
+        function toImg(){
+            //先让所有图片的透明度为0
+            for(let i = 0 ,k = aImg.length; i < k; i++){
+                aImg[i].style.opacity = 0;
+            }
+            //在将当前的图片透明度改成1(注:要传100)
+            move(aImg[count],{'opacity':100});
+        }
+        
+        //下一张图片的移动
+        function next(){
+            //判断当前这一张是不是最后一张
+            if(count >= aImg.length - 1){
+                count = 0;
+            }else{
+                count++;
+            }
+            toImg();
+        }
+        //上一张图片的移动
+        function pre(){
+            //判断当前这张图片是不是第一张
+            if(count <= 0){
+                count = aImg.length - 1;
+            }else{
+                count--;
+            }
+            toImg();
+        }
+        //定时器播放
+        function autoplay(){
+            timer = setInterval(()=>{
+                next();
+            },3000)
+            console.log('播放');
+        }
+        //开启定时器
+        autoplay();
+        //清除定时器
+        function clearTime(){
+            clearInterval(timer);
+            console.log('暂停')
+        }
+        //封装事件监听
+        function addEventListener(ele,eventType,fn){
+            return ele.addEventListener ? ele.addEventListener(eventType,fn) : ele.attchEvent('on' + eventType,fn);
+        }
+        //事件绑定
+        addEventListener(aBtn[1],'click',next);
+        addEventListener(aBtn[0],'click',pre);
+        //当鼠标滑过,让图片停止,鼠标离开,图片继续移动
+        addEventListener(oS,'mouseover',clearTime);
+        addEventListener(oS,'mouseout',autoplay);
+    </script>
+</body>
+</html>

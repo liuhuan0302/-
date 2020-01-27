@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .box{
+        height:40px;
+        width:200px;
+        background:orange;
+        margin:100px auto 30px;
+        font-size:30px;
+        font-weight:bold;
+        line-height:40px;
+        text-align:center;
+        color:#fff;
+    }
+    .btn{
+        height:30px;
+        width:100px;
+        margin: 0 auto;
+        background:black;
+        font-size:20px;
+        line-height:30px;
+        text-align: center;
+        color:#fff;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">随机点名</div>
+    <div class="btn">开始</div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+    /*
+        功能分解:
+            1.随机切换文本
+            2.开始
+            3.暂停
+            4.绑定点击事件
+            
+    */
+   var arr = ['小明','小红','小苏','小孙','小刘','小李','小张']
+   function RandomName(){
+        this.box = document.querySelector('.box');
+        this.btn = document.querySelector('.btn');
+        this.flag = false;
+        this.init();
+   }
+   RandomName.prototype = {
+       //初始化入口
+       init:function(){
+            this.eventBind();
+       },
+       textChange:function(){
+           var _this = this;//定时器中的this 指向window 需要保存this指向
+           //清除定时器(防止越点越快)
+           clearInterval(_this.timer);//timer 成为对象的一个属性,也可以吧timer添加在属性上
+           _this.timer = setInterval(function(){
+            //每个一段时间,随机产生下标,通过下标改变数组中的名字
+            let num = parseInt(Math.random()*arr.length);
+            _this.box.innerHTML = arr[num];
+            _this.box.style.color = randomColor();
+           },100) 
+       },
+       //开始
+       startTxt:function(){
+           this.btn.innerHTML = '开始';
+       },
+       //暂停
+       stopTxt:function(){
+            this.btn.innerHTML = '暂停';
+       },
+       //判断是否开始
+       isStart:function(){
+           if(this.flag){
+               //点击开始,文本开始随机
+                this.textChange();
+                //按钮btn  显示 暂停
+                this.stopTxt();
+           }else{
+               clearInterval(this.timer);
+               this.startTxt();
+           }
+       },
+       //控制flag
+       controlFlag:function(){
+           //
+           this.flag = this.flag ? false : true;
+           //控制flag 来控制开始和暂停
+           this.isStart();
+       },
+       //事件绑定
+       eventBind:function(){
+           //当点击开始时, controlFlag 进行执行
+           addEventListener(this.btn,'click',this.controlFlag.bind(this));
+       }
+   }
+   new RandomName();
+   /*
+    执行逻辑:
+        1.点击开始 - 执行口令(controlFlag)(flag = false) -- 改变flag 值 为true
+        2.
+   
+   
+   */
+    </script>
+</body>
+</html>

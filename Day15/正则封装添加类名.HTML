@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 200px;
+            width: 300px;
+            background: orange;
+        }
+
+        .warp {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box warp con"></div>
+    <script>
+        var oDiv = document.querySelector('.box');
+        //动态添加类名  如果存在 则不添加
+        function addClass(ele, classN) {
+            //先获取元素现有的类名 
+            var _className = ele.getAttribute('class');
+            //创建正则,用来匹配_className
+            //正则分析 类名左侧  可能是^ 可能\s  类名右侧可能是\s 也可能是$
+            var reg = new RegExp('(^|\\s)' + classN + '($|\\s)', 'g');
+            console.log(reg);
+            if (!reg.test(_className)) {
+                ele.className += ' ' + classN;
+            }
+        }
+        //注:new RegExp  正则中\需要转义 \\
+        addClass(oDiv, 'aaa');
+        var reg = new RegExp('(^|\\s)bbb($|\\s)', 'g');
+        var str = 'box aaa ccc';
+        console.log(reg.test(str));
+
+    </script>
+</body>
+
+</html>
+<!-- 
+    获取类名:
+        元素.className
+        元素.getAttribute
+ -->

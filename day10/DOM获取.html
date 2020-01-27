@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+   
+    <!-- <div id="box"></div>
+    <input type="text" name="userName">
+    <input type="text" name="userName">
+    <input type="text" name="userName">
+    <input type="text" name="userName">
+    <input type="text" name="userName"> -->
+    <section id="box">
+    <div id="box1">1</div>
+    <div id="box1">2</div> 
+    <div id="box1">3</div>
+    <!-- <div>kkkk</div> -->
+    </section>
+    
+
+    <script>
+//         var obox = document.getElementById('box');
+//         console.log(obox);
+//         var aInput = document.getElementsByName('userName');
+//         console.log(aInput[1]);
+//         var aInput = document.getElementsByTagName('input');
+//         console.log(aInput);
+//         var wrap = document.getElementsByClassName('wrap');
+//         console.log(wrap);
+//         var obj = document.querySelectorAll('#box1');
+//         console.log(box1);
+//         var obj = document.querySelector('#box1');
+//         console.log(box1.parentNode);
+// //节点创建
+        var creatDiv =document.createElement('div');
+        console.log(creatDiv);//创建一个节点
+        var creatTxt =document.createTextNode('nnn');
+        console.log(creatTxt);//创建一个文本节点
+//添加节点
+        var wrap = document.getElementsByClassName('wrap');//获取当前元素
+        var creatDiv =document.createElement('div');//创建一个新节点
+        wrap.appendChild(creatDiv);//将新节点添加到当前元素(appendChild  给父元素添加子节点)
+        wrap.append(createDiv);
+//克隆节点
+    var oBox = document.getElementById('box');//获取父元素
+    var newBox = oBox.cloneNode(true);//默认是false,只克隆当前元素(如果添加true表示克隆当前元素及子节点)
+    console.log(newBox);
+//删除节点
+    var oBox = document.getElementById('box'); //父元素
+    var obj = document.querySelectorAll('#box1');//获取所有子元素
+    //父元素.removeChild(子元素)
+        oBox.removeChild(obj[1]);//删除父元素下面的第二个子元素
+        //需要删除的元素.remove
+        obj[0].remove();
+ //
+    this.parentNode.remove()       
+    </script>
+</body>
+</html>

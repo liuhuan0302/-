@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            height: 100px;
+            width: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script src="./myApi.js"></script>
+    <script>
+        var oBox = $('.box')[0];
+        var fn = null;
+        //事件监听
+        addEventListener(oBox, 'mousedown', function (e) {
+            e = e || window.evnet;
+            var
+                x = e.offsetX,
+                y = e.offsetY;
+            addEventListener(document,'mousemove',fn = function (e) {
+                e = e || window.event;
+                var
+                    l = e.clientX,
+                    t = e.clientY;
+                oBox.style.left = l - x + 'px';
+                oBox.style.top = t - y + 'px';
+                //事件解绑
+                addEventListener(document, 'mouseup', function () {
+                    //事件解绑
+                    //fn 是上面的回调函数
+                    document.removeEventListener('mousemove', fn);
+                })
+            })
+
+        })
+    </script>
+</body>
+
+</html>
+<!-- 
+
+    // ele.addEventListener('事件类型'，回调)  事件监听
+    // ele.removeEventListener('事件类型',回调) 事件解绑(解绑与监听的参数保持一致)
+
+ -->

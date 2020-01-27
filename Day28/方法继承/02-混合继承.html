@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    /*
+
+        混合继承：
+
+            Fn2.prototype = {
+                constructor : Fn2,
+                __proto__ : Fn1.prototype
+            }
+
+
+    */
+    function Fn1(){
+        this.name = 'aaaaa';
+    }
+    Fn1.prototype.work = function(){
+        console.log('工作');
+    }
+    Fn1.prototype.sleep = function(){
+        console.log('睡觉');
+    }
+
+
+
+    function Fn2(){
+        this.name = 'bbbb';
+    }
+    //重构Fn2的prototype,将fn1.prototype添加到__proto__里面
+    Fn2.prototype = {
+        constructor : Fn2,
+        __proto__ : Fn1.prototype,
+    }
+    Fn2.prototype.run = function(){
+        console.log('跑步');
+    }
+    var obj = new Fn2();
+    console.dir(Fn2);
+    console.dir(obj);
+    /*
+    
+     目的:让Fn2能拥有fn1的方法
+     原理: 重构Fn2的prototype   
+    
+    */
+
+
+
+    function Timo(){
+        this.name = '提莫';
+    }
+    Timo.prototype = {
+        skill : function(){
+            console.log('蘑菇');
+        }
+    }
+
+    function Mangs(){
+        this.name = '盲僧';
+    }
+    //继承提莫的方法
+    Mangs.prototype = {
+        constructor :Mangs,
+        __proto__ : Timo.prototype
+    }
+    var mangseng = new Mangs();
+    mangseng.skill();
+    </script>
+</body>
+</html>

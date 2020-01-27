@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var date = new Date('2016/12/11');
+    console.log(date);
+    
+      /*
+    node基础:
+
+        Js是怎么在浏览器中跑起来的，因为浏览器中存在一个js解析引擎
+            + 这个引擎是用来解析ECMAscript
+
+        把浏览器的解析引擎单独抽出来
+            + 当作一个软件放在电脑里面，安装在命令行
+            + 不需要浏览器就能运行js代码
+            + 这个引擎软件就是 node.js
+
+
+        node.js  与 原声js的区别：
+            + js需要依赖于浏览器
+            + node 运行js文件的地时候 用的是终端
+            + 原声js有兼容问题。node不需要浏览器所以没有兼容问题
+            + 本地文件的读写、服务器创建、连接数据库  js是做不到的
+
+        NODE的作用? 优点  缺点：
+            本地文件的读写、服务器创建、连接数据库......
+            优点：中间层
+            缺点：不适合做大量的计算
+
+    nvm 安装(可以管理多个版本的node.js)
+
+        安装步骤:1:先安装nvm 
+                2:在nvm 文件中找到setting文件添加淘宝镜像
+                    配置环境变量:
+                        %NVM_HOME%
+                        %NVM_SYMLINK%
+                3.在终端上安装nodejs
+                    nvm list   弹出安装的node版本
+                    nvm list available 现在源上能安装的所有的node版本
+                    nvm install 10.15.2  node安装
+                    nvm uninstall 10.15.3  卸载
+   
+
+        淘宝镜像
+            node_mirror: https://npm.taobao.org/mirrors/node/ 
+            npm_mirror: https://npm.taobao.org/mirrors/npm/
+            nvm可以管理多个版本的node.js
+
+            1,nvm nvm list 是查找本电脑上所有的node版本
+                - nvm list 查看已经安装的版本
+                - nvm list installed 查看已经安装的版本
+                - nvm list available 查看网络可以安装的版本
+            2,nvm install 版本号
+            3,nvm use <version> ## 切换使用指定的版本node
+            4,nvm ls 列出所有版本
+            5,nvm current显示当前版本
+            6,nvm alias <name> <version> ## 给不同的版本号添加别名
+            7,nvm unalias <name> ## 删除已定义的别名
+            8,nvm reinstall-packages <version> ## 在当前版本node环境下，重新全局安装指定版本号的npm包
+            9,nvm on 打开nodejs控制
+            10,nvm off 关闭nodejs控制
+            11,nvm proxy 查看设置与代理
+            12,nvm node_mirror [url] 设置或者查看setting.txt中的node_mirror，如果不设置的默认是 https://nodejs.org/dist/
+            nvm npm_mirror [url] 设置或者查看setting.txt中的npm_mirror,如果不设置的话默认的是： https://github.com/npm/npm/archive/.
+            13,nvm uninstall <version> 卸载制定的版本
+            14,nvm use [version] [arch] 切换制定的node版本和位数
+            15,nvm root [path] 设置和查看root路径
+            16,nvm version 查看当前的版本
+
+                     nvm use 10.16.3  切换node版本
+    npm 安装(包管理工具)
+        安装步骤:
+            两种方法:
+                1.npm install nodemon -g
+                2.先安装淘宝镜像
+                npm install -g cnpm --registry=https://registry.npm.taobao.org
+                在安装npm 
+                语句:cnpm install nodemon -g
+
+    NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：
+        允许用户从NPM服务器下载别人编写的第三方 包 到本地使用。
+        允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。
+        允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。
+
+    npm是存储代码的一个仓库
+    npm:node包管理器   是一个网站   是一个包   也是一个命令
+    npm一般会在公司建立一个私有的仓库
+
+
+    查看版本   npm -v
+    安装模块   npm install <module name>
+    全局安装   npm install <module name> -g
+    卸载模块   npm uninstall <module name>
+    查看安装包 npm ls
+    更新模块   npm update <module name>
+    搜索模块   npm search <module name>
+
+    REPL 环境
+    在命令行键入node命令，后面没有文件名，就进入一个Node.js的REPL环境（Read–eval–print loop，”读取-求值-输出”循环），可以直接运行各种JavaScript命令。
+
+
+    注:在环境中运行js文件   必须cd到当前的文件
+        */
+    </script>
+</body>
+</html>

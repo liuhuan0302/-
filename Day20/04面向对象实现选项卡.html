@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    div{
+        height:40px;
+        width:300px;
+        background:#ccc;
+        margin:30px auto 0;
+    }
+    div span{
+        height:40px;
+        width:98px;
+        background:yellow;
+        margin-right:2px;
+        float:left;
+        font-size:30px;
+        font-weight:900;
+        color:#fff;
+        line-height:40px;
+        text-align:center;
+        cursor: pointer;
+    }
+    .active{
+        background:blue;
+        color:black;
+    }
+    section{
+        height:300px;
+        width:300px;
+        margin:0 auto;
+        position:relative;
+        background:#fff;
+    }
+    article{
+        height:300px;
+        width:300px;
+        background:orange;
+        position:absolute;
+        text-align:center;
+        font-size:30px;
+        line-height:300px;
+        display:none;
+    }
+    .show{
+        display:block;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <span class='active'>TAB1</span>
+        <span>TAB2</span>
+        <span>TAB3</span>
+    </div>
+    <section>
+        <article class = 'show'>内容1</article>
+        <article>内容2</article>
+        <article>内容3</article>
+    </section>
+    <script>
+    /*
+        功能分析:
+            1.清除所有类名
+            2.添加所有类名
+            3.下标
+            4.鼠标点击切换内容
+    */
+   function Tab(){
+       this.aBtn = document.querySelectorAll('span');
+       this.article = document.querySelectorAll('article');
+       this.init(); 
+   }
+
+   Tab.prototype = {
+       //初始化方法
+       init:function(){
+            this.eventBind();
+       },
+       //清除类名
+       clearClass:function(){
+           //循环遍历
+           for(let i = 0, k = this.aBtn.length; i < k; i++){
+               this.aBtn[i].className = '';
+               this.article[i].className = '';
+           }
+       },
+       //添加类名
+       addClass:function(index){
+           //在添加类型之前先清除类名
+           this.clearClass();
+           this.aBtn[index].className = 'active';
+           this.article[index].className = 'show'
+       },
+       //事件绑定
+       eventBind:function(){
+            //循环遍历,鼠标滑过绑定事件
+            for(let i = 0, k = this.aBtn.length;i < k; i++){
+                this.aBtn[i].addEventListener('click',this.addClass.bind(this,i));
+                //this.addClass.bind(this,i)  i 是addClass 里面的实参index;
+            }
+       },
+   }
+   new Tab();
+    
+    </script>
+</body>
+</html>

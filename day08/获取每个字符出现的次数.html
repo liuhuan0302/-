@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1：.统计每个字符出现的次数;
+        /*
+            1.先将字符串进行去重,并生成一个新字符串
+            2.将新字符串与其进行对比
+        */
+        var str = "aaaabcfdee";
+        var str2 = "";
+
+        //字符串去重,并将其赋值给一个新字符串
+        for (var i = 0; i < str.length; i++) {
+            if (str2.indexOf(str.charAt(i)) == -1) {
+                str2 += str.charAt(i);
+            }
+        }
+        //将新字符串与原来字符串进行对比,如果有一次一样的就记录一次
+        for (var i = 0; i < str2.length; i++) {
+            var count = 0;
+            for (var k = 0; k < str.length; k++) {
+                if (str2.charAt(i) == str.charAt(k)) {
+                    count++;
+                }
+            }
+            console.log(str2.charAt(i) + "出现了" + count + "次");
+        }
+
+    </script>
+</body>
+
+</html>

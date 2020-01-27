@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //创建一个时间函数
+        var date = new Date();
+        function printDate(d,sign){
+            //判断是否传入sign值(即是否传入符号)
+            sign = !sign ? '/' : sign;
+            return ''+d.getFullYear() + sign + mendZero(d.getMonth()+1) + sign + mendZero(d.getDate()) + ' ' + mendZero(d.getHours()) + ':' +mendZero(d.getMinutes()) + ':' +mendZero(d.getSeconds());
+       } 
+       //封装补零的方法
+       function mendZero(num){
+           return num = num < 10 ? '0'+ num : num;
+       }
+       document.write(printDate(date,'-'));
+    </script>
+</body>
+</html>

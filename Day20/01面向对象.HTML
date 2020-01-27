@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Car(name, volume, type) {
+            this.name = name;         //加工
+            this.volume = volume;
+            this.type = type;
+            this.fn = function () {
+                console.log(this.name);// this 指向这个对象 fn{} == Car
+            }
+        }
+        //调用方法
+        var car1 = new Car('奥迪', '4.0T', 'suv');
+        var car2 = new Car('奥拓', '1.0T', 'suv');
+        var car3 = new Car('奔驰', '3.0T', 'suv');
+        // console.log(car1, car2, car3);
+
+        car1.fn(); //== car1.name  奥迪
+        car2.fn();
+        car3.fn();
+    
+        console.log(car1.fn == car2.fn);//false
+
+        var arr1 = new Array();
+        var arr2 = new Array();
+        console.log(arr1.push == arr2.push);
+
+        console.dir(Array);
+        console.dir(Object);
+        console.dir(String);
+       
+    </script>
+</body>
+
+</html>

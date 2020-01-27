@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      function Fn1(){
+        this.name = 'aaaaa';
+    }
+    Fn1.prototype.work = function(){
+        console.log('工作');
+    }
+    Fn1.prototype.sleep = function(){
+        console.log('睡觉');
+    }
+
+
+
+    function Fn2(){
+        this.name = 'bbbb';
+    }
+    //设置寄生盒子
+    /*
+    将fn1的prototype浅拷贝给fn:
+    1.由于fn是个空函数,不会污染fn1
+    2.会改变fn 中constructor 的指向
+    3.会继承fn1中的方法
+    4.new Fn 会得到一个对象（__proto__）(fn继承的方法,构造器 ,__proto__)
+    5.将实例化的new fn() 给到Fn2.prototype 
+        a:会继承fn的方法
+        b:重构fn2的__proto__
+    */
+    function Fn(){}
+    Fn.prototype = Fn1.prototype;
+    // console.dir(Fn2.prototype);//为什么会改变Fn2的构造器(object:{run:fn(),constructor:fn2(),__proto__:object})
+    //  console.dir(new Fn());//打印出来Fn{__proto__:{object:{sleep:fn(),work:fn(),constructor:fn1(),__proto__:object}}}
+    Fn2.prototype = new Fn();//相当于fn实例化的__proto__把Fn2.prototype 重构la
+    // Fn2.prototype.constructor = Fn2;
+   
+    // console.dir(Fn2.prototype);//Fn1{run:fn(),__proto__:{object:{sleep:fn(),work:fn(),constructor:fn1(),__proto__:object}}
+
+
+    Fn2.prototype.run = function(){
+        console.log('跑步');
+    }
+    var obj = new Fn2();
+    console.dir(Fn2);
+    console.dir(obj);
+    </script>
+</body>
+</html>

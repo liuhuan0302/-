@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            height: 200px;
+            width: 300px;
+            margin: 30px auto 0;
+            background: #000;
+            position: relative;
+        }
+
+        article {
+            height: 30px;
+            width: 30px;
+            background: #fff;
+            position: absolute;
+            left: 200px;
+            top: 50px;
+        }
+
+        span {
+            display: block;
+            height: 30px;
+            width: 30px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 50px;
+        }
+
+        div {
+            height: 30px;
+            width: 300px;
+            background: #ccc;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        h2 {
+            height: 30px;
+            width: 30px;
+            background: blue;
+            position: absolute;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <article></article>
+        <span></span>
+    </section>
+    <div>
+        <h2></h2>
+    </div>
+    <script src="../../myAPi/myApi.js/myAPI.js"></script>
+    <script>
+        var
+            oH2 = document.querySelector('h2'),
+            oDiv = document.querySelector('div'),
+            oSpan = document.querySelector('span');
+        oH2.onmousedown = function (e) {
+            e = e || window.event;
+            preventDefault(e);
+            var x = e.offsetX;
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                preventDefault(e);
+                var l = e.clientX - x - oDiv.offsetLeft;
+                l = l <= 0 ? 0 : (l >= 270 ? 270 : l);
+                oH2.style.left = l + 'px';
+                //小图随着下面的图移动
+                oSpan.style.left = l + 'px';
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    //判断验证是否成功
+                    if (oSpan.offsetLeft >= 190 && oSpan.offsetLeft <= 210) {
+                        alert('验证成功');
+                        oSpan.style.left = '200px';
+                        oH2.style.left = '200px';
+                    } else {
+                        alert('验证失败');
+                        oSpan.style.left = 0;
+                        oH2.style.left = 0 ;
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

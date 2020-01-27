@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+        回顾
+        1.更改this指向的方法:
+            1.保存this
+            2.bind
+            3.call
+            4.apply
+
+        2.bind apply call 的区别:
+            bind 返回的是一个函数,需要调用
+            apply  &  call 返回的不是函数
+
+            apply 和 call 的区别:参数不同
+                call 能接收多个参数,第一个参数this指向
+                apply 能接收两个参数,第一个参数this指向,第二个参数必须是数组
+            function sum(a,b){
+                return a + b;
+            }
+            function product(a,b){
+                return a * b;
+            }
+            //sum 借用product 的方法
+            var res = product.apply(sum,[10,20]);
+            var res = product.call(sum,10,20);
+            console.log(res);
+
+    
+        3.apply 和 call 继承的体现
+            做构造函数 属性的继承
+        //call 继承的体现
+            //只有object 才能监测对象的具体类型(数组对象)
+            var a = new Array();
+            //a 借用Object中的toString() 方法
+            console.log(Object.prototype.toString.call(a));
+
+        //apply 继承的体现
+
+            var arr = [1,2,4,5,69,0];
+            //将Math.min方法借给 array
+            console.log(Math.min.apply([],arr)); 
+
+
+        4.拓展:
+            监测对象类型的方法:
+            typeof  只能检查到object(该数值是什么类型)
+            instanceof 检查返回的是一个布尔值
+            Object.prototype.toString.call(a)
+
+            //只有object 才能监测对象的具体类型(数组对象)
+            var a = new Array();
+            //a 借用Object中的toString() 方法
+            console.log(Object.prototype.toString.call(a));
+    
+    */ 
+    // function sum(a,b){
+    //     return a + b;
+    // }
+    // function product(a,b){
+    //     return a * b;
+    // }
+    // //sum 借用product 的方法
+    // var res = product.apply(sum,[10,20]);
+    // var res = product.call(sum,10,20);
+    // console.log(res);
+
+
+    /*
+        call 和 apply 继承的体现:
+
+
+    
+
+        监测对象类型的方法:
+            typeof  只能检查到object(该数值是什么类型)
+            instanceof 检查返回的是一个布尔值
+            Object.prototype.toString.call(a)
+
+            //只有object 才能监测对象的具体类型(数组对象)
+            var a = new Array();
+            //a 借用Object中的toString() 方法
+            console.log(Object.prototype.toString.call(a));
+    
+    */
+//instanceof 的应用
+    // var a = [];
+    // //检查a 是否是array对象
+    // console.log(a instanceof Array);//true
+
+    // var obj = new Object();
+    // console.log(obj.toString());//[object Object]
+
+//call 继承的体现
+    //只有object 才能监测对象的具体类型(数组对象)
+    // var a = new Array();
+    // //a 借用Object中的toString() 方法
+    // console.log(Object.prototype.toString.call(a));
+
+// //apply 继承的体现
+
+//     var arr = [1,2,4,5,69,0];
+//     //将Math.min方法借给 array
+//     console.log(Math.min.apply([],arr)); 
+
+    //call 的属性继承
+    // function Fn1(){
+    //     this.name = '第一个函数';
+    //     this.age = '10';
+    // }
+    // function Fn2(){
+    //     Fn1.call(this);//Fn2 继承了Fn1的属性
+    //     this.sex = 'nan';
+    // }
+
+    // var obj = new Fn2();
+    // console.log(obj.age);
+
+
+    //call 的属性继承(第一种)
+    // function Fn1(){
+    //     this.name = '第一个函数';
+    //     this.age = '10';
+    //     this.sex = '100';
+    //     this.fn = function(){
+    //         console.log(this.sex);
+    //     }
+    // }
+    // function Fn2(){
+    //     //this 指向的是Fn2 
+    //     Fn1.call(this);//Fn2 继承了Fn1的属性
+    //     this.sex = 'nan';
+    // }
+
+    // var obj = new Fn2();
+    // console.log(obj);
+    // obj.fn();//打印的是nan  Fn2 继承 Fn1 的属性    Fn2中的sex属性把Fn1中的sex 属性覆盖掉了
+
+
+
+    //call 的属性继承(第二种)
+    function Fn1(){
+        this.name = '第一个函数';
+        this.age = '10';
+        this.sex = '100';
+        this.fn = function(){
+            console.log(this.sex);
+        }
+    }
+    function Fn2(){
+        this.sex = 'nan';
+        //this 指向的是Fn2 
+        Fn1.call(this);//Fn2 继承了Fn1的属性
+    }
+
+    var obj = new Fn2();
+    console.log(obj);
+    obj.fn();
+
+    //继承案例:
+    // function Person(name,age){
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    // function Man(name,age){
+    //     //Man 继承 Person 的属性
+    //     Person.call(this,name,age);
+    //     this.sex = 'nan';
+
+    // }
+    // function Woman(){
+    //     Person.call(this);
+    //     this.sex = 'nv';
+    // }
+
+    // var xm = new Man('xiaoming','20');
+    // console.dir(xm);
+
+/*
+    注:new 出来的都是对象
+
+    toString() 对象的方法(万物皆对象)
+
+    toString 字符串转换
+    toString(16) 转成十六进制
+*/ 
+    </script>
+</body>
+</html>

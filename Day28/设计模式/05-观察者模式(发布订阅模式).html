@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     /*
+        观察者模式（发布订阅模式）(一对多的模式)
+        观察者模式：观察者模式定义了一种一队多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态上发生变化时，会通知所有观察者对象，使他们能够自动更新自己。
+
+
+
+        新公司：策划会议模式！！！
+            1：准备一间大型会议室
+            2：把开会人员集合到会议室
+            3：发布者可以发布信息（开会内容） ->  开会人员接收
+
+            对 开会人员包装
+                1：名字
+                2：每个开会人员都会存在一个接收信息的方法
+    */      
+    
+    function CreateMeeting(){
+        //准备一间会议室
+        this.room = [];
+        //把开会人员集合到会议室
+        this.addPeople = function(people){
+            this.room.push(people)
+        }
+
+        //发布信息
+        this.send = function(info){
+            //开会所有人员接收信息
+            //items是映射数组的参数(记录的是数组项)(可以取到room数组里面的每一项)
+            this.room.map( (items)=>{
+                //getInfo 是 开会人员的方法   暂时不存在
+                items.getInfo(info);//数组中的人接收信息
+            })
+        }
+    }
+
+    //创建开会人员
+    function CreateP(name){
+        this.name = name;
+        //接收信息的方法
+        this.getInfo = function(xinxi){
+            console.log(this.name + '去会议室开会，收到的信息：' +xinxi); 
+        }
+    }
+
+    //开始一场会议
+    var meeting = new CreateMeeting();
+
+    //创建开会人员
+    var p1 = new CreateP('王帅');
+    var p2 = new CreateP('王');
+    var p3 = new CreateP('zhao');
+    var p4 = new CreateP('sun');
+    var p5 = new CreateP('zhou');
+
+
+    //把开会人员放到会议里面
+    meeting.addPeople(p1);
+    meeting.addPeople(p2);
+    meeting.addPeople(p3);
+    meeting.addPeople(p4);
+    meeting.addPeople(p5);
+
+     //正式开会
+     meeting.send('大家好。今天干到天亮');
+    </script>
+</body>
+</html>

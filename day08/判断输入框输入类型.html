@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="pwd" value="3333333" autocomplete="off">
+    <span id= "txt"></span>
+    <script>
+    /*
+        i.长度为6-16
+        ii.全是数字 提示弱
+        iii.含有特殊字符（！@#等） 提示强
+        iv.否则提示中
+
+    */    
+    /*
+        业务逻辑:
+            先见一个input输入框 和一个提示span
+            绑定一个监测事件
+            判断数值长度
+        
+    */ 
+                var special ="@#$%^&*";
+                //绑定输入框,对其进行监测
+                pwd.oninput = function(){
+                    //对输入框中值进行获取
+                    var pwdValue = pwd.value;
+                    //判断输入数值长度是否在6-16
+                    if(pwdValue.length < 6 || pwdValue.length > 16 ){
+                        return txt.innerHTML = "密码长度不合法";
+                    }
+                    //判断是否全为数字,提示弱
+                    // if(typeof Number(pwdValue) == 'number' && !isNaN(pwdValue))
+                    //先把pwdValue 转成数值格式,再去检测是不是number  
+                    //typeof NaN 也是number 要把这个条件去掉 isNaN(NaN) = ture
+                    //如果想pwdValue != NaN 则 !isNaN(pwdValue) = true
+                    //isNaN 是进行Number检测 Number检测除数值,其他都为NaN
+                    if(Number(pwdValue) == pwdValue){
+                        return txt.innerHTML = "密码弱";
+                    }
+                    //判断是否含有特殊字符
+                    //利用循环,对特殊字符进行遍历
+                    for(var i = 0;i < special.length;i++){
+                        //对输入字符串从前往后检索,如果有特殊字符,则会把下标返回
+                        if(pwdValue.indexOf(special[i] != -1)){
+                            return txt.innerHTML = "密码强度强";
+                        }
+                    }
+                    return txt.innerHTML = "密码强度适中";
+                }
+    </script>
+</body>
+</html>

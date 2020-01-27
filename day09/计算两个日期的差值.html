@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            height: 40px;
+            width: 350px;
+            background: red;
+            margin: 100px auto;
+            font-size: 20px;
+            color: #fff;
+            line-height: 40px;
+            text-align: center;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        //计算两个日期的差值
+        setInterval(function(){
+            var agoTime = new Date('1993/3/2');
+            var nowTime = new Date();
+            //计算两个日期差距的毫秒
+            var ms = nowTime - agoTime;
+            //计算有多少整天
+            var day = parseInt(ms/(24*60*60*1000));
+            var hours = parseInt(ms%(24*60*60*1000)/(60*60*1000));
+            var m = parseInt(ms%(24*60*60*1000)%(60*60*1000)/(60*1000));
+            var s = parseInt(ms%(24*60*60*1000)%(60*60*1000)%(60*1000)/1000);
+            box.innerHTML = ''+'倒计时' + day + '天' + hours + '小时' + m + '分钟' + s +
+'秒';
+        })
+
+    </script>
+</body>
+
+</html>

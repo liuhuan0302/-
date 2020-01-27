@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//构造函数与普通函数的区别
+
+//普通函数没有return 调用时 返回值 为undefind
+    //普通函数调用 fn()
+    function fn(){
+
+    }
+    console.log(fn());
+
+//构造函数调用时,没有return  返回值是构造出来的对象(fn{})
+    //构造函数调用new fn();
+    function fn(){
+
+    }
+    console.log( new fn());
+
+//普通函数的this 指向 window
+    function fn(){
+        console.log(this);
+    }
+    fn();
+//构造函数的this 指向 当前对象
+    function fn(){
+        console.log(this);
+        }
+    new fn();
+</script>
+</body>
+</html>
+<!-- 
+    面向过程:
+        1.顺序结构,里面的步骤和顺序 不能随意颠倒
+        2.形成大量全局变量,造成变量污染
+
+    面向对象的特点:
+        封装
+        继承
+        多态
+        抽象: 抽取一个功能里面的多个核心的功能模块
+
+    js里面面向对象: 封装 继承 抽象
+
+    思想: 高内聚  低耦合
+        低耦合:每个功能模块之间耦合度要低
+        高内聚:模块内部要紧密相连
+    
+
+    面向对象的风格都是从 new 开始的!!
+        var str = new String();
+        var reg = new RegExp();
+        var arr = new Array();
+        var d = new Date();
+        var obj = new Object();
+        var fn = new Function()
+        var num = new Number();
+
+    js对象的分类：
+        宿主对象、内置对象 （Math）、内部对象（ new ）
+
+    构造函数：
+        通过 new 调用的 -> 构造函数
+
+        对象是通过构造函数构建出来的，对象用来存储数据
+    
+     注:   为了区分构造函数与普通函数：  构造函数的首字母 大写！！！！！
+
+    分析： 构造函数 与 普通函数的区别
+
+        普通函数如果内部没有return的时候 返回的是undefined
+        构造函数内部没有return返回值的时候，返回的构造出来的对象。
+
+
+        普通函数内部的this指向，指向的是window
+        构造函数内部的this指向，指向的是当前对象。
+
+
+
+            总结：构造函数在new的时候构建对象，会在内部自动返回一个this  指向构造的对象。
+ -->
